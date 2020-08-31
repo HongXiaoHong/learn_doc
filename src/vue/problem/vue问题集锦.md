@@ -35,6 +35,49 @@ found in
                    <Root>
 ```
 
+这里报错的原因是
+传入的prop中的值是不允许改变的
+
+直接我想修改图片的url 这里我直接使用修改el-image的属性 结果出现该错误 
+```javascript
+this.$refs.randomImage[(val+1)%5].$children[0].src = "/api/image/random/memory/" + new Date().getTime();
+```
+
+后面看到一个博客
+[[Vue warn]: Avoid mutating a prop directly since the value will be overwritten](https://blog.csdn.net/u014520745/article/details/75455979)
+
+里面提到的就是我们最好不要直接修改页面元素的属性值
+
+而是最好绑定一个变量 
+然后我们修改该变量的值
+
+紧接着图片的url就会随之改变
+一开始我试着这么做 结果发现并没有成功
+```javascript
+let urls = [];
+let index = 0;
+for (; index < 6; index++) {
+urls.push("/api/image/random/memory/" + index);
+}
+
+
+this.urls[(val+1)%5] = "/api/image/random/memory/" + new Date().getTime();
+```
+后面值改变了也没用
+
+之后我将放进去的变为映射（字典） 就可以了
+
+```javascript
+let urls = [];
+let index = 0;
+for (; index < 6; index++) {
+let imgUrl = {"url": "/api/image/random/memory/" + index}
+urls.push(imgUrl);
+}
+
+this.urls[(val+1)%5].url = "/api/image/random/memory/" + new Date().getTime();
+```
+
 ## vue跨域
 
 [vue跨域解决方法](https://www.cnblogs.com/wangyongcun/p/7665687.html)
