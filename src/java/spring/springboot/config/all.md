@@ -1,0 +1,6 @@
+[SpringBoot中如何优雅的读取yml配置文件？](https://www.cnblogs.com/haha12/p/11762944.html)
+[SpringBoot读取自定义yml资源文件](https://blog.csdn.net/lightofsms/article/details/79813204?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
+[SpringBoot读取外部配置文件的方法](https://blog.csdn.net/qq_42074921/article/details/89488192)
+[spring boot configuration annotation processor not configured 错误解决方案](https://blog.csdn.net/weixin_42362496/article/details/103805993)
+[springboot配置文件yml中的map形式](https://blog.csdn.net/MTone1/article/details/91413539)
+[个人周记丨2020-01-12 从properties配置文件中注入key值包含特殊字符的map（spring-boot项目）](https://blog.csdn.net/qq_36134369/article/details/103948810)
