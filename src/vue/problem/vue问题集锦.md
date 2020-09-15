@@ -87,3 +87,35 @@ this.urls[(val+1)%5].url = "/api/image/random/memory/" + new Date().getTime();
 ## axios get方式请求
 
 [vue+axios中的get请求传参，post请求头（form/json）不一样的传参的处理](https://blog.csdn.net/weixin_39701533/article/details/83744448?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.channel_param)
+
+## 
+### 错误信息
+(Emitted value instead of an instance of Error) <el-collapse-item v-for="question in questions">: component lists render
+ed with v-for should have explicit keys. See https://vuejs.org/guide/list.html#key for more info.
+
+修改前
+```html
+<template>
+  <div class="block" id="brush">
+    <el-collapse v-model="activeName" accordion>
+      <el-collapse-item v-for="(question, index) in questions" :title="question.title" :name="index" >
+        <div v-for="content in question.contents">{{content}}</div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
+</template>
+```
+加上:key="index"
+修改后
+
+```html
+<template>
+  <div class="block" id="brush">
+    <el-collapse v-model="activeName" accordion>
+      <el-collapse-item v-for="(question, index) in questions" :title="question.title" :name="index" :key="index">
+        <div v-for="content in question.contents">{{content}}</div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
+</template>
+```
