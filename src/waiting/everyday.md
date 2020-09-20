@@ -18,3 +18,13 @@ it is funny ? hhh
 
 
 1. 20200914 完成题目的录入功能
+
+了解Java解析各种格式（json xml yml）的工具
+java 解析json
+
+[JAVA中的四种JSON解析方式详解](https://blog.csdn.net/xingfei_work/article/details/76572550)
+[JSON三种数据解析方法](https://blog.csdn.net/oman001/article/details/79063278?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
+
+复习一下spring
+[SpringInterviewQuestions.md](https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/framework/spring/SpringInterviewQuestions.md)
+[必知](https://github.com/Snailclimb/JavaGuide#%E5%BF%85%E7%9F%A5)
