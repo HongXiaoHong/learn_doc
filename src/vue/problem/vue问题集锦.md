@@ -121,3 +121,15 @@ ed with v-for should have explicit keys. See https://vuejs.org/guide/list.html#k
 ```
 ### vue中使用element-ui组件中的el-button时，@click事件点击无效
 [vue中使用element-ui组件中的el-button时，@click事件点击无效](https://blog.csdn.net/weixin_39378691/article/details/88795900?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+
+### loader解析
+
+```html
+Module parse failed: Unexpected character ' ' (1:0) You may need an appropriate loader to handle this file type. (Source code omitted for this binary file)
+```
+
+#### 解决
+[You may need an appropriate loader to handle this file type](https://blog.csdn.net/qq_34817440/article/details/105113836?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
+
+### 更换浏览器icon
+[VUE设置浏览器icon图标](https://blog.csdn.net/brain_bo/article/details/80645971)
