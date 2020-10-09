@@ -133,3 +133,16 @@ Module parse failed: Unexpected character ' ' (1:0) You may need an appropriate 
 
 ### 更换浏览器icon
 [VUE设置浏览器icon图标](https://blog.csdn.net/brain_bo/article/details/80645971)
+
+### cli 如何从2升级到3
+[Vue-cli 如何从2.9.6 版本升级至3.0](https://segmentfault.com/q/1010000016687692)
+[vue-cli3.0升级失败，vue-cli卸载不掉，vue-cli升级不了3.0_路径](https://juejin.im/post/6844903720954626056)
+
+[npm 安装yarn](https://blog.csdn.net/qq_36838191/article/details/98038890)
+
+*important*
+[安装官网vue-cli的方式竟然真的可以安装成功](https://vuetifyjs.com/en/getting-started/installation/)
+
+[Webpack4 升级全教程](https://blog.csdn.net/qq_25243451/article/details/80331269?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
+
+[创建基于webpack打包的vue项目](https://blog.csdn.net/qq_35393869/article/details/83090578)
