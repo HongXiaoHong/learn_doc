@@ -46,3 +46,7 @@ import org.springframework.core.io.Resource;
 [Spring @Value 设置默认值](https://blog.csdn.net/vcfriend/article/details/79700048?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.channel_param)
 
 [Spring Boot系列四 Spring @Value 属性注入使用总结一](https://blog.csdn.net/hry2015/article/details/72353994?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-7.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-7.channel_param)
+
+[SpEL 表达式](https://fanxiaobin.blog.csdn.net/article/details/68942967?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-10.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-10.channel_param)
+
+[SpEL 在注解中的使用-混合使用那种](https://blog.csdn.net/xgw1010/article/details/107591097)
