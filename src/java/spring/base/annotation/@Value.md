@@ -50,3 +50,5 @@ import org.springframework.core.io.Resource;
 [SpEL 表达式](https://fanxiaobin.blog.csdn.net/article/details/68942967?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-10.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-10.channel_param)
 
 [SpEL 在注解中的使用-混合使用那种](https://blog.csdn.net/xgw1010/article/details/107591097)
+
+[spring中的SpEL表达式](https://www.jianshu.com/p/61f7c6fe03ec)
