@@ -1,0 +1,429 @@
+D:\works\java\log>git init
+Initialized empty Git repository in D:/works/java/log/.git/
+
+D:\works\java\log>git  config -- global  user.name 'HongXiaoHong'
+error: key does not contain a section: global
+
+D:\works\java\log>git  config --global  user.name 'HongXiaoHong'
+
+D:\works\java\log>git  config --global  user.email '1908711045@qq.com'
+
+D:\works\java\log>git config --list
+core.symlinks=false
+core.autocrlf=true
+core.fscache=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+help.format=html
+rebase.autosquash=true
+http.sslbackend=openssl
+http.sslcainfo=D:/app/code/git/Git/mingw64/ssl/certs/ca-bundle.crt
+credential.helper=manager
+core.editor="C:\\Program Files\\Sublime Text 3\\subl.exe" -w
+user.name='HongXiaoHong'
+user.email='1908711045@qq.com'
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+
+D:\works\java\log>git int
+git: 'int' is not a git command. See 'git --help'.
+
+The most similar command is
+        init
+
+D:\works\java\log>git --help
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+D:\works\java\log>git init
+Reinitialized existing Git repository in D:/works/java/log/.git/
+
+D:\works\java\log>git add .
+
+D:\works\java\log>git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   .classpath
+        new file:   .project
+        new file:   .settings/org.eclipse.core.resources.prefs
+        new file:   .settings/org.eclipse.jdt.core.prefs
+        new file:   .settings/org.eclipse.m2e.core.prefs
+        new file:   pom.xml
+        new file:   src/main/java/log4j.properties
+        new file:   src/main/java/logback.xml
+        new file:   src/main/java/person/hong/log/log4j/Log4JApp.java
+        new file:   src/main/java/person/hong/log/logback/LogbackApp.java
+        new file:   src/test/java/person/hong/log/AppTest.java
+        new file:   target/classes/META-INF/MANIFEST.MF
+        new file:   target/classes/META-INF/maven/person.hong/log/pom.properties
+        new file:   target/classes/META-INF/maven/person.hong/log/pom.xml
+        new file:   target/classes/log4j.properties
+        new file:   target/classes/logback.xml
+        new file:   target/classes/person/hong/log/log4j/Log4JApp.class
+        new file:   target/classes/person/hong/log/logback/LogbackApp.class
+        new file:   target/test-classes/person/hong/log/AppTest.class
+
+
+D:\works\java\log>git commit -m '第一次提交 有点手抖'
+error: pathspec '有点手抖'' did not match any file(s) known to git
+
+D:\works\java\log>git commit -m '第一次提交,有点手抖'
+[master (root-commit) 347384a] '第一次提交,有点手抖'
+ 19 files changed, 337 insertions(+)
+ create mode 100644 .classpath
+ create mode 100644 .project
+ create mode 100644 .settings/org.eclipse.core.resources.prefs
+ create mode 100644 .settings/org.eclipse.jdt.core.prefs
+ create mode 100644 .settings/org.eclipse.m2e.core.prefs
+ create mode 100644 pom.xml
+ create mode 100644 src/main/java/log4j.properties
+ create mode 100644 src/main/java/logback.xml
+ create mode 100644 src/main/java/person/hong/log/log4j/Log4JApp.java
+ create mode 100644 src/main/java/person/hong/log/logback/LogbackApp.java
+ create mode 100644 src/test/java/person/hong/log/AppTest.java
+ create mode 100644 target/classes/META-INF/MANIFEST.MF
+ create mode 100644 target/classes/META-INF/maven/person.hong/log/pom.properties
+ create mode 100644 target/classes/META-INF/maven/person.hong/log/pom.xml
+ create mode 100644 target/classes/log4j.properties
+ create mode 100644 target/classes/logback.xml
+ create mode 100644 target/classes/person/hong/log/log4j/Log4JApp.class
+ create mode 100644 target/classes/person/hong/log/logback/LogbackApp.class
+ create mode 100644 target/test-classes/person/hong/log/AppTest.class
+
+D:\works\java\log>git status
+On branch master
+nothing to commit, working tree clean
+
+D:\works\java\log>git reomte add origin https://github.com/HongXiaoHong/log.git
+git: 'reomte' is not a git command. See 'git --help'.
+
+The most similar command is
+        remote
+
+D:\works\java\log>git --help
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+D:\works\java\log>git push -u 'https://github.com/HongXiaoHong/log.git' master
+fatal: protocol ''https' is not supported
+
+D:\works\java\log>
+
+D:\works\java\log>
+
+D:\works\java\log>sh --help
+GNU bash, version 4.4.23(1)-release-(x86_64-pc-msys)
+Usage:  /usr/bin/bash [GNU long option] [option] ...
+        /usr/bin/bash [GNU long option] [option] script-file ...
+GNU long options:
+        --debug
+        --debugger
+        --dump-po-strings
+        --dump-strings
+        --help
+        --init-file
+        --login
+        --noediting
+        --noprofile
+        --norc
+        --posix
+        --protected
+        --rcfile
+        --restricted
+        --verbose
+        --version
+        --wordexp
+Shell options:
+        -ilrsD or -c command or -O shopt_option         (invocation only)
+        -abefhkmnptuvxBCHP or -o option
+Type `/usr/bin/bash -c "help set"' for more information about shell options.
+Type `/usr/bin/bash -c help' for more information about shell builtin commands.
+Use the `bashbug' command to report bugs.
+
+bash home page: <http://www.gnu.org/software/bash>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+
+D:\works\java\log>ssh-keygen --help
+unknown option -- -
+usage: ssh-keygen [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa]
+                  [-N new_passphrase] [-C comment] [-f output_keyfile]
+       ssh-keygen -p [-P old_passphrase] [-N new_passphrase] [-f keyfile]
+       ssh-keygen -i [-m key_format] [-f input_keyfile]
+       ssh-keygen -e [-m key_format] [-f input_keyfile]
+       ssh-keygen -y [-f input_keyfile]
+       ssh-keygen -c [-P passphrase] [-C comment] [-f keyfile]
+       ssh-keygen -l [-v] [-E fingerprint_hash] [-f input_keyfile]
+       ssh-keygen -B [-f input_keyfile]
+       ssh-keygen -F hostname [-f known_hosts_file] [-l]
+       ssh-keygen -H [-f known_hosts_file]
+       ssh-keygen -R hostname [-f known_hosts_file]
+       ssh-keygen -r hostname [-f input_keyfile] [-g]
+       ssh-keygen -G output_file [-v] [-b bits] [-M memory] [-S start_point]
+       ssh-keygen -T output_file -f input_file [-v] [-a rounds] [-J num_lines]
+                  [-j start_line] [-K checkpt] [-W generator]
+       ssh-keygen -s ca_key -I certificate_identity [-h] [-U]
+                  [-D pkcs11_provider] [-n principals] [-O option]
+                  [-V validity_interval] [-z serial_number] file ...
+       ssh-keygen -L [-f input_keyfile]
+       ssh-keygen -A
+       ssh-keygen -k -f krl_file [-u] [-s ca_public] [-z version_number]
+                  file ...
+       ssh-keygen -Q -f krl_file file ...
+
+D:\works\java\log>ssh-keygen -t rsa -C "1908711045@qq.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\hong/.ssh/id_rsa):
+Created directory 'C:\Users\hong/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\hong/.ssh/id_rsa.
+Your public key has been saved in C:\Users\hong/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:jk6qvTbJdValoRjvZJA3ZIGqCr/K44GOOnDGyZy63LU 1908711045@qq.com
+The key's randomart image is:
++---[RSA 2048]----+
+|       ++.       |
+|      =.o . .    |
+|     . * o +     |
+|    . . = o      |
+| + +   +S.       |
+|+ X   .o+        |
+|+B . +oo.        |
+|O.+.*+.          |
+|BO+=+E.          |
++----[SHA256]-----+
+
+D:\works\java\log>git reomte add origin 'https://github.com/HongXiaoHong/log.git'
+git: 'reomte' is not a git command. See 'git --help'.
+
+The most similar command is
+        remote
+
+D:\works\java\log>
+D:\works\java\log>git remote add origin 'https://github.com/HongXiaoHong/log.git'
+
+D:\works\java\log>git remote
+origin
+
+D:\works\java\log>git push -u origin master
+fatal: protocol ''https' is not supported
+
+D:\works\java\log>git remote add origin1 'git@github.com:HongXiaoHong/log.git'
+
+D:\works\java\log>git remote
+origin
+origin1
+
+D:\works\java\log>git push -u origin1 master
+The authenticity of host 'github.com (13.229.188.59)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,13.229.188.59' (RSA) to the list of known hosts.
+'git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+D:\works\java\log>
+
+D:\works\java\log>git clone
+fatal: You must specify a repository to clone.
+
+usage: git clone [<options>] [--] <repo> [<dir>]
+
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --progress            force progress reporting
+    -n, --no-checkout     don't create a checkout
+    --bare                create a bare repository
+    --mirror              create a mirror repository (implies bare)
+    -l, --local           to clone from a local repository
+    --no-hardlinks        don't use local hardlinks, always copy
+    -s, --shared          setup as shared repository
+    --recurse-submodules[=<pathspec>]
+                          initialize submodules in the clone
+    -j, --jobs <n>        number of submodules cloned in parallel
+    --template <template-directory>
+                          directory from which templates will be used
+    --reference <repo>    reference repository
+    --reference-if-able <repo>
+                          reference repository
+    --dissociate          use --reference only while cloning
+    -o, --origin <name>   use <name> instead of 'origin' to track upstream
+    -b, --branch <branch>
+                          checkout <branch> instead of the remote's HEAD
+    -u, --upload-pack <path>
+                          path to git-upload-pack on the remote
+    --depth <depth>       create a shallow clone of that depth
+    --shallow-since <time>
+                          create a shallow clone since a specific time
+    --shallow-exclude <revision>
+                          deepen history of shallow clone, excluding rev
+    --single-branch       clone only one branch, HEAD or --branch
+    --no-tags             don't clone any tags, and make later fetches not to follow them
+    --shallow-submodules  any cloned submodules will be shallow
+    --separate-git-dir <gitdir>
+                          separate git dir from working tree
+    -c, --config <key=value>
+                          set config inside the new repository
+    -4, --ipv4            use IPv4 addresses only
+    -6, --ipv6            use IPv6 addresses only
+    --filter <args>       object filtering
+
+
+D:\works\java\log>git remote rm origin
+
+D:\works\java\log>git remote
+origin1
+
+D:\works\java\log>git remote rm origin1
+
+D:\works\java\log>git remote
+
+D:\works\java\log>git remote add origin https://github.com/HongXiaoHong/log.git
+
+D:\works\java\log>git remote
+origin
+
+D:\works\java\log>git push -u origin master
+To https://github.com/HongXiaoHong/log.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/HongXiaoHong/log.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+D:\works\java\log>git pull --help
+
+D:\works\java\log>git pull origin master
+warning: no common commits
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/HongXiaoHong/log
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> origin/master
+fatal: refusing to merge unrelated histories
+
+D:\works\java\log>git status
+On branch master
+nothing to commit, working tree clean
+
+D:\works\java\log>git push -u origin master
+To https://github.com/HongXiaoHong/log.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/HongXiaoHong/log.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+D:\works\java\log>
+
+D:\works\java\log>git push -u origin master -f
+Enumerating objects: 47, done.
+Counting objects: 100% (47/47), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (27/27), done.
+Writing objects: 100% (47/47), 6.55 KiB | 670.00 KiB/s, done.
+Total 47 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/HongXiaoHong/log.git
+ + c6a26e7...347384a master -> master (forced update)
+Branch 'master' set up to track remote branch 'master' from 'origin'.
