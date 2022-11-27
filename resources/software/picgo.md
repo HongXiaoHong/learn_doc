@@ -146,3 +146,6 @@ https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/test2.jpg
 
 1. [MarkText + picgo图床选择（Halo） (zinzin.cc)](https://zinzin.cc/archives/marktextpicgo-tu-chuang-xuan-ze-halo)
 2. [PicGo is Here | PicGo 官方文档](https://picgo.github.io/PicGo-Doc/zh/guide/)
+3. [GitHub + jsDelivr + Nginx + PicGo 搭建自定义域名CDN加速免费图床_Linux开发_LoganJin](https://www.loganjin.cn/article/github-jsdelivr-nginx-picgo/)
+4. [GitHub Pages + PicGo + Typora + 自定义域名搭建免费图床 | 杜和的官方网站 (duheweb.com)](http://www.duheweb.com/post/20210421125522.html)
+5. [MarkText+PicGo详解](http://47.94.165.129/2022/07/26/Mraktext+PicGo/)
