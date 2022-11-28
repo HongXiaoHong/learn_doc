@@ -230,17 +230,11 @@ root@35eb825661e0:/usr/local/tomcat# cp -r webapps.dist/* webapps
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/msedge_OMfjuL7EcX.png)
 
-
-
-
-
 ### 部署ES+kibana
 
 官方推荐
 
 [elasticsearch - Official Image | Docker Hub](https://hub.docker.com/_/elasticsearch)
-
-
 
 ```console
 $ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
@@ -252,7 +246,126 @@ $ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300
 
 ```bash
 
+```
 
+## 4. Docker镜像讲解
+
+### 4.1. 镜像是什么
+
+镜像相当于应用市场的软件 
+
+用java中的class来对应正好合适
+
+封装了应用,环境,环境变量
+
+#### 4.1.1. 如何获取镜像
+
+1. 从远程仓库
+
+2. 朋友拷贝
+
+3. 自己通过dockerfile打包
+
+### 4.2. Docker镜像加速原理
+
+#### 4.2.1. UnionFS（联合文件系统）
+
+pull 镜像的时候 用的就是这种一层层的结构
+
+联合文件系统 union文件系统 是一种分层轻量级高性能的文件系统 通过叠加的方式构成文件
+
+#### 4.2.2. Docker镜像加载原型
+
+##### bootfs
+
+内核加载 bootloader主要是引导加载kernel 加载完即移除
+
+##### rootfs
+
+系统加载 就是各种不同的操作系统发行版，比如Ubuntu，Centos等等
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/msedge_f0Etmb0PtO.png)
+
+#### 4.3. 分层理解
+
+##### 4.3.1. 分层的镜像
+
+我们拉取镜像的时候是一层(layer)层下载的
+
+每一层都可以共享
+
+例如: 我们拉取的时候 第一层是ubuntu
+
+下次拉取另外一个镜像 如果一样的情况 就可以不用再次拉取
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/9863930d17ed4093b9183fa4bb7470e6.png)
+
+
+
+##### 4.3.2. 特点
+
+镜像都是只读的
+
+当容器启动时，一个新的可写层被加载到镜像的顶部
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/8144d08138314609907009189cf18080.png)
+
+
+
+##### 4.3.3. commit镜像
+
+```bash
+# 提交容器成为一个新的副本
+docker commit
+# 命令和git原理类似
+docker commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名:[TAG]
+```
+
+###### 4.3.3.1. 实战测试
+
+```bash
+
+C:\Users\hong>docker run -d -p 18080:8080 tomcat
+4518f05c8f9ed13dadefb0d6120948b1887840d7fe8f1c375b10d9a09303f73c
+
+C:\Users\hong>docker exec -it 4518f05c8f9ed13dadefb0d6120948b1887840d7fe8f1c375b10d9a09303f73c /bin/bash
+root@4518f05c8f9e:/usr/local/tomcat# ls
+bin  BUILDING.txt  conf  CONTRIBUTING.md  lib  LICENSE  logs  native-jni-lib  NOTICE  README.md  RELEASE-NOTES  RUNNING.txt  temp  webapps  webapps.dist  work
+root@4518f05c8f9e:/usr/local/tomcat# cp webapps.dist/* webapps
+cp: -r not specified; omitting directory 'webapps.dist/docs'
+cp: -r not specified; omitting directory 'webapps.dist/examples'
+cp: -r not specified; omitting directory 'webapps.dist/host-manager'
+cp: -r not specified; omitting directory 'webapps.dist/manager'
+cp: -r not specified; omitting directory 'webapps.dist/ROOT'
+root@4518f05c8f9e:/usr/local/tomcat# cd webapps
+root@4518f05c8f9e:/usr/local/tomcat/webapps# ls
+root@4518f05c8f9e:/usr/local/tomcat/webapps# cp -r webapps.dist/* webapps
+cp: cannot stat 'webapps.dist/*': No such file or directory
+root@4518f05c8f9e:/usr/local/tomcat/webapps# cd ..
+root@4518f05c8f9e:/usr/local/tomcat# cp -r webapps.dist/* webapps 
+
+# -R/r：递归处理，将指定目录下的所有文件与子目录一并处理；
+root@4518f05c8f9e:/usr/local/tomcat# cd webapps
+root@4518f05c8f9e:/usr/local/tomcat/webapps# ls
+docs  examples  host-manager  manager  ROOT
+root@4518f05c8f9e:/usr/local/tomcat/webapps# exit
+exit
+
+C:\Users\hong>docker commit -a="hong" -m="add webapps" 4518f05c8f9ed13dadefb0d6120948b1887840d7fe8f1c375b10d9a09303f73c tomcat_with_webapps:v1.0
+sha256:040d58777afacb77d38e21dfee944c198a95d712de707453a52e80862d6efe90
+
+C:\Users\hong>docker images -a|find tomcat
+FIND: 参数格式不正确
+
+C:\Users\hong>docker images -a|find "tomcat"
+tomcat_with_webapps                                       v1.0                                                                         040d58777afa   28 seconds ago   478MB
+tomcat                                                    latest                                                                       1ca69d1bf49a   13 days ago      474MB
 ```
 
 
+
+## 参考
+
+1. [cp 命令，Linux cp 命令详解：将源文件或目录复制到目标文件或目录中 - Linux 命令搜索引擎 (wangchujiang.com)](https://wangchujiang.com/linux-command/c/cp.html)
+
+2. [(243条消息) winodws下cmd对结果进行筛选_SHUIPING_YANG的博客-CSDN博客_cmd 筛选](https://blog.csdn.net/zhezhebie/article/details/79590730)
