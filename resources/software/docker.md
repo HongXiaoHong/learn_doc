@@ -300,8 +300,6 @@ pull 镜像的时候 用的就是这种一层层的结构
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/9863930d17ed4093b9183fa4bb7470e6.png)
 
-
-
 ##### 4.3.2. 特点
 
 镜像都是只读的
@@ -309,8 +307,6 @@ pull 镜像的时候 用的就是这种一层层的结构
 当容器启动时，一个新的可写层被加载到镜像的顶部
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/8144d08138314609907009189cf18080.png)
-
-
 
 ##### 4.3.3. commit镜像
 
@@ -324,7 +320,6 @@ docker commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名:[T
 ###### 4.3.3.1. 实战测试
 
 ```bash
-
 C:\Users\hong>docker run -d -p 18080:8080 tomcat
 4518f05c8f9ed13dadefb0d6120948b1887840d7fe8f1c375b10d9a09303f73c
 
@@ -361,8 +356,6 @@ C:\Users\hong>docker images -a|find "tomcat"
 tomcat_with_webapps                                       v1.0                                                                         040d58777afa   28 seconds ago   478MB
 tomcat                                                    latest                                                                       1ca69d1bf49a   13 days ago      474MB
 ```
-
-
 
 ## 参考
 
