@@ -92,7 +92,9 @@
 - 本地视频播放器
   
   - PotPlayer
+
 - 图片查看
+  
   - ImageGlass
 
 - 番茄工作法
@@ -102,7 +104,7 @@
 - 连接MySQL
   
   - 🤔Navicat Premium 12
-  - [Releases · dbeaver/dbeaver (github.com)](https://github.com/dbeaver/dbeaver/releases)
+  - 👍🤞[Releases · dbeaver/dbeaver (github.com)](https://github.com/dbeaver/dbeaver/releases)
   - idea 自带的连接工具
 
 - pdf
