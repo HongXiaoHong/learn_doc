@@ -1,5 +1,13 @@
 # docker
 
+## 指令
+
+### 进入容器
+
+#### docker attach跟exec区别
+
+[(243条消息) docker exec 和 docker attach的作用与区别，docker run -it 的联系， exit后容器停止？_zhangxiao123qqq的博客-CSDN博客](https://blog.csdn.net/zhangxiao123qqq/article/details/105343115)
+
 ## 部署练习
 
 ### nginx
@@ -356,6 +364,152 @@ C:\Users\hong>docker images -a|find "tomcat"
 tomcat_with_webapps                                       v1.0                                                                         040d58777afa   28 seconds ago   478MB
 tomcat                                                    latest                                                                       1ca69d1bf49a   13 days ago      474MB
 ```
+
+## 五、容器数据卷
+
+### 5.1. 什么是容器数据卷
+
+容器数据卷 用户容器中数据的持久化
+
+例如 部署MySQL的时候如果不使用容器卷 删除了容器 数据也没了
+
+真正意义的删库跑路了
+
+### 5.2. 使用数据卷
+
+   直接使用命令来挂载：-v
+
+```bash
+docker run -v 本地目录:容器目录
+
+
+# 测试，查看容器信息
+docker inspect 容器id
+```
+
+mounts就是我们绑定的信息![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/msedge_E6m7SRazIE.png)
+
+本地目录与容器目录是双向绑定的
+
+就算停止容器再次启动也会使用
+
+### 5.3. 实战：安装mysql
+
+可参[(243条消息) Docker - Docker挂载mysql_MinggeQingchun的博客-CSDN博客_docker 挂载mysql](https://blog.csdn.net/MinggeQingchun/article/details/123880624?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-123880624-blog-112154454.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-123880624-blog-112154454.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=16)
+
+
+
+```bash
+# 查找Docker内，MySQL配置文件my.cnf的位置
+mysql --help | grep my.cnf
+
+mysql -u root -p
+Enter password:******
+# 会输出数据文件的存放路径 /var/lib/mysql/
+show variables like '%datadir%';
+```
+
+
+
+在官方hub中搜索 看到建议通过此部署
+
+```bash
+# 官方建议加上密码设置
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+```
+
+```bash
+docker run -d -p 17777:3306 
+-v /E/documents/temp/mysql/conf:/etc/mysql/conf.d 
+-v /E/documents/temp/mysql:/var/lib/mysql 
+-e MYSQL_ROOT_PASSWORD=123456 
+--name mysql01 mysql
+```
+
+出现问题
+
+```bash
+
+C:\Users\hong>docker run -d -p 17777:3306 -v /E/documents/temp/mysql/conf:/etc/mysql/conf.d -v /E/documents/temp/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql
+6fa65e2619304091a8dc259be1b63d3935fc6b9a80c8969f88992457e040edeb
+
+C:\Users\hong>docker logs 6fa65e2619304091a8dc259be1b63d3935fc6b9a80c8969f88992457e040edeb
+2022-11-30 02:02:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+2022-11-30 02:02:23+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2022-11-30 02:02:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+2022-11-30 02:02:23+00:00 [Note] [Entrypoint]: Initializing database files
+2022-11-30T02:02:23.967087Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2022-11-30T02:02:23.967434Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.31) initializing of server in progress as process 80
+2022-11-30T02:02:23.971349Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2022-11-30T02:02:23.971355Z 0 [ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.
+2022-11-30T02:02:23.971417Z 0 [ERROR] [MY-010119] [Server] Aborting
+2022-11-30T02:02:23.971513Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.31)  MySQL Community Server - GPL.
+```
+
+```bash
+docker run -d -p 17777:3306 
+-v /E/documents/temp/mysql/conf:/etc/mysql/conf.d 
+-v /E/documents/temp/mysql/data:/var/lib/mysql 
+-e MYSQL_ROOT_PASSWORD=123456 
+--name mysql01 mysql
+```
+
+这里挂载数据的路径加上了/data 就可以了...
+
+```bash
+C:\Users\hong>docker run -d -p 17777:3306 -v /E/documents/temp/mysql/conf:/etc/mysql/conf.d -v /E/documents/temp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql
+9f93330283c55f55cdda57955632569103094e644c190a67e328ab30843dd2f6
+
+C:\Users\hong>docker logs 9f93330283c55f55cdda57955632569103094e644c190a67e328ab30843dd2f6
+2022-11-30 02:07:05+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+2022-11-30 02:07:05+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2022-11-30 02:07:05+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+2022-11-30 02:07:05+00:00 [Note] [Entrypoint]: Initializing database files
+2022-11-30T02:07:05.845708Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2022-11-30T02:07:05.846144Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.31) initializing of server in progress as process 81
+2022-11-30T02:07:05.855503Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-11-30T02:07:05.889503Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-11-30T02:07:14.637114Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+```
+
+#### 使用db连接
+
+出现错误
+
+> Public Key Retrieval is not allowed
+
+
+
+解决
+
+[(243条消息) MySQL 8.0 Public Key Retrieval is not allowed 错误的解决方法_呜呜呜啦啦啦的博客-CSDN博客](https://blog.csdn.net/u013360850/article/details/80373604)
+
+```chinese
+最简单的解决方法是在连接后面添加 allowPublicKeyRetrieval=true
+
+文档中(https://mysql-net.github.io/MySqlConnector/connection-options/)给出的解释是：
+
+如果用户使用了 sha256_password 认证，密码在传输过程中必须使用 TLS 协议保护，但是如果 RSA 公钥不可用，可以使用服务器提供的公钥；可以在连接中通过 ServerRSAPublicKeyFile 指定服务器的 RSA 公钥，或者AllowPublicKeyRetrieval=True参数以允许客户端从服务器获取公钥；但是需要注意的是 AllowPublicKeyRetrieval=True可能会导致恶意的代理通过中间人攻击(MITM)获取到明文密码，所以默认是关闭的，必须显式开启
+
+```
+
+
+
+[解决mysql8 Public Key Retrieval is not allowed 问题_51CTO博客_Public Key Retrieval is not allowed](https://blog.51cto.com/u_15155077/2716369)
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/msedge_FpGdP1CKzm.png)
+
+
+
+
+
+
+
+5.4. 匿名和具名挂载
+
+5.5. 初识Dockerfile
+
+5.6. 数据卷容器
 
 ## 参考
 
