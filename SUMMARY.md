@@ -14,4 +14,6 @@
         * [python](resources/language/code/python.md)
         * [shell](resources/language/code/shell.md)
         * [bat](resources/language/code/bat.md)
+    * [note](resources/language/note/readme.md)
+        * [markdown](resources/language/note/markdown.md)
 
