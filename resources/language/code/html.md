@@ -1,5 +1,53 @@
 # html
 
+## 重识html
+
+### 各种概念
+
+网页:
+
+    由文字 图片 视频 音乐各种元素排列组合而成的超文本页面
+
+常用浏览器:
+
+- Chrome
+
+- Edge
+
+- Firefox
+
+HTML:
+
+    超文本标记语言 非编程语言
+
+浏览器内核:
+
+    用于渲染网页
+
+| 浏览器     | 内核             | 备注                                                                                                   |
+| ------- | -------------- | ---------------------------------------------------------------------------------------------------- |
+| IE      | Trident        | IE                                                                                                   |
+| firefox | Gecko          | 可惜这几年已经没落了，打开速度慢、升级频繁、猪一样的队友flash、神一样的对手chrome。                                                      |
+| Safari  | webkit         | 现在很多人错误地把 webkit 叫做 chrome内核（即使 chrome内核已经是 blink 了）。苹果感觉像被别人抢了媳妇，都哭晕在厕所里面了。                         |
+| chrome  | Chromium/Blink | 在 Chromium 项目中研发 Blink 渲染引擎（即浏览器核心），内置于 Chrome 浏览器之中。Blink 其实是 WebKit 的分支。大部分国产浏览器最新版都采用Blink内核。二次开发 |
+| Opera   | blink          | 现在跟随chrome用blink内核。                                                                                  |
+
+web标准
+
+有W3C(万维网)组织及组织制定
+
+防止因为不同厂家的浏览器而让网页出现不同的表现
+
+组成:
+
+结构 -> HTML
+
+表现 -> CSS
+
+行为 -> JavaScript
+
+
+
 ## H5新特征
 
 - Canvas、SVG -- 用于绘画的元素，canvas绘制的图片会失真而SVG绘制的不会失真。
@@ -60,10 +108,6 @@
 
 [HTML5新增了哪些特性？ - 掘金](https://juejin.cn/post/6988039257587712008)
 
-
-
-
-
 ### manifest 应用缓存机制
 
 虽然 manifest 已经被web标准弃用 但是还是值得了解一下
@@ -90,11 +134,7 @@ FALLBACK:
 /other 404.html
 ```
 
-
-
 由 CACHE, NETWORK 和 FALLBACK 组成
-
-
 
 其中第一行必须以 CACHE MANIFEST 开头, 后可跟若干字符注释, 注释从#号开始. 跟在 CACHE MANIFEST 行后的文件, 每行列出一个, 这些文件是需要缓存的文件. 因此 content.css 会被缓存, 不需要访问网络.
 
@@ -105,5 +145,3 @@ FALLBACK:
 #### 参考
 
 [聊一聊H5应用缓存-Manifest | louis blog (louiszhai.github.io)](https://louiszhai.github.io/2016/11/25/manifest/)
-
-
