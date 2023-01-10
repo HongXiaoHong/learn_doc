@@ -9,6 +9,8 @@
     * [vscode](resources/software/vscode.md)
     * [xmind](resources/software/xmind.md)
     * [notion](resources/software/notion.md)
+    * [node](resources/software/node.md)
+    * [npm](resources/software/npm.md)
 * [website](resources/website/readme.md)
     * [github](resources/website/github.md)
 * [language](resources/language/readme.md)
