@@ -1,3 +1,0 @@
-[SpringBoot整合+logback日志配置](https://blog.csdn.net/qq296398300/article/details/79036447?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param)
-[Spring Boot实战之配置使用Logback进行日志记录](https://blog.csdn.net/sun_t89/article/details/52130839?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
-[]()

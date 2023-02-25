@@ -1,1 +1,0 @@
-[mvnrepository](https://mvnrepository.com/)
