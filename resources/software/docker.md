@@ -1,6 +1,51 @@
 # docker
 
+## 学习链接
+
+狂神带我们学习 docker
+
+[1、Docker学习大纲_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1og4y1q7M4?p=1&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+[《狂神说Java》docker教程通俗易懂-KuangStudy-文章](https://www.kuangstudy.com/bbs/1552836707509223426#header78)
+
+官网:
+
+[Dockerfile reference | Docker Documentation](https://docs.docker.com/engine/reference/builder/)
+
+虚拟机与容器docker的区别，在于**vm多了一层guest OS，虚拟机的Hypervisor会对硬件资源也进行虚拟化，而容器Docker会直接使用宿主机的硬件资源**。
+
 ## 指令
+
+[(125条消息) Docker容器的创建、启动、和停止_weixin_33943836的博客-CSDN博客](https://blog.csdn.net/weixin_33943836/article/details/85977604?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85977604-blog-106943301.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85977604-blog-106943301.pc_relevant_recovery_v2&utm_relevant_index=1)
+
+[docker容器启动后自动停止，dockerfile编写的容器启动后也是自动停止 - 峰哥ge - 博客园 (cnblogs.com)](https://www.cnblogs.com/FengGeBlog/p/12085276.html)
+
+1、docker容器启动后自动停止
+
+　　自动停止的因素有很多，比如启动后命令有问题就停止了，这类容器在启动后是可以看到容器的启动日志的，比如使用docker logs命令即可
+
+　　不过还有的容器意外停止是因为当前容器没有要运行的任务，比如centos镜像，它默认没有运行的任务，如果没有任务就会自动停止，这种不是意外停止，这点要注意
+
+因此需要注意一点就是：在制作dockerfile的时候，要有一个运行在前台的任务，因此那些运行在后台的参数最好是不要加上去，也就是让程序运行在前台。
+
+2、dockerfile案例演示
+
+```dockerfile
+FROM centos7.5
+WORKDIR /usr/local/src
+COPY elasticsearch-7.4.0-linux-x86_64.tar.gz ./
+RUN tar xf elasticsearch-7.4.0-linux-x86_64.tar.gz \ && mv elasticsearch-7.4.0 /usr/local/elastic7.4 \ && useradd -s /bin/bash -U elastic \ && echo 'elastic soft memlock unlimited' >> /etc/security/limits.conf \ && echo 'elastic hard memlock unlimited' >> /etc/security/limits.conf
+USER elastic
+RUN /usr/local/elastic7.4/bin/elasticsearch --daemonize --pidfile /usr/local/elastic7.4/run/elastic7.4.pid
+```
+
+这个脚本的问题就在于，--daemonize这个参数表示程序运行在后台，此时启动制作出来的容器是不会一直运行的，也就是启动后就停止了
+
+解决方法就是将--daemonize这个参数去掉，此时镜像在启动后直接执行此命令，程序就运行在前台，日志也打印在前台了。
+
+还有一个就是docker run -it --name=centos centos7.5:1.0 /bin/bash这种命令运行时默认执行/bin/bash，这个bash命令会覆盖dockfile中的CMD指令，这点需要注意。
+
+最后就是容器执行的用户，可以在docker run 启动时指定--name=chaofeng这样的参数指定容器运行的用户。
 
 ### 进入容器
 
@@ -397,8 +442,6 @@ mounts就是我们绑定的信息![](https://raw.githubusercontent.com/HongXiaoH
 
 可参[(243条消息) Docker - Docker挂载mysql_MinggeQingchun的博客-CSDN博客_docker 挂载mysql](https://blog.csdn.net/MinggeQingchun/article/details/123880624?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-123880624-blog-112154454.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-123880624-blog-112154454.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=16)
 
-
-
 ```bash
 # 查找Docker内，MySQL配置文件my.cnf的位置
 mysql --help | grep my.cnf
@@ -408,8 +451,6 @@ Enter password:******
 # 会输出数据文件的存放路径 /var/lib/mysql/
 show variables like '%datadir%';
 ```
-
-
 
 在官方hub中搜索 看到建议通过此部署
 
@@ -429,7 +470,6 @@ docker run -d -p 17777:3306
 出现问题
 
 ```bash
-
 C:\Users\hong>docker run -d -p 17777:3306 -v /E/documents/temp/mysql/conf:/etc/mysql/conf.d -v /E/documents/temp/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql
 6fa65e2619304091a8dc259be1b63d3935fc6b9a80c8969f88992457e040edeb
 
@@ -478,8 +518,6 @@ C:\Users\hong>docker logs 9f93330283c55f55cdda57955632569103094e644c190a67e328ab
 
 > Public Key Retrieval is not allowed
 
-
-
 解决
 
 [(243条消息) MySQL 8.0 Public Key Retrieval is not allowed 错误的解决方法_呜呜呜啦啦啦的博客-CSDN博客](https://blog.csdn.net/u013360850/article/details/80373604)
@@ -490,26 +528,226 @@ C:\Users\hong>docker logs 9f93330283c55f55cdda57955632569103094e644c190a67e328ab
 文档中(https://mysql-net.github.io/MySqlConnector/connection-options/)给出的解释是：
 
 如果用户使用了 sha256_password 认证，密码在传输过程中必须使用 TLS 协议保护，但是如果 RSA 公钥不可用，可以使用服务器提供的公钥；可以在连接中通过 ServerRSAPublicKeyFile 指定服务器的 RSA 公钥，或者AllowPublicKeyRetrieval=True参数以允许客户端从服务器获取公钥；但是需要注意的是 AllowPublicKeyRetrieval=True可能会导致恶意的代理通过中间人攻击(MITM)获取到明文密码，所以默认是关闭的，必须显式开启
-
 ```
-
-
 
 [解决mysql8 Public Key Retrieval is not allowed 问题_51CTO博客_Public Key Retrieval is not allowed](https://blog.51cto.com/u_15155077/2716369)
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/docker/msedge_FpGdP1CKzm.png)
 
+### 5.4. 匿名和具名挂载
 
+#### windows下docker文件挂载方式
 
-
-
-
-
-5.4. 匿名和具名挂载
+```bash
+-e D:\docker\volumes\**:/home/admin/canal-server/conf/canal.properties
+应该写成
+-v //d/docker/volumes/canal/1.1.5/conf/canal.properties:/home/admin/canal-server/conf/canal.properties
+```
 
 5.5. 初识Dockerfile
 
-5.6. 数据卷容器
+使用dockerfile构建镜像
+
+dockerfile
+
+这里我使用 -d 启动 因为centos没有前台任务 会退出
+
+所以这里启动 run 要使用 -dt 用 -t 启动一个前台任务不让centos退出
+
+```dockerfile
+FROM centos
+CMD echo "hello docker file"
+CMD /bin/bash
+```
+
+```bash
+E:\docker>docker build -f ./dockerfile -t myos:1.0 .
+[+] Building 0.2s (5/5) FINISHED
+ => [internal] load build definition from dockerfile                                                                                                                                                      0.0s
+ => => transferring dockerfile: 95B                                                                                                                                                                       0.0s 
+ => [internal] load .dockerignore                                                                                                                                                                         0.0s 
+ => => transferring context: 2B                                                                                                                                                                           0.0s 
+ => [internal] load metadata for docker.io/library/centos:latest                                                                                                                                          0.0s 
+ => [1/1] FROM docker.io/library/centos                                                                                                                                                                   0.0s
+ => exporting to image                                                                                                                                                                                    0.0s 
+ => => exporting layers                                                                                                                                                                                   0.0s 
+ => => writing image sha256:7d6b67167d4a51fdcade100ae46f8a7b28b7a05afd1c09c3353ec55b71699526                                                                                                              0.0s 
+ => => naming to docker.io/library/myos:1.0                                                                                                                                                               0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+```
+
+### 5.6. 数据卷容器
+
+被引用的容器称为父容器
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/python/msedge_T60ULor7Zo.png)
+
+使用 --volume-from 部署多个自定义centos 实现数据共享
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/python/msedge_twsuGgWwwq.png)
+
+使用 --volume-from 拷贝其他容器的挂载地址
+
+让容器间共享数据
+
+删除父容器 不影响数据共享
+
+这里我的理解是
+
+跟java中堆中地址一样
+
+删除父容器 就是只删除了引用 但是原来的对象还在
+
+不影响别人继续使用
+
+```bash
+docker run -d -p 3355:8080 --name sywltomcat 
+-v /home/sywl/build/tomcat/test:/usr/local/apache-tomcat-9.0.5/webapps/test 
+-v /home/sywl/build/tomcat/tomcatlog:/usr/local/apache-tomcat-9.0.5/logs 
+diytomcat
+```
+
+```docker
+docker run -d -p 3355:8080 --name my_tomcat 
+my_tomcat:1.0
+```
+
+## 6. DockerFile
+
+### 6.1. 各种指令
+
+官方文档
+
+[Dockerfile reference | Docker Documentation](https://docs.docker.com/engine/reference/builder/)
+
+### 6.2. 自制 Tomcat 镜像
+
+```dockerfile
+# 基础镜像
+FROM centos:7
+
+# 元数据
+LABEL author="1908711045"
+
+# 说明书
+COPY readme.txt /usr/local/readme.txt
+
+# ADD 会自动解压到指定路径
+ADD apache-tomcat-9.0.71.tar.gz /usr/local/
+ADD jdk-8u351-linux-x64.tar.gz /usr/local/
+
+RUN yum -y install vim
+
+# 定义工作目录
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+
+# 定义环境变量
+ENV JAVA_HOME /usr/local/jdk1.8.0_351
+ENV CLASS_PATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.71
+ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.71
+ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+
+# 导出端口
+EXPOSE 8080
+
+# 启动Tomcat
+CMD /usr/local/apache-tomcat-9.0.71/bin/startup.sh && tail -F /usr/local/apache-tomcat-9.0.71/bin/logs/catalina.out
+```
+
+```bash
+E:\docker\my_tomcat>docker build -t my_tomcat:1.0 .
+[+] Building 210.1s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                      0.0s
+ => => transferring dockerfile: 846B                                                                                                                                                                      0.0s 
+ => [internal] load .dockerignore                                                                                                                                                                         0.0s 
+ => => transferring context: 2B                                                                                                                                                                           0.0s 
+ => [internal] load metadata for docker.io/library/centos:7                                                                                                                                               4.2s
+ => [1/6] FROM docker.io/library/centos:7@sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4                                                                                        68.4s
+ => => resolve docker.io/library/centos:7@sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4                                                                                         0.0s 
+ => => sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4 1.20kB / 1.20kB                                                                                                            0.0s 
+ => => sha256:dead07b4d8ed7e29e98de0f4504d87e8880d4347859d839686a31da35a3b532f 529B / 529B                                                                                                                0.0s 
+ => => sha256:eeb6ee3f44bd0b5103bb561b4c16bcb82328cfe5809ab675bb17ab3a16c517c9 2.75kB / 2.75kB                                                                                                            0.0s 
+ => => sha256:2d473b07cdd5f0912cd6f1a703352c82b512407db6b05b43f2553732b55df3bc 76.10MB / 76.10MB                                                                                                         63.3s 
+ => => extracting sha256:2d473b07cdd5f0912cd6f1a703352c82b512407db6b05b43f2553732b55df3bc                                                                                                                 4.5s 
+ => [internal] load build context                                                                                                                                                                         2.5s 
+ => => transferring context: 161.35MB                                                                                                                                                                     2.5s
+ => [2/6] COPY readme.txt /usr/local/readme.txt                                                                                                                                                           0.3s
+ => [3/6] ADD apache-tomcat-9.0.71.tar.gz /usr/local/                                                                                                                                                     0.3s
+ => [4/6] ADD jdk-8u351-linux-x64.tar.gz /usr/local/                                                                                                                                                      6.1s
+ => [5/6] RUN yum -y install vim                                                                                                                                                                        128.8s
+ => [6/6] WORKDIR /usr/local                                                                                                                                                                              0.0s
+ => exporting to image                                                                                                                                                                                    1.8s
+ => => exporting layers                                                                                                                                                                                   1.8s
+ => => writing image sha256:ef1e0f453148d1c01dac7f1c745d9c2360b6a95cb3a4685fae818fd92bc9bcd5                                                                                                              0.0s
+ => => naming to docker.io/library/my_tomcat:1.0                                                                                                                                                          0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+```
+
+直接访问  [Apache Tomcat Examples](http://localhost:3355/examples/) 
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/python/msedge_5n5pueVMcU.png)
+
+### 6.3. 推送到 docker.io
+
+```bash
+# 构建镜像
+docker build -t gabrieldeoliveiraest/projetofinal2_web:latest -f Dockerfile .
+# 登录到 docker.io
+docker login -u "gabrieldeoliveiraest" -p "password" docker.io
+#  docker 镜像创建一个 [tag]，然后将其推送到您的 docker 中心
+# 先要建立 tag 才能进行 推送
+docker tag projetofinal2_web gabrieldeoliveiraest/projetofinal2_web:version1
+# 推送
+docker push gabrieldeoliveiraest/projetofinal2_web:version1
+```
+
+#### 结果
+
+```bash
+E:\docker\my_tomcat>docker push hongxiaohong/my_tomcat:1.0
+The push refers to repository [docker.io/hongxiaohong/my_tomcat]
+5f70bf18a086: Pushed
+17187833c980: Pushed
+389b254399b7: Pushed
+5b4798f83887: Pushed
+ed632b6abb69: Pushed
+174f56854903: Pushed
+1.0: digest: sha256:6e54e3683a9f2c85d9e8de95ee75667eab7ba1aa8be3c7420614b0349123efe2 size: 1579
+```
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/python/w7g6UmPPY3.png)
+
+## Docker 网络
+
+部署 redis 集群
+
+[Docker部署redis集群及数据迁移（生产实战）_年轻是好事的技术博客_51CTO博客](https://blog.51cto.com/ycloud/5734170)
+
+```shell
+＃ 通过脚本创建六个redis配置
+
+for port in $(seq 1 6); \ do\
+
+mkdir -p/mydata/redis/node-${port}/conf
+
+touch /mydata/redis/node-${port}/conf/redis.conf cat<<EO>/mydata/redis/node-${port}/conf/redis.conf port 6379
+
+bind 0.0.0.0
+
+cluster-enabled yes
+
+cluster-config-file nodes.conf cluster-node-timeout 5000
+
+cluster-announce-ip 172.38.0.1${port} cluster-announce-port 6379
+
+cluster-announce-bus-port 16379 appendonly yes
+
+EOF done 
+```
 
 ## 参考
 
