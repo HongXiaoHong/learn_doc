@@ -28,3 +28,16 @@ java 解析json
 复习一下spring
 [SpringInterviewQuestions.md](https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/framework/spring/SpringInterviewQuestions.md)
 [必知](https://github.com/Snailclimb/JavaGuide#%E5%BF%85%E7%9F%A5)
+
+##### waiting
+验证log4j2 是否支持多环境日志输出
+多环境日志输出
+据不同环境（prod:生产环境，test:测试环境，dev:开发环境）来定义不同的日志输出，在 logback-spring.xml中使用 springProfile 节点来定义，方法如下：
+
+文件名称不是logback.xml，想使用spring扩展profile支持，要以logback-spring.xml命名
+
+Spring Boot干货系列：（七）默认日志框架配置
+
+可以启动服务的时候指定 profile （如不指定使用默认），如指定prod 的方式为：
+
+java -jar xxx.jar --spring.profiles.active=prod
