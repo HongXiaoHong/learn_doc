@@ -17,3 +17,15 @@
 ## 多线程
 
 [一文秒懂 Java java.util.concurrent.Future - Java 一文秒懂 - 简单教程，简单编程](https://www.twle.cn/c/yufei/javatm/javatm-basic-future.html)
+
+
+
+
+
+## lampda 流处理
+
+[在 Java 中将 Integer 集合转换为 int 数组](https://www.techiedelight.com/zh/convert-set-of-integer-to-array-of-int-in-java/)
+
+```java
+
+```

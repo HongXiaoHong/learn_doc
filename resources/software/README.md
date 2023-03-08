@@ -64,6 +64,9 @@
 - 杀毒软件
   
   - 火绒
+- 电脑美化
+  - nimi 给桌面图标分组 [Nimi Places (mynimi.net)](http://mynimi.net/Projects/Nimi-Places/)
+  - 必应壁纸
 
 - 下载
   
@@ -131,6 +134,10 @@
 - redis 可视化客户端
   
   - Another Redis Desktop Manager
+
+- zookeeper 可视化客户端
+  
+  - 😲prettyZoo
 
 - 代码编辑(全栈工程师 java为主 vue+react为辅 python工具)
   

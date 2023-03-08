@@ -14,8 +14,6 @@
 
 最后没办法就只能换到 es
 
-
-
 总的来说，我们知道慢查询的SQL后，优化方案可以做如下尝试：
 
 SQL语句优化，尽量精简，去除非必要语句
@@ -24,8 +22,6 @@ SQL语句优化，尽量精简，去除非必要语句
 如果是单库瓶颈问题，则分库，读写分离
 如果是物理机器性能问题，则分多个数据库节点
 
-
-
 ### SQL语法优化
 
 #### 索引
@@ -33,8 +29,6 @@ SQL语句优化，尽量精简，去除非必要语句
 [Mysql索引（一篇就够le） - 一寸HUI - 博客园](https://www.cnblogs.com/zsql/p/13808417.html#_label2)
 
 innodb存储的索引是基于B+树实现的
-
-
 
 SQL语句常见优化
 只要简单了解过MySQL内部优化机制，就很容易写出高性能的SQL
@@ -58,11 +52,29 @@ SELECT * FROM t WHERE LOC_ID = 10 OR LOC_ID = 20 OR LOC_ID = 30;
 非聚簇索引走了3次，使用IN之后只走一次：
 
 SELECT * FROM t WHERE LOC_IN IN (10,20,30);
-4.LIKE双百分号无法使用到索引
+
+##### 4.LIKE双百分号无法使用到索引
+
+
 SELECT * FROM t WHERE name LIKE '%de%';
 应优化为右模糊
 
 SELECT * FROM t WHERE name LIKE 'de%';
+
+覆盖索引
+
+索引中存放了 select 中需要的列 不要重新回标
+
+这里我们可以把 * 改成 id 之后再做关联
+
+- 优化为右模糊 可以在存放的时候倒序存放
+
+- 或者使用覆盖索引
+  
+  - [mysql覆盖索引详解——like模糊全匹配中使用索引_斗者_2013的博客-CSDN博客](https://blog.csdn.net/w1014074794/article/details/89886068)
+  
+  - [模糊查询下（like）如何使用覆盖索引优化_模糊查询覆盖索引的方法_布道的博客-CSDN博客](https://blog.csdn.net/alex_xfboy/article/details/82789942)
+
 5.增加LIMIT M,N 限制读取的条数
 6.避免数据类型不一致
 SELECT * FROM t WHERE id = '19';
@@ -75,10 +87,6 @@ SELECT goods_id,count(*) FROM t GROUP BY goods_id;
 
 SELECT goods_id,count(*) FROM t GROUP BY goods_id ORDER BY NULL;
 8.去除不必要的ORDER BY语句
-
-
-
-
 
 ### 查找MySQL中查询慢的SQL语句
 
