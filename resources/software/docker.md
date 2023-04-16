@@ -2,6 +2,12 @@
 
 ## 学习链接
 
+gitbook 手册
+
+[前言 - Docker — 从入门到实践](https://yeasy.gitbook.io/docker_practice/)
+
+[docker_practice/README.md at master · yeasy/docker_practice · GitHub](https://github.com/yeasy/docker_practice/blob/master/README.md)
+
 狂神带我们学习 docker
 
 [1、Docker学习大纲_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1og4y1q7M4?p=1&vd_source=eabc2c22ae7849c2c4f31815da49f209)
@@ -621,6 +627,11 @@ my_tomcat:1.0
 
 [Dockerfile reference | Docker Documentation](https://docs.docker.com/engine/reference/builder/)
 
+#### EXPOSE 暴露端口
+
+EXPOSE 指令是声明容器运行时提供服务的端口，这只是一个声明，在容器运行时并不会因为这个声明应用就会开启这个端口的服务。在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。
+要将 EXPOSE 和在运行时使用 -p <宿主端口>:<容器端口> 区分开来。-p，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射
+
 ### 6.2. 自制 Tomcat 镜像
 
 ```dockerfile
@@ -748,6 +759,88 @@ cluster-announce-bus-port 16379 appendonly yes
 
 EOF done 
 ```
+
+### 容器互访的三种方式
+
+[Docker: 容器互访的三种方式 - 活到老学到老 - SegmentFault 思否](https://segmentfault.com/a/1190000018014534)
+
+- link
+
+- network
+
+- docker-compose
+
+## docker-compose
+
+[Docker Compose 简介 | 叶良辰の学习笔记](https://yangzhiwen911.github.io/ludi/DockerCompose/)
+
+### 网络
+
+[Docker Compose 网络设置 | 叶良辰の学习笔记](https://yangzhiwen911.github.io/ludi/DockerCompose/031.%5B%E6%9D%8E%E5%8D%AB%E6%B0%91%5D%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B7%A5%E7%A8%8B%E5%B8%88-DockerCompose-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE.html#%E6%A6%82%E8%BF%B0)
+
+默认情况下，Compose 会为我们的应用创建一个网络，服务的每个容器都会加入该网络中。这样，容器就可被该网络中的其他容器访问，不仅如此，**该容器还能以服务名称作为 Hostname 被其他容器访问**
+
+### 网络模式
+
+
+
+bridge
+
+桥接模式
+
+使用 veth-pair 技术(虚拟设备技术) [Linux 虚拟网络设备 veth-pair 详解，看这一篇就够了 - bakari - 博客园](https://www.cnblogs.com/bakari/p/10613710.html)
+
+
+
+host 跟主机共享网络设备
+
+none 不配置网络
+
+### docker 容器每次启动 IP都会变化吗
+
+在docker中，重启后ip是会变的；docker默认采用bridge连接，启动容器的时候会按照顺序来获取对应ip地址，这就导致**容器每次重启后ip都会发生变化**
+
+#### 解决
+
+- 设置固定 IP 解决 [docker设置容器固定ip_51CTO博客_docker固定容器ip](https://blog.51cto.com/u_15338614/3622908)
+
+### DNS
+
+[DNS 与 Docker 容器 - yexiaoxiaobai - SegmentFault 思否](https://segmentfault.com/a/1190000000629231?utm_source=sf-similar-article)
+
+[配置 DNS - Docker — 从入门到实践 (gitbook.io)](https://yeasy.gitbook.io/docker_practice/network/dns)
+
+配置 DNS 服务器帮助我们解析 域名
+
+[Docker配置DNS-菜鸟笔记 (coonote.com)](https://www.coonote.com/docker-note/docker-configuration-dns.html)
+
+主机 映射 dns 我们直接用 network 就可以解决
+
+如果要配置 非主机 的dns 才需要配置 dns
+
+windows desktop 如何设置
+
+[Docker设置DNS - 掘金 (juejin.cn)](https://juejin.cn/post/7058821204915781669)
+
+- todo [容器DNS介绍 - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1825506)
+
+#### DHCP 协议
+
+**DHCP（Dynamic Host Configuration Protocol，动态主机配置协议），前身是BOOTP协议，是一个局域网的网络协议，使用UDP协议工作，统一使用两个IANA分配的端口：67（服务器端），68（客户端）。DHCP通常被用于局域网环境，主要作用是集中的管理、分配IP地址，使client动态的获得IP地址、Gateway地址、DNS服务器地址等信息，并能够提升地址的使用率**
+
+了解DHCP或**动态主机配置协议**. DHCP是动态主机配置协议的缩写。. 它是一种存在于应用层的网络管理协议。. 在DHCP的帮助下，可以动态地给网络上的任何设备或节点分配一个互联网协议IP地址，使它们可以使用这个IP进行通信。. 网络管理员的任务是将大量的IP地址手动分配给网络中的所有设备。. 然而，在DHCP中，这个任务是自动化的，是集中管理，而不是手工管理。. 无论是小型本地网络还是大型企业网络都实现了DHCP。. DHCP的基本目标是为主机分配一个唯一的IP地址
+
+## 仓库 | 镜像管理
+
+### Docker registry
+
+### Harbor
+
+具有 **用户安全机制**以及 **镜像同步**等企业级需要的功能
+
+[Harbor功能特点看这一篇就够了_镜像](https://www.sohu.com/a/459303453_609552)
+
+[为什么有了Docker registry还需要Harbor？ - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1080444)
 
 ## 参考
 

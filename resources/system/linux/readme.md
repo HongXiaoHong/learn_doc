@@ -3,6 +3,43 @@
 todo
 
 - [ ] [理解Linux的进程，线程，PID，LWP，TID，TGID - wipan - 博客园](https://www.cnblogs.com/wipan/p/9488318.html)
+- [ ] [strace 简明教程 - voidint - 个人博客](https://voidint.github.io/post/tool/strace/) 
+  - [ ] strace 是 Linux 系统下的一个用于诊断、调试和指导用户空间的实用程序。它用于监视和篡改进程与 Linux 内核之间的交互，包括系统调用、信号传递和进程状态的更改
+
+## 挂载硬盘
+
+[linux如何挂载硬盘linux服务器上挂载磁盘（图文详解）_服务器_C18298182575-DevPress官方社区](https://huaweicloud.csdn.net/6356037cd3efff3090b58abf.html?spm=1001.2101.3001.6650.6&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Eactivity-6-125271540-blog-116904428.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Eactivity-6-125271540-blog-116904428.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=13)
+
+[Linux 下挂载新硬盘方法_linux 挂载硬盘_zqixiao_09的博客-CSDN博客](https://blog.csdn.net/zqixiao_09/article/details/51417432)
+
+[如何给Linux挂载数据盘_有数据的硬盘挂载到linux_ShuSheng007的博客-CSDN博客](https://blog.csdn.net/ShuSheng0007/article/details/116904428)
+
+## 容器相关
+
+目前我们所提到的容器技术、虚拟化技术（不论何种抽象层次下的虚拟化技术）都能做到资源层面上的隔离和限制。
+
+对于容器技术而言，它实现资源层面上的限制和隔离，依赖于 Linux 内核所提供的 cgroup 和 namespace 技术。
+
+- cgroup 的主要作用：管理资源的分配、限制；
+- namespace 的主要作用：封装抽象，限制，隔离，使命名空间内的进程看起来拥有他们自己的全局资源；
+
+[linux - 彻底搞懂容器技术的基石： namespace （下） - K8S生态 - SegmentFault 思否](https://segmentfault.com/a/1190000041114149)
+
+[Linux Namespace : 简介 - sparkdev - 博客园](https://www.cnblogs.com/sparkdev/p/9365405.html)
+
+[Linux Namespace机制简介 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2129136)
+
+[Linux资源管理之cgroups简介 - 美团技术团队](https://tech.meituan.com/2015/03/31/cgroups.html)
+
+## sudo | 短暂提升用户权限为超级用户
+
+秒懂Linux的sudo命令
+
+https://zhuanlan.zhihu.com/p/137332644
+
+## chmod | 为文件赋权
+
+[秒懂Linux文件权限及chmod命令_linux nonexistent_ShuSheng007的博客-CSDN博客](https://blog.csdn.net/ShuSheng0007/article/details/105343009)
 
 ## 指令
 
@@ -72,13 +109,7 @@ $ cat <<EOF | grep 'b' | tee b.txtfoobarbazEOF
 
 [Linux—shell中$(( ))、$( )、``与${ }的区别 - chengd - 博客园](https://www.cnblogs.com/chengd/p/7803664.html)
 
-
-
-
-
 [测试Linux端口的连通性的四种方法_lzxomg的博客-CSDN博客_查看端口是否连通](https://blog.csdn.net/lzxomg/article/details/76349887)
-
-
 
 方法一、telnet法
 
