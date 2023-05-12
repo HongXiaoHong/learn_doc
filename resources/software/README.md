@@ -4,6 +4,12 @@
 
 ## 软件推荐
 
+- 测试
+  
+  - api mock
+    
+    - [免费的开源 API 模拟工具-本地](https://mockoon.com/tutorials/)   没有提供远程的操作界面有点败笔但是本地模拟接口是真香 
+
 - 压缩软件
   
   - 7z
@@ -64,7 +70,9 @@
 - 杀毒软件
   
   - 火绒
+
 - 电脑美化
+  
   - nimi 给桌面图标分组 [Nimi Places (mynimi.net)](http://mynimi.net/Projects/Nimi-Places/)
   - 必应壁纸
 

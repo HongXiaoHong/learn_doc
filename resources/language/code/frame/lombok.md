@@ -1,7 +1,5 @@
 # lombok
 
-
-
 ## lombok 我们到底应不应该使用
 
 [spring - 迷茫了，我们到底该不该用lombok？ - 个人文章 - SegmentFault 思否](https://segmentfault.com/a/1190000038618224)
@@ -39,22 +37,96 @@
 
 如果上游系统中提供的fegin client使用了lombok，那么下游系统必须也使用lombok，否则会报错，上下游系统构成了强依赖。
 
-
-
-
-
 ## 常用注解
 
 ### @Data | 复合注解
 
-
-
 @Data相当于@Getter、@Setter、@ToString、@EqualsAndHashCode、@RequiredArgsConstructor的集合。
-
-
 
 ### @Slf4j | 注入 log 日志对象
 
 [果冻的猿宇宙 – Just Do IT，放胆做挨踢](https://xiaogd.net/md/use-lombok-slf4j-annotation-for-log)
+
+
+
+### @Accessors
+
+[lombok @Accessors用法详解（一看就能懂） - 简书](https://www.jianshu.com/p/67a15b2e4a92)
+
+#### @Accessors(chain=true) | 流式调用
+
+链式访问，该注解设置chain=true，生成setter方法返回this（***也就是返回的是对象***），代替了默认的返回void。
+
+```java
+package com.pollyduan;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Data
+@Accessors(chain=true)
+public class User {
+    private Integer id;
+    private String name;
+    private Integer age;
+
+    public static void main(String[] args) {
+        //开起chain=true后可以使用链式的set
+        User user=new User().setAge(31).setName("pollyduan");//返回对象
+        System.out.println(user);
+    }
+
+}
+```
+
+#### @Accessors(fluent = true) | 不带前缀的流式调用
+
+与chain=true类似，区别在于getter和setter不带set和get前缀。
+
+```java
+package com.pollyduan;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Data
+@Accessors(fluent=true)
+public class User {
+    private Integer id;
+    private String name;
+    private Integer age;
+
+    public static void main(String[] args) {
+        //fluent=true开启后默认chain=true，故这里也可以使用链式set
+        User user=new User().age(31).name("pollyduan");//不需要写set
+        System.out.println(user);
+    }
+
+}
+```
+
+#### @Accessors(prefix = "f") | 自定义set前缀
+
+set方法忽略指定的前缀。不推荐大神们这样去命名。
+
+```java
+package com.pollyduan;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Data
+@Accessors(prefix = "f")
+public class User {
+    private String fName = "Hello, World!";
+
+    public static void main(String[] args) {
+        User user=new User();
+        user.setName("pollyduan");//注意方法名
+        System.out.println(user);
+    }
+
+}
+```
 
 
