@@ -1,4 +1,7 @@
 # Markdown 通过 picgo 使用 GitHub 图床
+todo
+- https://www.cnblogs.com/zyfzjuer/p/15422206.html
+- https://juejin.cn/post/6844904003353083918
 
 ## 本地安装node
 
