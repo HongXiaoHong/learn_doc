@@ -108,3 +108,41 @@ public class Test {
 
 #### JavaScript
 
+
+
+
+## Unicode
+Unicode 一览表
+
+https://zh.wikipedia.org/zh-hans/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84
+Unicode 字符列表
+https://zh.wikipedia.org/zh-hans/Unicode%E5%AD%97%E7%AC%A6%E5%88%97%E8%A1%A8
+
+### 中文
+https://www.lddgo.net/string/cjk-unicode
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230824171019.png)
+
+基本汉字使用 4E00 - 9FFF 匹配
+如果正则表达式中需要匹配其他的生僻字
+
+### 韩文
+AC00-D7AF	谚文音节	Hangul Syllables
+https://zh.wikipedia.org/zh-hans/%E8%B0%9A%E6%96%87
+
+谚文（朝鲜语：언문／諺文），韩国官方将其中文译名定为韩古尔朝鲜语：한글／韓㐎 关于这个音频文件 Hangeul 帮助·信息）或韩字[3]，朝鲜官方则使用朝鲜国文（朝鲜语：조선글／朝鮮㐎 Chosŏn'gŭl）一称为其中文译名，俗称“朝鲜字母”、“㐎”、“训民正音”等，是朝鲜语所使用的表音文字。
+
+15世纪，在朝鲜王朝（1392年－1897年）第四代君主世宗（1418年－1450年在位）的倡导下，由世宗本人于1443年正式创建，并在1446年与几位学者颁布使用。
+
+### 杂项符号和图符
+https://zh.wikipedia.org/zh-hans/%E9%9B%9C%E9%A0%85%E7%AC%A6%E8%99%9F%E5%92%8C%E5%9C%96%E7%AC%A6
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230824160151.png)
+
+这里记录着 Unicode 的各种奇奇怪怪的图标
+
+### emoji
+1F600-1F64F
+
+https://zh.wikipedia.org/zh-hans/%E9%9B%9C%E9%A0%85%E7%AC%A6%E8%99%9F%E5%92%8C%E5%9C%96%E7%AC%A6
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230824170247.png)
