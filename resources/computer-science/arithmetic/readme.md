@@ -51,3 +51,7 @@ https://www.bilibili.com/video/BV1WK4y1R71x/?vd_source=eabc2c22ae7849c2c4f31815d
 ## 动态规划
 
 https://www.bilibili.com/video/BV1AB4y1w7eT/?vd_source=eabc2c22ae7849c2c4f31815da49f209
+
+
+## 喷泉码
+https://juejin.cn/post/6844903896834375694

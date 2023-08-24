@@ -4,8 +4,6 @@
 
 [(1条消息) Spring源码编译教程（自己复习） 作者 周瑜_周瑜语雀_weixin_41040132的博客-CSDN博客](https://blog.csdn.net/weixin_41040132/article/details/121977339)
 
-
-
 [15、Spring之事务底层源码解析 (yuque.com)](https://www.yuque.com/renyong-jmovm/spring/vfg3g6)
 
 - @Import 注解 https://blog.csdn.net/wufagang/article/details/121589729
@@ -41,6 +39,10 @@
 阅读源码是一个反复的过程，不要期望一次就能完全理解。在阅读的过程中，可以不断尝试编写实例代码来验证自己的理解。通过多次实践，您将逐渐掌握Spring Bean实例化的具体细节。
 
 ## Spring中实例化类的具体流程
+
+[Bean的生命周期 - java学习教程_ java培训机构_java编程思想_java核心技术](https://book.itheima.net/course/1265899443273850881/1272805294367318018/1272806366603386885)
+
+![](https://book.itheima.net/uploads/course/images/java/3.2/image-20200622095705090.png)
 
 1. 加载配置文件：Spring容器首先解析XML配置文件、注解或Java配置类，以识别bean定义。
 
@@ -652,10 +654,6 @@ public static String decapitalize(String name) {
 ```
 
 获取字符串并将其转换为普通 Java 变量名称大写的实用程序方法。这通常意味着将第一个字符从大写转换为小写，但在特殊情况下，当有多个字符而且第一个和第二个字符都是大写时，类名就是BeanName。因此，“FooBah”变成了“fooBah”，“X”变成了“x”，但“URL”仍然是“URL”。
-
-
-
-
 
 ## 循环依赖
 

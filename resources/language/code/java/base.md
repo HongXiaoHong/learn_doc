@@ -20,6 +20,39 @@ immutable 对象有很多优点，比如它们可以被安全地共享和重复�
 
 [SpringBoot 3.0 最低版本要求的JDK 17，这几个新特性不能不知道！-51CTO.COM](https://www.51cto.com/article/702715.html)
 
+## 🐶泛型
+
+### PECS原则
+
+#### extends | 频繁往外读取内容的
+
+```java
+Plate<? extends Fruit> p = new Plate<Apple>(new Apple());
+```
+
+extends 之所以不能存放元素的原因, 
+
+在于我赋值了一个 new Plate\<Apple\>
+
+你想往Plate\<? extends Fruit\> 存放的时候, 你根本不知道new 出来的类型具体存放什么, 例如这里可以是 new Plate\<Apple\> 也可以是 new Plate\<Pear\>, 所以我们只能往外取出 Fruit及其父类
+
+#### super | 经常往里插入
+
+```java
+Plate<? super Fruit> p = new Plate<Fruit>(new Fruit());
+p.add(new Apple());
+p.add(new Pear());
+```
+
+Plate<? super Fruit> p 可以赋予 Fruit 及其父类的容器
+
+我们可以存放 Fruit 及其子类的对象
+
+- **频繁往外读取内容的，适合用上界Extends。**
+- **经常往里插入的，适合用下界Super。**
+
+[【java】泛型中 extends 和 super 的区别？ | iTimeTraveler](https://itimetraveler.github.io/2016/12/27/%E3%80%90Java%E3%80%91%E6%B3%9B%E5%9E%8B%E4%B8%AD%20extends%20%E5%92%8C%20super%20%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F/)
+
 ## 🌭 集合
 
 ### List
@@ -145,6 +178,24 @@ springboot 中存放 私钥
 使用AES加密下
 
 私钥加密后存放到一个文件中
+
+#### bcrypt
+https://blog.csdn.net/Romona_J/article/details/113815161
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230723111508.png)
+
+Bcrypt 是一种哈希加密算法。它是一种密码学安全的单向哈希函数，用于将密码或敏感信息转换成不可逆的哈希值。Bcrypt 专门用于密码存储，其目标是增加密码的安全性，防止被暴力破解。
+
+Bcrypt 算法是由 Niels Provos 和 David Mazières 在 1999 年开发的，它基于 Blowfish 对称加密算法，但加入了一些针对密码哈希的特定改进，如自适应哈希函数和随机盐。
+
+主要特点和优势：
+
+1. 随机盐：Bcrypt 在生成哈希时会自动添加一个随机生成的盐值，每个密码都会有不同的盐值。这样即使两个用户使用相同的密码，其哈希值也不同，增加了破解的难度。
+
+2. 自适应哈希函数：Bcrypt 使用一个内部循环来进行哈希计算，可以动态地调整循环的次数。这使得 Bcrypt 可以在硬件性能提升时自动增加计算量，从而保持密码的安全性。
+
+3. 计算复杂度：Bcrypt 的哈希计算复杂度较高，使得暴力破解密码变得非常困难和耗时，提高了安全性。
+
+由于 Bcrypt 算法具有上述特点，因此它是目前广泛用于存储密码的安全算法。在应用程序中，特别是涉及用户密码的存储和认证的场景，建议使用 Bcrypt 或其他现代的密码哈希算法来保护用户的密码安全。
 
 ## 多线程
 
@@ -349,10 +400,6 @@ jps + jstack
 
 [小白也看得懂的 I/O 多路复用解析（超详细案例）_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1r54y1f7bU/?spm_id_from=333.788&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 
-
-
-
-
 ## 代理
 
 ### jdk动态代理和cglib代理的示例
@@ -514,8 +561,22 @@ CGLIB代理的优势在于它不要求目标类实现接口，但是由于它是
 > ---
 > 
 > CGLIB代理基于代码生成技术，不要求目标类实现接口。它创建的代理对象是目标类的子类，并通过`MethodInterceptor`来实现方法拦截。
+> 
+> **jdk动态代理是由java内部的反射机制来实现的，cglib动态代理底层则是借助asm来实现的**。 总的来说，反射机制在生成类的过程中比较高效，执行时候通过反射调用委托类接口方法比较慢；而asm在生成类之后的相关代理类执行过程中比较高效（可以通过将asm生成的类进行缓存，这样解决asm生成类过程低效问题）
+> 
+> [java - 动态代理及其实现原理 - 个人文章 - SegmentFault 思否](https://segmentfault.com/a/1190000037648064)
 
 两者都可以实现在不修改目标类代码的情况下，为目标类添加额外功能。选择哪种代理方式取决于目标类是否实现了接口以及其他特殊需求。
+
+[cglib动态代理、asm学习笔记 - 简书 (jianshu.com)](https://www.jianshu.com/p/a728dac249e1)
+
+ASM
+
+位于字节码之上、直接操作字节码的框架，
+
+ASM是一个java字节码操控框架，可以以二进制的形式修改已有类，ASM可以直接生成二进制class文件，也可以在类被加载如java虚拟机之前改变类的行为，asm从类文件中读入信息，甚至可以根据用户要求生成新类
+
+> Spring AOP 默认使用**JDK 动态代理**，如果对象没有实现接口，则使用CGLIB 代理。
 
 #### final类又没实现接口应该用哪一种代理, jdk动态代理还是cglib代理
 

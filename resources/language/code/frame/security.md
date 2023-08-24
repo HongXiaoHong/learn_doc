@@ -13,6 +13,8 @@
 - [ ] 使用 QQ 登录
 - [ ] shiro高级
   - [ ] [(21条消息) SpringBoot(13) 集成Shiro实现动态加载权限_郑清的博客-CSDN博客](https://blog.csdn.net/qq_38225558/article/details/101616759) 主要思路是 实现 ShiroService
+  - [x] [[译] 用 Apache Shiro 来保护一个 Spring Boot 应用 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903810117140487)
+    - [ ] 如何通过数据库进行鉴权 Realm
 
 ## jwt
 
@@ -229,15 +231,11 @@ int addOne(){
 
 银行是不是干了什么坏事 由此产生信用危机
 
-
-
 ## 备份
 
 ### 认证的前世今生 cookie、session、token、jwt、单点登录
 
 - [前端鉴权必须了解的 5 个兄弟：cookie、session、token、jwt、单点登录 - 掘金 (juejin.cn)](https://juejin.cn/post/7040695405486538759#heading-3)
-
-
 
 本文你将看到：
 
@@ -605,3 +603,9 @@ session 和 token 都是边界很模糊的概念，就像前面说的，refresh 
 - session 和 token 的对比就是「用不用cookie」和「后端存不存」的对比
 
 - 单点登录要求不同域下的系统「一次登录，全线通用」，通常由独立的 SSO 系统记录登录状态、下发 ticket，各业务系统配合存储和认证 ticket
+
+## 秘钥
+
+### 秘钥如何安全存储
+
+- 难以记忆的密钥可用加密形式存储，利用密钥加密密钥来做。如 RSA 的秘密钥可用 DES 加密后存入硬盘，用户须有 DES 密钥，运行解密程序才能将其恢复。

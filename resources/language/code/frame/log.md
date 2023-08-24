@@ -26,6 +26,10 @@ log4j2 之前有一个漏洞
 
 [【黑马程序员】最牛逼的 Java 日志框架，全面深入学习多种java日志框架，性能无敌，横扫所有对手](https://www.bilibili.com/video/BV11g411P7mv?p=1)
 
+
+
+[如何编写可节省您时间的日志文件 - 掘金 (juejin.cn)](https://juejin.cn/post/6844904184702042120)
+
 ## 桥接模式
 
 https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/bridge.html

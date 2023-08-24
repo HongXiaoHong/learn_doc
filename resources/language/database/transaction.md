@@ -5,6 +5,8 @@
 - [x] 数据库事务
 - [x] springboot 如何开启 事务传播...
 - [ ] 分布式事务
+  - [ ] [[译] Spring 的分布式事务实现 — 使用和不使用 XA — 第一部分 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903837753409550)
+  - [ ] [[译] Spring 的分布式事务实现 — 使用和不使用 XA — 第二部分 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903816492482568)
 
 ## 数据库事务
 

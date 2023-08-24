@@ -1,14 +1,8 @@
 # python
 
-
-
 ## 变量
 
-
-
 ### 局部变量
-
-
 
 #### 全局局部变量
 
@@ -30,10 +24,6 @@ e:\python
 """
 
 ```
-
-
-
-
 
 ## 函数
 
@@ -65,10 +55,6 @@ e:\python\file__.py
 {'a': 10}
 False
 ```
-
-
-
-
 
 ## 使用vscode
 
@@ -226,10 +212,151 @@ HTML
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/python/output_wordcloud.png)
 
-
-
 ### Faker
 
 Faker是一个Python包，主要用来创建伪数据，使用Faker包，无需再手动生成或者手写随机数来生成数据，只需要调用Faker提供的方法，即可完成数据的生成。
 
 [推荐一款Python开源库，技术人必备的造数据神器！ (qq.com)](https://mp.weixin.qq.com/s?__biz=MzA4NDUyNzA0Ng==&mid=2247486145&idx=1&sn=4d309ad345174c63c9855501ae10c883&chksm=9fe49868a893117e917b241df9883c9b2c11374457162d88beba49960ced833a8a89d7ca1784&scene=21#wechat_redirect)
+
+
+## 异常
+
+### 常用
+https://www.cosmiclearn.com/lang-cn/python-exceptions.php
+
+以下是Python中异常处理的基本概念和常用代码的总结：
+
+## 异常处理的几种方式
+
+1. **Try, Except**
+2. **Try, Except, Finally**
+3. **Try, Except, Except, Finally**
+4. **用户定义的异常**
+
+## 详细说明和代码示例
+
+### Try, Except
+
+这是处理异常的基本结构。在try块中，你将编写可能会抛出异常的代码。在except块中，你将编写处理异常的代码。
+
+```python
+import traceback
+try:
+    i = 10
+    j = i/0
+except ZeroDivisionError:
+    traceback.print_exc()
+print("Program Proceeds!")
+```
+
+### Try, Except, Finally
+
+在这种情况下，无论try块中是否发生异常，finally块中的代码都将被执行。这通常用于确保资源（如文件或数据库连接）在程序结束时被正确关闭。
+
+```python
+import traceback
+fi = None
+try:
+    fi = open("godzilla.txt", "rb")
+    i = 0
+    j = i/0
+except:
+    traceback.print_exc()
+finally:
+    if fi:
+        fi.close()
+```
+
+### Try, Except, Except, Finally
+
+有时可能需要将多个except语句附加到同一个try块中。你应确保按异常层次结构的降序使用异常，因为将首先检查第一个catch块。
+
+```python
+import traceback
+try:
+    i = 10
+    j = i/0
+    i = [1,2,3]
+    print(i[10])
+except ZeroDivisionError:
+    traceback.print_exc()
+except IndexError:
+    traceback.print_exc()
+except:
+    traceback.print_exc()
+finally:
+    print("Break the rules!")
+print("Program Proceeds!")
+```
+
+### 用户定义的异常
+
+有时，Python库提供的异常可能不足以满足我们的应用程序。在这种情况下，我们可以定义自己的异常。
+
+```python
+class CosmicException(Exception):
+    pass
+
+validPlanets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+def helloPlanet(planetName):
+    if planetName not in validPlanets:
+        raise CosmicException("Invalid Planet - {}".format(planetName))
+    print("Hello {}".format(planetName))
+
+helloPlanet("Earth")
+helloPlanet("Pluto")
+```
+
+
+### python主动抛出异常
+https://www.cnblogs.com/aaronthon/p/15103274.html
+一、主动抛出异常 raise
+
+Python 使用 raise 语句抛出一个指定的异常。
+
+raise 唯一的一个参数指定了要被抛出的异常。
+
+它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。
+
+如下：
+```python
+
+x = 10
+if x > 5:
+    raise Exception('x 不能大于 5。x 的值为: {}'.format(x))
+```
+结果如下：
+
+Traceback (most recent call last):
+  File "test.py", line 3, in <module>
+    raise Exception('x 不能大于 5。x 的值为: {}'.format(x))
+Exception: x 不能大于 5。x 的值为: 10
+如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。
+
+```python
+try:
+    raise NameError('HiThere')
+except NameError:
+    print('An exception flew by!')
+    raise
+```
+
+## 常用模块
+### os
+#### 文件操作
+##### 文件遍历
+###### walk  | 递归遍历子目录
+https://blog.csdn.net/mighty13/article/details/77995857
+```python
+os.walk(top[, topdown=True[, onerror=None[, followlinks=False]]])
+
+#conding=utf8  
+import os 
+
+g = os.walk(r"e:\test")  
+
+for path,dir_list,file_list in g:  
+    for file_name in file_list:  
+        print(os.path.join(path, file_name) )
+```
+###### listdir | 遍历子目录

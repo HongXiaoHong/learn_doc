@@ -4,6 +4,8 @@
 
 gitbook 手册
 
+[[译] Docker 的学习和应用 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903925674426382)
+
 [前言 - Docker — 从入门到实践](https://yeasy.gitbook.io/docker_practice/)
 
 [docker_practice/README.md at master · yeasy/docker_practice · GitHub](https://github.com/yeasy/docker_practice/blob/master/README.md)
@@ -782,15 +784,11 @@ EOF done
 
 ### 网络模式
 
-
-
 bridge
 
 桥接模式
 
 使用 veth-pair 技术(虚拟设备技术) [Linux 虚拟网络设备 veth-pair 详解，看这一篇就够了 - bakari - 博客园](https://www.cnblogs.com/bakari/p/10613710.html)
-
-
 
 host 跟主机共享网络设备
 

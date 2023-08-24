@@ -1,5 +1,17 @@
 # java web
 
+servlet 规范中的三大组件，分别是 servlet、filter、listener
+
+JavaWeb项目经历的阶段：
+        1、Servlet + JSP / Servlet + 模板引擎，该阶段XML配置很少，但是需要从基础代码开始编写；
+        2、SSH(Spring/Struts2/Hibernate) / SSM(Spring/SpringMVC/Mybatis)，该阶段无需从基础代码开始编写，但是需要大量的XML配置；
+        3、SSM，该阶段无需从基础代码开始编写，采用注解+XML配置；
+        4、SpringBoot，零配置（XML），采用注解+yml配置；
+原文链接：https://blog.csdn.net/ligonglanyuan/article/details/124787811
+
+## ContextLoaderListener解析
+https://www.jianshu.com/p/523bfddf0810
+
 ### 过滤器 和 拦截器的 6个区别
 
 [过滤器与拦截器的区别及使用场景 - 掘金](https://juejin.cn/post/6989529144535023629)
@@ -29,6 +41,139 @@
 作者：小小程序猿_肥牛  
 
 [(19条消息) 过滤器 和 拦截器的 6个区别，别再傻傻分不清了_过滤器和拦截器区别_程序员小富的博客-CSDN博客](https://blog.csdn.net/xinzhifu1/article/details/106356958)
+
+我觉得更加通俗易懂的理解
+
+<mark>你自己本身的业务系统用拦截器和过滤器都可以。我这里说一下为什么spring security使用过滤器而不是拦截器。因为作为一个通用的安全框架不应该耦合其他web框架的元素。很显然拦截器是spring mvc或struts等框架提供的，如果基于拦截器势必耦合这些框架，就做不到通用了</mark>。
+
+作者：Java全栈老猿  
+链接：https://www.zhihu.com/question/443466900/answer/1724283014  
+来源：知乎  
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+作者：小露分享吧  
+链接：https://www.zhihu.com/question/443466900/answer/3123180025  
+来源：知乎  
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  
+
+小朝：嘿，小露！最近我在学习Spring Boot，发现它提供了拦截器和过滤器这两个功能来处理请求。你能帮我总结一下它们的使用和区别吗？我有点分不清了。
+
+[小露](https://www.zhihu.com/search?q=%E5%B0%8F%E9%9C%B2&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3123180025%7D)：当然可以！拦截器和过滤器都是用于在请求到达控制器之前或之后执行一些逻辑。不过它们在实现方式和功能上存在一些差异。
+
+小朝：哦，那它们之间具体有哪些**区别**呢？
+
+小露：首先，拦截器是基于**Java反射机制**实现的，而过滤器是基于**Servlet规范**实现的。这意味着拦截器可以更方便地访问Spring容器和Spring的特性，而过滤器则更加独立，不依赖于Spring。
+
+小朝：明白了，那在使用上有什么区别吗？
+
+小露：在使用上，拦截器是通过**实现HandlerInterceptor接口**来创建的，并且可以细粒度地控制拦截路径。而过滤器是通过**实现javax.servlet.Filter接口**来创建的，并且对所有请求都生效。
+
+在Spring Boot中，使用拦截器和过滤器非常简单。下面我将分别介绍如何在Spring Boot中使用拦截器和过滤器。
+
+### **使用拦截器：**
+
+```java
+1.创建一个类实现HandlerInterceptor接口，该接口包含了三个方法：preHandle、postHandle和afterCompletion，分别对应请求的前置处理、后置处理和完成后的处理。
+ import org.springframework.web.servlet.HandlerInterceptor;
+ import org.springframework.web.servlet.ModelAndView;
+ import javax.servlet.http.HttpServletRequest;
+ import javax.servlet.http.HttpServletResponse;
+ ​
+ public class MyInterceptor implements HandlerInterceptor {
+ ​
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+  // 在请求处理之前进行逻辑处理，返回true表示继续执行请求，返回false表示中断请求
+  // 可以在此处进行认证、授权等操作
+  return true;
+     }
+ ​
+  @Override
+  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+    ModelAndView modelAndView) throws Exception {
+  // 在请求处理之后进行逻辑处理，可以修改ModelAndView中的数据
+     }
+ ​
+  @Override
+  public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) 
+  throws Exception {
+  // 在请求完成后进行逻辑处理，可以处理一些资源清理操作
+     }
+ }
+
+2.在配置类中注册拦截器。
+ import org.springframework.context.annotation.Configuration;
+ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+ ​
+ @Configuration
+ public class AdminWebConfig implements WebMvcConfigurer {
+ ​
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+  registry.addInterceptor(new LoginInterceptor())
+                 .addPathPatterns("/**")  //所有请求都被拦截包括静态资源
+                 .excludePathPatterns("/","/login""); //放行的请求
+     }
+ }
+这里我们将自定义的拦截器添加到了所有请求路径上，你可以根据需求自行配置。
+```
+
+### **使用过滤器：**
+
+```java
+1.创建一个类实现javax.servlet.Filter接口，该接口包含了一个doFilter方法，用于处理请求。
+ import javax.servlet.*;
+ import javax.servlet.annotation.WebFilter;
+ import java.io.IOException;
+ ​
+ @WebFilter(urlPatterns = "/*")
+ public class MyFilter implements Filter {
+ ​
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+  // 在请求处理之前进行逻辑处理
+  // 可以在此处进行请求预处理、资源保护、请求转发等操作
+  chain.doFilter(request, response);
+  // 在请求处理之后进行逻辑处理
+     }
+ ​
+  @Override
+  public void init(FilterConfig filterConfig) throws ServletException {
+  // 初始化操作，可选
+     }
+ ​
+  @Override
+  public void destroy() {
+  // 销毁操作，可选
+     }
+ }
+
+2.在启动类上添加注解@ServletComponentScan，以使过滤器生效。
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ import org.springframework.boot.web.servlet.ServletComponentScan;
+ ​
+ @ServletComponentScan
+ @SpringBootApplication
+ public class Application {
+ ​
+  public static void main(String[] args) {
+  SpringApplication.run(Application.class, args);
+     }
+ }
+这样，你就可以在Spring Boot中使用拦截器和过滤器了。
+```
+
+小朝：那么，他们的执行顺序呢？
+
+小露：拦截器是在进入控制器[之前和之后](https://www.zhihu.com/search?q=%E4%B9%8B%E5%89%8D%E5%92%8C%E4%B9%8B%E5%90%8E&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3123180025%7D)执行的，可以对请求进行前置处理和后置处理。而过滤器是在请求进入Servlet容器之前和之后执行的，对请求进行预处理和后处理。
+
+小朝：我明白了，那么在实际应用中，我们应该如何选择拦截器和过滤器呢？
+
+小露：一般来说，如果只是需要对请求进行简单的预处理或后处理，可以选择使用过滤器。而如果需要更加**细粒度**的控制，并且需要使用**Spring容器的特性**，可以选择使用拦截器。
+
+小朝：好的，我大概明白了，门清。
 
 # 常见问题
 

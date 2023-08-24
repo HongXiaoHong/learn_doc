@@ -2,9 +2,15 @@
 
 ## todo
 
+
+
 - [ ] [Elasticsearch学习笔记_巨輪的博客-CSDN博客](https://blog.csdn.net/u011863024/article/details/115721328)
 
+- [x] [[译] Elasticsearch 新手指南 - 掘金 (juejin.cn)](https://juejin.cn/post/6913725535717851144)
+
 - [ ] [【尚硅谷】ElasticSearch教程入门到精通（基于ELK技术栈elasticsearch 7.x+8.x新特性）](https://www.bilibili.com/video/BV1hh411D7sb?p=1&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+
 
 ## 部署
 
@@ -170,3 +176,19 @@ Join类型是ES Mapping定义的类型之一，用于在同一索引的文档中
 不建议在es做join操作，parent-child能实现部分功能，但是它的开销比较大，如果可能，尽量在设计时使用扁平的文档模型。
 尽量将业务转化为没有关联关系的文档形式，在文档建模处多下功夫，以提升检索效率。
 Nested&Join父子文选型必须考虑性能问题。 nested 类型检索使得检索效率慢几倍，父子Join 类型检索会使得检索效率慢几百倍。
+
+
+
+## 持久化
+
+[分布式框架之高性能：ElasticSearch数据持久化 - 墨天轮 (modb.pro)](https://www.modb.pro/db/72514)
+
+
+
+## 应用
+
+### ES 与 mysql
+
+[(21条消息) Elasticsearch使用Logstash同步Mysql数据库数据_logstash 达梦数据库_懂的越多不懂的也越多的博客-CSDN博客](https://blog.csdn.net/weixin_44167913/article/details/101194648)
+
+[(21条消息) Elasticsearch使用Logstash导入Mysql多数据源数据_懂的越多不懂的也越多的博客-CSDN博客](https://blog.csdn.net/weixin_44167913/article/details/101200831?spm=1001.2101.3001.6650.11&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-101200831-blog-103702846.235%5Ev36%5Epc_relevant_default_base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-101200831-blog-103702846.235%5Ev36%5Epc_relevant_default_base&utm_relevant_index=12)

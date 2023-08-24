@@ -4,88 +4,89 @@
 
 ### 文章目录
 
-*   [Google Protobuf](#Google_Protobuf_14)
-*   *   [编码和解码的基本介绍](#_16)
-    *   [Netty 本身的编码解码的机制和问题分析](#Netty__25)
-    *   [Protobuf](#Protobuf_40)
-    *   [Protobuf 快速入门实例](#Protobuf__56)
-    *   *   [Student.proto](#Studentproto_75)
-        *   [NettyServer](#NettyServer_96)
-        *   [NettyServerHandler](#NettyServerHandler_183)
-        *   [NettyClient](#NettyClient_238)
-        *   [NettyClientHandler](#NettyClientHandler_297)
-    *   [Protobuf 快速入门实例 2](#Protobuf__2_345)
-    *   *   [proto](#proto_351)
-        *   [NettyServer](#NettyServer_408)
-        *   [NettyServerHandler](#NettyServerHandler_489)
-        *   [NettyClient](#NettyClient_554)
-        *   [NettyClientHandler](#NettyClientHandler_613)
-*   [Netty 编解码器和 Handler 调用机制](#Netty__Handler__669)
-*   *   [基本说明](#_671)
-    *   [编码解码器](#_683)
-    *   [解码器 - ByteToMessageDecoder](#__ByteToMessageDecoder_688)
-    *   [Netty 的 handler 链的调用机制](#Nettyhandler_703)
-    *   *   [MyServer](#MyServer_716)
-        *   [MyServerInitializer](#MyServerInitializer_754)
-        *   [MyServerHandler](#MyServerHandler_784)
-        *   [MyClient](#MyClient_813)
-        *   [MyClientInitializer](#MyClientInitializer_849)
-        *   [MyClientHandler](#MyClientHandler_881)
-        *   [MyByteToLongDecoder](#MyByteToLongDecoder_916)
-        *   [MyLongToByteEncoder](#MyLongToByteEncoder_955)
-        *   [效果](#_978)
-        *   [出站入站](#_988)
-    *   [ByteToMessageDecoder 的小细节](#ByteToMessageDecoder_1008)
-    *   [解码器 - ReplayingDecoder](#__ReplayingDecoder_1165)
-    *   [其它编解码器](#_1195)
-    *   [Log4j 整合到 Netty](#Log4j__Netty_1209)
-*   [TCP 粘包和拆包及解决方案](#TCP__1253)
-*   *   [TCP 粘包和拆包基本介绍](#TCP__1255)
-    *   [TCP 粘包和拆包现象实例](#TCP__1273)
-    *   *   [MyServer](#MyServer_1279)
-        *   [MyServerInitializer](#MyServerInitializer_1318)
-        *   [MyServerHandler](#MyServerHandler_1344)
-        *   [MyClient](#MyClient_1389)
-        *   [MyClientInitializer](#MyClientInitializer_1427)
-        *   [MyClientHandler](#MyClientHandler_1450)
-        *   [效果](#_1498)
-    *   [TCP 粘包和拆包解决方案](#TCP__1532)
-    *   *   [MessageProtocol](#MessageProtocol_1545)
-        *   [MyServer](#MyServer_1577)
-        *   [MyServerInitializer](#MyServerInitializer_1616)
-        *   [MyServerHandler](#MyServerHandler_1644)
-        *   [MyClient](#MyClient_1701)
-        *   [MyClientInitializer](#MyClientInitializer_1739)
-        *   [MyClientHandler](#MyClientHandler_1764)
-        *   [MyMessageDecoder](#MyMessageDecoder_1823)
-        *   [MyMessageEncoder](#MyMessageEncoder_1861)
-        *   [效果](#_1883)
-*   [用 Netty 自己实现简单的 RPC](#_Netty_RPC_1992)
-*   *   [RPC 基本介绍](#RPC__1994)
-    *   [我们的 RPC 调用流程图](#RPC__2026)
-    *   [己实现 Dubbo RPC（基于 Netty）](#_Dubbo_RPC_Netty_2046)
-    *   *   [需求说明](#_2048)
-        *   [设计说明](#_2053)
-        *   [代码](#_2066)
-        *   *   [封装的 RPC](#RPC_2068)
-            *   *   [NettyServer](#NettyServer_2072)
-                *   [NettyServerHandler](#NettyServerHandler_2139)
-                *   [NettyClientHandler](#NettyClientHandler_2180)
-                *   [NettyClient](#NettyClient_2238)
-            *   [接口](#_2323)
-            *   [服务端 (provider)](#provider_2340)
-            *   *   [HelloServiceImpl](#HelloServiceImpl_2342)
-                *   [ServerBootstrap](#ServerBootstrap_2370)
-            *   [客户端 (消费者)](#_2390)
-        *   [调用过程](#_2427)
-        *   [效果](#_2478)
+* [Google Protobuf](#Google_Protobuf_14)
+* * [编码和解码的基本介绍](#_16)
+  * [Netty 本身的编码解码的机制和问题分析](#Netty__25)
+  * [Protobuf](#Protobuf_40)
+  * [Protobuf 快速入门实例](#Protobuf__56)
+  * * [Student.proto](#Studentproto_75)
+    * [NettyServer](#NettyServer_96)
+    * [NettyServerHandler](#NettyServerHandler_183)
+    * [NettyClient](#NettyClient_238)
+    * [NettyClientHandler](#NettyClientHandler_297)
+  * [Protobuf 快速入门实例 2](#Protobuf__2_345)
+  * * [proto](#proto_351)
+    * [NettyServer](#NettyServer_408)
+    * [NettyServerHandler](#NettyServerHandler_489)
+    * [NettyClient](#NettyClient_554)
+    * [NettyClientHandler](#NettyClientHandler_613)
+* [Netty 编解码器和 Handler 调用机制](#Netty__Handler__669)
+* * [基本说明](#_671)
+  * [编码解码器](#_683)
+  * [解码器 - ByteToMessageDecoder](#__ByteToMessageDecoder_688)
+  * [Netty 的 handler 链的调用机制](#Nettyhandler_703)
+  * * [MyServer](#MyServer_716)
+    * [MyServerInitializer](#MyServerInitializer_754)
+    * [MyServerHandler](#MyServerHandler_784)
+    * [MyClient](#MyClient_813)
+    * [MyClientInitializer](#MyClientInitializer_849)
+    * [MyClientHandler](#MyClientHandler_881)
+    * [MyByteToLongDecoder](#MyByteToLongDecoder_916)
+    * [MyLongToByteEncoder](#MyLongToByteEncoder_955)
+    * [效果](#_978)
+    * [出站入站](#_988)
+  * [ByteToMessageDecoder 的小细节](#ByteToMessageDecoder_1008)
+  * [解码器 - ReplayingDecoder](#__ReplayingDecoder_1165)
+  * [其它编解码器](#_1195)
+  * [Log4j 整合到 Netty](#Log4j__Netty_1209)
+* [TCP 粘包和拆包及解决方案](#TCP__1253)
+* * [TCP 粘包和拆包基本介绍](#TCP__1255)
+  * [TCP 粘包和拆包现象实例](#TCP__1273)
+  * * [MyServer](#MyServer_1279)
+    * [MyServerInitializer](#MyServerInitializer_1318)
+    * [MyServerHandler](#MyServerHandler_1344)
+    * [MyClient](#MyClient_1389)
+    * [MyClientInitializer](#MyClientInitializer_1427)
+    * [MyClientHandler](#MyClientHandler_1450)
+    * [效果](#_1498)
+  * [TCP 粘包和拆包解决方案](#TCP__1532)
+  * * [MessageProtocol](#MessageProtocol_1545)
+    * [MyServer](#MyServer_1577)
+    * [MyServerInitializer](#MyServerInitializer_1616)
+    * [MyServerHandler](#MyServerHandler_1644)
+    * [MyClient](#MyClient_1701)
+    * [MyClientInitializer](#MyClientInitializer_1739)
+    * [MyClientHandler](#MyClientHandler_1764)
+    * [MyMessageDecoder](#MyMessageDecoder_1823)
+    * [MyMessageEncoder](#MyMessageEncoder_1861)
+    * [效果](#_1883)
+* [用 Netty 自己实现简单的 RPC](#_Netty_RPC_1992)
+* * [RPC 基本介绍](#RPC__1994)
+  * [我们的 RPC 调用流程图](#RPC__2026)
+  * [己实现 Dubbo RPC（基于 Netty）](#_Dubbo_RPC_Netty_2046)
+  * * [需求说明](#_2048)
+    * [设计说明](#_2053)
+    * [代码](#_2066)
+    * * [封装的 RPC](#RPC_2068)
+      * * [NettyServer](#NettyServer_2072)
+        * [NettyServerHandler](#NettyServerHandler_2139)
+        * [NettyClientHandler](#NettyClientHandler_2180)
+        * [NettyClient](#NettyClient_2238)
+      * [接口](#_2323)
+      * [服务端 (provider)](#provider_2340)
+      * * [HelloServiceImpl](#HelloServiceImpl_2342)
+        * [ServerBootstrap](#ServerBootstrap_2370)
+      * [客户端 (消费者)](#_2390)
+    * [调用过程](#_2427)
+    * [效果](#_2478)
 
-> 1.  文章优先发布在 [Github](https://github.com/youthlql/JavaYouth)，其它平台会晚一段时间，文章纠错与更新内容只在 Github：https://github.com/youthlql/JavaYouth
-> 2.  转载须知：转载请注明 GitHub 出处，让我们一起维护一个良好的技术创作环境。
-> 3.  如果你要提交 issue 或者 pr 的话建议到 [Github](https://github.com/youthlql/JavaYouth) 提交。笔者会陆续更新，如果对你有所帮助，不妨 [Github](https://github.com/youthlql/JavaYouth) 点个 **Star~**。你的 **Star** 是我创作的动力。  
->     
->     [![](https://img.shields.io/badge/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE-JavaYouth-green?logo=github&logoColor=66CCCC&color=66CC99)](https://github.com/youthlql/JavaYouth)    [![](https://img.shields.io/github/stars/youthlql/JavaYouth?style=social)](https://github.com/youthlql/JavaYouth)   [![](https://img.shields.io/github/forks/youthlql/JavaYouth?style=social)](https://github.com/youthlql/JavaYouth) 
->     
+> 1. 文章优先发布在 [Github](https://github.com/youthlql/JavaYouth)，其它平台会晚一段时间，文章纠错与更新内容只在 Github：https://github.com/youthlql/JavaYouth
+> 
+> 2. 转载须知：转载请注明 GitHub 出处，让我们一起维护一个良好的技术创作环境。
+> 
+> 3. 如果你要提交 issue 或者 pr 的话建议到 [Github](https://github.com/youthlql/JavaYouth) 提交。笔者会陆续更新，如果对你有所帮助，不妨 [Github](https://github.com/youthlql/JavaYouth) 点个 **Star~**。你的 **Star** 是我创作的动力。  
+>    
+>    [![](https://img.shields.io/badge/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE-JavaYouth-green?logo=github&logoColor=66CCCC&color=66CC99)](https://github.com/youthlql/JavaYouth)    [![](https://img.shields.io/github/stars/youthlql/JavaYouth?style=social)](https://github.com/youthlql/JavaYouth)   [![](https://img.shields.io/github/forks/youthlql/JavaYouth?style=social)](https://github.com/youthlql/JavaYouth) 
 
 > 尚硅谷的源码部分暂时不再记录笔记，因为我觉得源码这东西，韩老师讲的不太好，弹幕和评论也有说。源码这东西，先把入门的消化一下，然后通过书或者博客来看源码会比较好，你只有先会用，看源码才会有感觉。
 
@@ -95,39 +96,39 @@ Google Protobuf
 编码和解码的基本介绍
 ----------
 
-1.  编写网络应用程序时，因为数据在网络中传输的都是二进制字节码数据，在发送数据时就需要编码，接收数据时就需要解码 [示意图]
-2.  `codec`（编解码器）的组成部分有两个：`decoder`（解码器）和 `encoder`（编码器）。`encoder` 负责把业务数据转换成字节码数据，`decoder` 负责把字节码数据转换成业务数据
+1. 编写网络应用程序时，因为数据在网络中传输的都是二进制字节码数据，在发送数据时就需要编码，接收数据时就需要解码 [示意图]
+2. `codec`（编解码器）的组成部分有两个：`decoder`（解码器）和 `encoder`（编码器）。`encoder` 负责把业务数据转换成字节码数据，`decoder` 负责把字节码数据转换成业务数据
 
 ![](https://img-blog.csdnimg.cn/681c677d64f641a194ef756f7c2c4996.png#pic_center)
 
 Netty 本身的编码解码的机制和问题分析
 ---------------------
 
-1.  `Netty` 自身提供了一些 `codec`(编解码器)
-2.  `Netty` 提供的编码器
-    *   `StringEncoder`：对字符串数据进行编码。
-    *   `ObjectEncoder`：对 Java 对象进行编码。
-3.  `Netty` 提供的解码器
-    *   `StringDecoder`, 对字符串数据进行解码
-    *   `ObjectDecoder`，对 Java 对象进行解码
-4.  `Netty` 本身自带的 `ObjectDecoder` 和 `ObjectEncoder` 可以用来实现 `POJO` 对象或各种业务对象的编码和解码，底层使用的仍是 Java 序列化技术, 而 Java 序列化技术本身效率就不高，存在如下问题
-    *   无法跨语言
-    *   序列化后的体积太大，是二进制编码的 5 倍多。
-    *   序列化性能太低
-5.  引出新的解决方案 [`Google` 的 `Protobuf`]
+1. `Netty` 自身提供了一些 `codec`(编解码器)
+2. `Netty` 提供的编码器
+   * `StringEncoder`：对字符串数据进行编码。
+   * `ObjectEncoder`：对 Java 对象进行编码。
+3. `Netty` 提供的解码器
+   * `StringDecoder`, 对字符串数据进行解码
+   * `ObjectDecoder`，对 Java 对象进行解码
+4. `Netty` 本身自带的 `ObjectDecoder` 和 `ObjectEncoder` 可以用来实现 `POJO` 对象或各种业务对象的编码和解码，底层使用的仍是 Java 序列化技术, 而 Java 序列化技术本身效率就不高，存在如下问题
+   * 无法跨语言
+   * 序列化后的体积太大，是二进制编码的 5 倍多。
+   * 序列化性能太低
+5. 引出新的解决方案 [`Google` 的 `Protobuf`]
 
 Protobuf
 --------
 
-1.  `Protobuf` 基本介绍和使用示意图
-2.  `Protobuf` 是 `Google` 发布的开源项目，全称 `Google Protocol Buffers`，是一种轻便高效的结构化数据存储格式，可以用于结构化数据串行化，或者说序列化。它很适合做数据存储或 `RPC` [远程过程调用 `remote procedure call` ] 数据交换格式。目前很多公司 从`http + json 转向tcp + protobuf`，效率会更高。
-3.  参考文档：https://developers.google.com/protocol-buffers/docs/proto 语言指南
-4.  `Protobuf` 是以 `message` 的方式来管理数据的.
-5.  支持跨平台、跨语言，即 [客户端和服务器端可以是不同的语言编写的]（支持目前绝大多数语言，例如 `C++`、`C#`、`Java`、`python` 等）
-6.  高性能，高可靠性
-7.  使用 `protobuf` 编译器能自动生成代码，`Protobuf` 是将类的定义使用 `.proto` 文件进行描述。说明，在 `idea` 中编写 `.proto` 文件时，会自动提示是否下载 `.ptoto` 编写插件. 可以让语法高亮。
-8.  然后通过 `protoc.exe` 编译器根据 `.proto` 自动生成 `.java` 文件
-9.  `protobuf` 使用示意图
+1. `Protobuf` 基本介绍和使用示意图
+2. `Protobuf` 是 `Google` 发布的开源项目，全称 `Google Protocol Buffers`，是一种轻便高效的结构化数据存储格式，可以用于结构化数据串行化，或者说序列化。它很适合做数据存储或 `RPC` [远程过程调用 `remote procedure call` ] 数据交换格式。目前很多公司 从`http + json 转向tcp + protobuf`，效率会更高。
+3. 参考文档：https://developers.google.com/protocol-buffers/docs/proto 语言指南
+4. `Protobuf` 是以 `message` 的方式来管理数据的.
+5. 支持跨平台、跨语言，即 [客户端和服务器端可以是不同的语言编写的]（支持目前绝大多数语言，例如 `C++`、`C#`、`Java`、`python` 等）
+6. 高性能，高可靠性
+7. 使用 `protobuf` 编译器能自动生成代码，`Protobuf` 是将类的定义使用 `.proto` 文件进行描述。说明，在 `idea` 中编写 `.proto` 文件时，会自动提示是否下载 `.ptoto` 编写插件. 可以让语法高亮。
+8. 然后通过 `protoc.exe` 编译器根据 `.proto` 自动生成 `.java` 文件
+9. `protobuf` 使用示意图
 
 ![](https://img-blog.csdnimg.cn/365d28cbc39f4a64ba605eb422f566e0.png#pic_center)
 
@@ -136,11 +137,11 @@ Protobuf 快速入门实例
 
 编写程序，使用 `Protobuf` 完成如下功能
 
-1.  客户端可以发送一个 `StudentPoJo` 对象到服务器 (通过 `Protobuf` 编码)
-2.  服务端能接收 `StudentPoJo` 对象，并显示信息 (通过 `Protobuf` 解码)
+1. 客户端可以发送一个 `StudentPoJo` 对象到服务器 (通过 `Protobuf` 编码)
+2. 服务端能接收 `StudentPoJo` 对象，并显示信息 (通过 `Protobuf` 解码)
 
 ```
-	    <dependency>
+        <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>3.6.1</version>
@@ -419,9 +420,9 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 Protobuf 快速入门实例 2
 -----------------
 
-1.  编写程序，使用 `Protobuf` 完成如下功能
-2.  客户端可以随机发送 `StudentPoJo` / `WorkerPoJo` 对象到服务器 (通过 `Protobuf` 编码)
-3.  服务端能接收 `StudentPoJo` / `WorkerPoJo` 对象 (需要判断是哪种类型)，并显示信息 (通过 `Protobuf` 解码)
+1. 编写程序，使用 `Protobuf` 完成如下功能
+2. 客户端可以随机发送 `StudentPoJo` / `WorkerPoJo` 对象到服务器 (通过 `Protobuf` 编码)
+3. 服务端能接收 `StudentPoJo` / `WorkerPoJo` 对象 (需要判断是哪种类型)，并显示信息 (通过 `Protobuf` 解码)
 
 ### proto
 
@@ -496,7 +497,7 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 public class NettyServer {
     public static void main(String[] args) throws Exception {
 
-        
+
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(); //8
 
@@ -745,9 +746,9 @@ Netty 编解码器和 Handler 调用机制
 基本说明
 ----
 
-1.  `Netty` 的组件设计：`Netty` 的主要组件有 `Channel`、`EventLoop`、`ChannelFuture`、`ChannelHandler`、`ChannelPipe` 等
-2.  `ChannelHandler` 充当了处理入站和出站数据的应用程序逻辑的容器。例如，实现 `ChannelInboundHandler` 接口（或 `ChannelInboundHandlerAdapter`），你就可以接收入站事件和数据，这些数据会被业务逻辑处理。当要给客户端发送响应时，也可以从 `ChannelInboundHandler` 冲刷数据。业务逻辑通常写在一个或者多个 `ChannelInboundHandler` 中。`ChannelOutboundHandler` 原理一样，只不过它是用来处理出站数据的
-3.  `ChannelPipeline` 提供了 `ChannelHandler` 链的容器。以客户端应用程序为例，如果事件的运动方向是从客户端到服务端的，那么我们称这些事件为出站的，即客户端发送给服务端的数据会通过 `pipeline` 中的一系列 `ChannelOutboundHandler`，并被这些 `Handler` 处理，反之则称为入站的
+1. `Netty` 的组件设计：`Netty` 的主要组件有 `Channel`、`EventLoop`、`ChannelFuture`、`ChannelHandler`、`ChannelPipe` 等
+2. `ChannelHandler` 充当了处理入站和出站数据的应用程序逻辑的容器。例如，实现 `ChannelInboundHandler` 接口（或 `ChannelInboundHandlerAdapter`），你就可以接收入站事件和数据，这些数据会被业务逻辑处理。当要给客户端发送响应时，也可以从 `ChannelInboundHandler` 冲刷数据。业务逻辑通常写在一个或者多个 `ChannelInboundHandler` 中。`ChannelOutboundHandler` 原理一样，只不过它是用来处理出站数据的
+3. `ChannelPipeline` 提供了 `ChannelHandler` 链的容器。以客户端应用程序为例，如果事件的运动方向是从客户端到服务端的，那么我们称这些事件为出站的，即客户端发送给服务端的数据会通过 `pipeline` 中的一系列 `ChannelOutboundHandler`，并被这些 `Handler` 处理，反之则称为入站的
 
 ![](https://img-blog.csdnimg.cn/03f6df7240dc4a4ba04dc901d9fcd883.png#pic_center)
 
@@ -756,18 +757,18 @@ Netty 编解码器和 Handler 调用机制
 编码解码器
 -----
 
-1.  当 `Netty` 发送或者接受一个消息的时候，就将会发生一次数据转换。入站消息会被解码：从字节转换为另一种格式（比如 `java` 对象）；如果是出站消息，它会被编码成字节。
-2.  `Netty` 提供一系列实用的编解码器，他们都实现了 `ChannelInboundHadnler` 或者 `ChannelOutboundHandler` 接口。在这些类中，`channelRead` 方法已经被重写了。以入站为例，对于每个从入站 `Channel` 读取的消息，这个方法会被调用。随后，它将调用由解码器所提供的 `decode()` 方法进行解码，并将已经解码的字节转发给 `ChannelPipeline` 中的下一个 `ChannelInboundHandler`。
+1. 当 `Netty` 发送或者接受一个消息的时候，就将会发生一次数据转换。入站消息会被解码：从字节转换为另一种格式（比如 `java` 对象）；如果是出站消息，它会被编码成字节。
+2. `Netty` 提供一系列实用的编解码器，他们都实现了 `ChannelInboundHadnler` 或者 `ChannelOutboundHandler` 接口。在这些类中，`channelRead` 方法已经被重写了。以入站为例，对于每个从入站 `Channel` 读取的消息，这个方法会被调用。随后，它将调用由解码器所提供的 `decode()` 方法进行解码，并将已经解码的字节转发给 `ChannelPipeline` 中的下一个 `ChannelInboundHandler`。
 
 解码器 - ByteToMessageDecoder
 --------------------------
 
-1.  关系继承图
+1. 关系继承图
 
 ![](https://img-blog.csdnimg.cn/a5bdbb92bebb439694a54757676a254b.png#pic_center)
 
-2.  由于不可能知道远程节点是否会一次性发送一个完整的信息，`tcp` 有可能出现粘包拆包的问题，这个类会对入站数据进行缓冲，直到它准备好被处理.【后面有说 TCP 的粘包和拆包问题】
-3.  一个关于 `ByteToMessageDecoder` 实例分析
+2. 由于不可能知道远程节点是否会一次性发送一个完整的信息，`tcp` 有可能出现粘包拆包的问题，这个类会对入站数据进行缓冲，直到它准备好被处理.【后面有说 TCP 的粘包和拆包问题】
+3. 一个关于 `ByteToMessageDecoder` 实例分析
 
 ![](https://img-blog.csdnimg.cn/b306a43d1d36481985ceb3e807c11790.png#pic_center)
 
@@ -776,9 +777,9 @@ Netty 的 handler 链的调用机制
 
 实例要求:
 
-1.  使用自定义的编码器和解码器来说明 `Netty` 的 `handler` 调用机制  
-    客户端发送 `long` -> 服务器  
-    服务端发送 `long` -> 客户端
+1. 使用自定义的编码器和解码器来说明 `Netty` 的 `handler` 调用机制  
+   客户端发送 `long` -> 服务器  
+   服务端发送 `long` -> 客户端
 
 > 读者可以看下这个图，带着这个图去看下面的例子。
 
@@ -1146,20 +1147,20 @@ public class MyByteToLongDecoder extends ByteToMessageDecoder {
 
 ```
 
-1.  由于发送的字符串是 16 字节，根据上面注释说的内容，decode 会被调用两次
+1. 由于发送的字符串是 16 字节，根据上面注释说的内容，decode 会被调用两次
 
 如下图验证结果：
 
 ![](https://img-blog.csdnimg.cn/801993c6e1f04d77be605db3a65bfcab.png#pic_center)
 
-2.  同时又引出了一个小问题
+2. 同时又引出了一个小问题
 
 ![](https://img-blog.csdnimg.cn/09e55e96a865465993cfc9d493dd2aa0.png#pic_center)
 
 当我们`MyClientHandler`传一个 Long 时，会调用我们的`MyLongToByteEncoder`的编码器。那么控制台就会打印这样一句话：**MyLongToByteEncoder encode 被调用**。但是这里并没有调用编码器，这是为什么呢？
 
-1.  `MyClientHandler`这个处理器的后一个处理器是`MyLongToByteEncoder`
-2.  `MyLongToByteEncoder`的父类是`MessageToByteEncoder`，在`MessageToByteEncoder`中有下面的一个方法
+1. `MyClientHandler`这个处理器的后一个处理器是`MyLongToByteEncoder`
+2. `MyLongToByteEncoder`的父类是`MessageToByteEncoder`，在`MessageToByteEncoder`中有下面的一个方法
 
 ```
 @Override
@@ -1203,7 +1204,7 @@ public class MyByteToLongDecoder extends ByteToMessageDecoder {
 
 ​
 
-3.  当我们以这样的形式发送数据
+3. 当我们以这样的形式发送数据
 
 ```
 ctx.writeAndFlush(Unpooled.copiedBuffer("abcdabcdabcdabcd",CharsetUtil.UTF_8));
@@ -1217,15 +1218,15 @@ ctx.writeAndFlush(Unpooled.copiedBuffer("abcdabcdabcdabcd",CharsetUtil.UTF_8));
 
 **结论：**
 
-*   不论解码器 `handler` 还是编码器 `handler` 即接收的消息类型必须与待处理的消息类型一致，否则该 `handler` 不会被执行
-*   在解码器进行数据解码时，需要判断缓存区（`ByteBuf`）的数据是否足够，否则接收到的结果会期望结果可能不一致。
+* 不论解码器 `handler` 还是编码器 `handler` 即接收的消息类型必须与待处理的消息类型一致，否则该 `handler` 不会被执行
+* 在解码器进行数据解码时，需要判断缓存区（`ByteBuf`）的数据是否足够，否则接收到的结果会期望结果可能不一致。
 
 解码器 - ReplayingDecoder
 ----------------------
 
-1.  `public abstract class ReplayingDecoder<S> extends ByteToMessageDecoder`
-2.  `ReplayingDecoder` 扩展了 `ByteToMessageDecoder` 类，使用这个类，我们不必调用 `readableBytes()` 方法，也就不用判断还有没有足够的数据来读取。参数 `S` 指定了用户状态管理的类型，其中 `Void` 代表不需要状态管理
-3.  应用实例：使用 `ReplayingDecoder` 编写解码器，对前面的案例进行简化 [案例演示]
+1. `public abstract class ReplayingDecoder<S> extends ByteToMessageDecoder`
+2. `ReplayingDecoder` 扩展了 `ByteToMessageDecoder` 类，使用这个类，我们不必调用 `readableBytes()` 方法，也就不用判断还有没有足够的数据来读取。参数 `S` 指定了用户状态管理的类型，其中 `Void` 代表不需要状态管理
+3. 应用实例：使用 `ReplayingDecoder` 编写解码器，对前面的案例进行简化 [案例演示]
 
 ```
 package com.atguigu.netty.inboundhandlerandoutboundhandler;
@@ -1237,7 +1238,7 @@ import io.netty.handler.codec.ReplayingDecoder;
 import java.util.List;
 
 public class MyByteToLongDecoder2 extends ReplayingDecoder<Void> {
-    
+
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         System.out.println("MyByteToLongDecoder2 被调用");
@@ -1249,24 +1250,24 @@ public class MyByteToLongDecoder2 extends ReplayingDecoder<Void> {
 
 ```
 
-4.  `ReplayingDecoder` 使用方便，但它也有一些局限性：
-    *   并不是所有的 `ByteBuf` 操作都被支持，如果调用了一个不被支持的方法，将会抛出一个 `UnsupportedOperationException`。
-    *   `ReplayingDecoder` 在某些情况下可能稍慢于 `ByteToMessageDecoder`，例如网络缓慢并且消息格式复杂时，消息会被拆成了多个碎片，速度变慢
+4. `ReplayingDecoder` 使用方便，但它也有一些局限性：
+   * 并不是所有的 `ByteBuf` 操作都被支持，如果调用了一个不被支持的方法，将会抛出一个 `UnsupportedOperationException`。
+   * `ReplayingDecoder` 在某些情况下可能稍慢于 `ByteToMessageDecoder`，例如网络缓慢并且消息格式复杂时，消息会被拆成了多个碎片，速度变慢
 
 其它编解码器
 ------
 
 ![](https://img-blog.csdnimg.cn/6143cbd10e484f03aa36d626a780a59d.png#pic_center)
 
-1.  `LineBasedFrameDecoder`：这个类在 `Netty` 内部也有使用，它使用行尾控制字符（\n 或者 \ r\n）作为分隔符来解析数据。
-2.  `DelimiterBasedFrameDecoder`：使用自定义的特殊字符作为消息的分隔符。
-3.  `HttpObjectDecoder`：一个 `HTTP` 数据的解码器
-4.  `LengthFieldBasedFrameDecoder`：通过指定长度来标识整包消息，这样就可以自动的处理黏包和半包消息。
+1. `LineBasedFrameDecoder`：这个类在 `Netty` 内部也有使用，它使用行尾控制字符（\n 或者 \ r\n）作为分隔符来解析数据。
+2. `DelimiterBasedFrameDecoder`：使用自定义的特殊字符作为消息的分隔符。
+3. `HttpObjectDecoder`：一个 `HTTP` 数据的解码器
+4. `LengthFieldBasedFrameDecoder`：通过指定长度来标识整包消息，这样就可以自动的处理黏包和半包消息。
 
 Log4j 整合到 Netty
 ---------------
 
-1.  在 `Maven` 中添加对 `Log4j` 的依赖在 `pom.xml`
+1. 在 `Maven` 中添加对 `Log4j` 的依赖在 `pom.xml`
 
 ```
 <dependency>
@@ -1295,7 +1296,7 @@ Log4j 整合到 Netty
 
 ```
 
-2.  配置 `Log4j`，在 `resources/log4j.properties`
+2. 配置 `Log4j`，在 `resources/log4j.properties`
 
 ```
 log4j.rootLogger=DEBUG,stdout
@@ -1306,7 +1307,7 @@ log4j.appender.stdout.layout.ConversionPattern=[%p]%C{1}-%m%n
 
 ```
 
-3.  演示整合
+3. 演示整合
 
 ![](https://npm.elemecdn.com/youthlql@1.0.0/netty/introduction/chapter_003/0014.jpg)
 
@@ -1316,18 +1317,18 @@ TCP 粘包和拆包及解决方案
 TCP 粘包和拆包基本介绍
 -------------
 
-1.  `TCP` 是面向连接的，面向流的，提供高可靠性服务。收发两端（客户端和服务器端）都要有一一成对的 `socket`，因此，发送端为了将多个发给接收端的包，更有效的发给对方，使用了优化方法（`Nagle` 算法），将多次间隔较小且数据量小的数据，合并成一个大的数据块，然后进行封包。这样做虽然提高了效率，但是接收端就难于分辨出完整的数据包了，因为面向流的通信是无消息保护边界的
-2.  由于 `TCP` 无消息保护边界, 需要在接收端处理消息边界问题，也就是我们所说的粘包、拆包问题, 看一张图
-3.  `TCP` 粘包、拆包图解
+1. `TCP` 是面向连接的，面向流的，提供高可靠性服务。收发两端（客户端和服务器端）都要有一一成对的 `socket`，因此，发送端为了将多个发给接收端的包，更有效的发给对方，使用了优化方法（`Nagle` 算法），将多次间隔较小且数据量小的数据，合并成一个大的数据块，然后进行封包。这样做虽然提高了效率，但是接收端就难于分辨出完整的数据包了，因为面向流的通信是无消息保护边界的
+2. 由于 `TCP` 无消息保护边界, 需要在接收端处理消息边界问题，也就是我们所说的粘包、拆包问题, 看一张图
+3. `TCP` 粘包、拆包图解
 
 ![](https://img-blog.csdnimg.cn/80c7b2df9bbc451db7d666985ea511eb.png#pic_center)
 
 假设客户端分别发送了两个数据包 `D1` 和 `D2` 给服务端，由于服务端一次读取到字节数是不确定的，故可能存在以下四种情况：
 
-1.  服务端分两次读取到了两个独立的数据包，分别是 `D1` 和 `D2`，没有粘包和拆包
-2.  服务端一次接受到了两个数据包，`D1` 和 `D2` 粘合在一起，称之为 `TCP` 粘包
-3.  服务端分两次读取到了数据包，第一次读取到了完整的 `D1` 包和 `D2` 包的部分内容，第二次读取到了 `D2` 包的剩余内容，这称之为 `TCP` 拆包
-4.  服务端分两次读取到了数据包，第一次读取到了 `D1` 包的部分内容 `D1_1`，第二次读取到了 `D1` 包的剩余部分内容 `D1_2` 和完整的 `D2` 包。
+1. 服务端分两次读取到了两个独立的数据包，分别是 `D1` 和 `D2`，没有粘包和拆包
+2. 服务端一次接受到了两个数据包，`D1` 和 `D2` 粘合在一起，称之为 `TCP` 粘包
+3. 服务端分两次读取到了数据包，第一次读取到了完整的 `D1` 包和 `D2` 包的部分内容，第二次读取到了 `D2` 包的剩余内容，这称之为 `TCP` 拆包
+4. 服务端分两次读取到了数据包，第一次读取到了 `D1` 包的部分内容 `D1_1`，第二次读取到了 `D1` 包的剩余部分内容 `D1_2` 和完整的 `D2` 包。
 
 TCP 粘包和拆包现象实例
 -------------
@@ -1580,13 +1581,13 @@ public class MyClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 TCP 粘包和拆包解决方案
 -------------
 
-1.  常用方案：使用自定义协议 + 编解码器来解决
-2.  关键就是要解决服务器端每次读取数据长度的问题，这个问题解决，就不会出现服务器多读或少读数据的问题，从而避免的 `TCP` 粘包、拆包。
+1. 常用方案：使用自定义协议 + 编解码器来解决
+2. 关键就是要解决服务器端每次读取数据长度的问题，这个问题解决，就不会出现服务器多读或少读数据的问题，从而避免的 `TCP` 粘包、拆包。
 
 **看一个具体的实例**
 
-1.  要求客户端发送 `5` 个 `Message` 对象，客户端每次发送一个 `Message` 对象
-2.  服务器端每次接收一个 `Message`，分 `5` 次进行解码，每读取到一个 `Message`，会回复一个 `Message` 对象给客户端。
+1. 要求客户端发送 `5` 个 `Message` 对象，客户端每次发送一个 `Message` 对象
+2. 服务器端每次接收一个 `Message`，分 `5` 次进行解码，每读取到一个 `Message`，会回复一个 `Message` 对象给客户端。
 
 ![](https://img-blog.csdnimg.cn/206c512186784a438baa190fa833e727.png#pic_center)
 
@@ -2037,37 +2038,36 @@ MyMessageEncoder encode 方法被调用
 RPC 基本介绍
 --------
 
-1.  `RPC（Remote Procedure Call）`—远程过程调用，是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程
-2.  两个或多个应用程序都分布在不同的服务器上，它们之间的调用都像是本地方法调用一样 (如图)
+1. `RPC（Remote Procedure Call）`—远程过程调用，是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程
+2. 两个或多个应用程序都分布在不同的服务器上，它们之间的调用都像是本地方法调用一样 (如图)
 
 ![](https://img-blog.csdnimg.cn/32d78c78e60e4e809c12e1c7ef53c344.png#pic_center)
 
 过程：
 
-1.  调用者 (`Caller`)，调用远程 API(`Remote API`)
-    
-2.  调用远程 API 会通过一个 RPC 代理 (`RpcProxy`)
-    
-3.  RPC 代理再去调用`RpcInvoker`(这个是 PRC 的调用者)
-    
-4.  `RpcInvoker`通过 RPC 连接器 (`RpcConnector`)
-    
-5.  RPC 连接器用两台机器规定好的 PRC 协议 (`RpcProtocol`) 把数据进行编码
-    
-6.  接着 RPC 连接器通过 RpcChannel 通道发送到对方的 PRC 接收器 (RpcAcceptor)
-    
-7.  PRC 接收器通过 PRC 协议进行解码拿到数据
-    
-8.  然后将数据传给`RpcProcessor`
-    
-9.  `RpcProcessor`再传给`RpcInvoker`
-    
-10.  `RpcInvoker`调用`Remote API`
-    
-11.  最后推给被调用者 (Callee)
-    
-12.  常见的 `RPC` 框架有：比较知名的如阿里的 `Dubbo`、`Google` 的 `gRPC`、`Go` 语言的 `rpcx`、`Apache` 的 `thrift`，`Spring` 旗下的 `SpringCloud`。
-    
+1. 调用者 (`Caller`)，调用远程 API(`Remote API`)
+
+2. 调用远程 API 会通过一个 RPC 代理 (`RpcProxy`)
+
+3. RPC 代理再去调用`RpcInvoker`(这个是 PRC 的调用者)
+
+4. `RpcInvoker`通过 RPC 连接器 (`RpcConnector`)
+
+5. RPC 连接器用两台机器规定好的 PRC 协议 (`RpcProtocol`) 把数据进行编码
+
+6. 接着 RPC 连接器通过 RpcChannel 通道发送到对方的 PRC 接收器 (RpcAcceptor)
+
+7. PRC 接收器通过 PRC 协议进行解码拿到数据
+
+8. 然后将数据传给`RpcProcessor`
+
+9. `RpcProcessor`再传给`RpcInvoker`
+
+10. `RpcInvoker`调用`Remote API`
+
+11. 最后推给被调用者 (Callee)
+
+12. 常见的 `RPC` 框架有：比较知名的如阿里的 `Dubbo`、`Google` 的 `gRPC`、`Go` 语言的 `rpcx`、`Apache` 的 `thrift`，`Spring` 旗下的 `SpringCloud`。
 
 ![](https://img-blog.csdnimg.cn/2e860767c51341e6a1f8682ba5b70f05.png#pic_center)
 
@@ -2078,15 +2078,15 @@ RPC 基本介绍
 
 **RPC 调用流程说明**
 
-1.  服务消费方（`client`）以本地调用方式调用服务
-2.  `client stub` 接收到调用后负责将方法、参数等封装成能够进行网络传输的消息体
-3.  `client stub` 将消息进行编码并发送到服务端
-4.  `server stub` 收到消息后进行解码
-5.  `server stub` 根据解码结果调用本地的服务
-6.  本地服务执行并将结果返回给 `server stub`
-7.  `server stub` 将返回导入结果进行编码并发送至消费方
-8.  `client stub` 接收到消息并进行解码
-9.  服务消费方（`client`）得到结果
+1. 服务消费方（`client`）以本地调用方式调用服务
+2. `client stub` 接收到调用后负责将方法、参数等封装成能够进行网络传输的消息体
+3. `client stub` 将消息进行编码并发送到服务端
+4. `server stub` 收到消息后进行解码
+5. `server stub` 根据解码结果调用本地的服务
+6. 本地服务执行并将结果返回给 `server stub`
+7. `server stub` 将返回导入结果进行编码并发送至消费方
+8. `client stub` 接收到消息并进行解码
+9. 服务消费方（`client`）得到结果
 
 小结：`RPC` 的目标就是将 `2 - 8` 这些步骤都封装起来，用户无需关心这些细节，可以像调用本地方法一样即可完成远程服务调用
 
@@ -2095,15 +2095,15 @@ RPC 基本介绍
 
 ### 需求说明
 
-1.  `Dubbo` 底层使用了 `Netty` 作为网络通讯框架，要求用 `Netty` 实现一个简单的 `RPC` 框架
-2.  模仿 `Dubbo`，消费者和提供者约定接口和协议，消费者远程调用提供者的服务，提供者返回一个字符串，消费者打印提供者返回的数据。底层网络通信使用 `Netty 4.1.20`
+1. `Dubbo` 底层使用了 `Netty` 作为网络通讯框架，要求用 `Netty` 实现一个简单的 `RPC` 框架
+2. 模仿 `Dubbo`，消费者和提供者约定接口和协议，消费者远程调用提供者的服务，提供者返回一个字符串，消费者打印提供者返回的数据。底层网络通信使用 `Netty 4.1.20`
 
 ### 设计说明
 
-1.  创建一个接口，定义抽象方法。用于消费者和提供者之间的约定。
-2.  创建一个提供者，该类需要监听消费者的请求，并按照约定返回数据。
-3.  创建一个消费者，该类需要透明的调用自己不存在的方法，内部需要使用 `Netty` 请求提供者返回数据
-4.  开发的分析图
+1. 创建一个接口，定义抽象方法。用于消费者和提供者之间的约定。
+2. 创建一个提供者，该类需要监听消费者的请求，并按照约定返回数据。
+3. 创建一个消费者，该类需要透明的调用自己不存在的方法，内部需要使用 `Netty` 请求提供者返回数据
+4. 开发的分析图
 
 ![](https://img-blog.csdnimg.cn/996b351102c14a0dbe2b3831ff760ec5.png#pic_center)
 
@@ -2472,8 +2472,8 @@ public class ClientBootstrap {
 
 ### 调用过程
 
-1.  `ClientBootstrap#main`发起调用
-2.  走到下面这一行代码后
+1. `ClientBootstrap#main`发起调用
+2. 走到下面这一行代码后
 
 ```
  HelloService service = (HelloService) customer.getBean(HelloService.class, providerName);
@@ -2481,46 +2481,51 @@ public class ClientBootstrap {
 
 ```
 
-3.  调用`NettyClient#getBean`，在此方法里与服务端建立链接。
-    
-4.  于是就执行`NettyClientHandler#channelActive`
-    
-5.  接着回到`NettyClient#getBean`调用`NettyClientHandler#setPara`，调用完之后再回到`NettyClient#getBean`，用线程池提交任务
-    
-6.  因为用线程池提交了任务，就准备执行`NettyClientHandler#call`线程任务
-    
-7.  在`NettyClientHandler#call`中发送数据给服务提供者
-    
-    ```
-    context.writeAndFlush(para);
-    
-    
+3. 调用`NettyClient#getBean`，在此方法里与服务端建立链接。
+
+4. 于是就执行`NettyClientHandler#channelActive`
+
+5. 接着回到`NettyClient#getBean`调用`NettyClientHandler#setPara`，调用完之后再回到`NettyClient#getBean`，用线程池提交任务
+
+6. 因为用线程池提交了任务，就准备执行`NettyClientHandler#call`线程任务
+
+7. 在`NettyClientHandler#call`中发送数据给服务提供者
+   
+   ```
+   context.writeAndFlush(para);
+   
+   
+   ```
+
     ```
     
     由于还没收到服务提供者的数据结果，所以 wait 住
-    
-8.  来到了服务提供者这边，从 Socket 通道中收到了数据，所以执行`NettyServerHandler#channelRead`，然后因为此方法中执行了
+
+8. 来到了服务提供者这边，从 Socket 通道中收到了数据，所以执行`NettyServerHandler#channelRead`，然后因为此方法中执行了
+   
+   ```
+   String result = new HelloServiceImpl().hello(msg.toString().substring(msg.toString().lastIndexOf("#") + 1));
+   
+   
+   ```
+
+    ```
+
+9. 就去`HelloServiceImpl#hello`中执行业务逻辑，返回数据给`NettyServerHandler#channelRead`，`NettyServerHandler#channelRead`再把数据发给客户端
+
+10. `NettyClientHandler#channelRead`收到服务提供者发来的数据，唤醒之前 wait 的线程
+
+11. 所以之前 wait 的线程从`NettyClientHandler#call`苏醒，返回 result 给`NettyClient#getBean`
+
+12. `NettyClient#getBean`get() 到数据，`ClientBootstrap#main`中的此函数调用返回，得到服务端提供的数据。
     
     ```
-    String result = new HelloServiceImpl().hello(msg.toString().substring(msg.toString().lastIndexOf("#") + 1));
+    String res = service.hello("你好 dubbo~");
     
     
     ```
-    
-9.  就去`HelloServiceImpl#hello`中执行业务逻辑，返回数据给`NettyServerHandler#channelRead`，`NettyServerHandler#channelRead`再把数据发给客户端
-    
-10.  `NettyClientHandler#channelRead`收到服务提供者发来的数据，唤醒之前 wait 的线程
-    
-11.  所以之前 wait 的线程从`NettyClientHandler#call`苏醒，返回 result 给`NettyClient#getBean`
-    
-12.  `NettyClient#getBean`get() 到数据，`ClientBootstrap#main`中的此函数调用返回，得到服务端提供的数据。
-    
+
     ```
-     String res = service.hello("你好 dubbo~");
-    
-    
-    ```
-    
 
 13. 至此，一次 RPC 调用结束。
 

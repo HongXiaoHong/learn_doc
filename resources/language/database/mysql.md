@@ -359,3 +359,11 @@ select a from t where id = 1 for update;
 ```ini
 update t set a = a + 1;
 ```
+
+
+
+## 高效插入数据
+
+[[译] MySQL 最佳实践 —— 高效插入数据 - 掘金 (juejin.cn)](https://juejin.cn/post/6844904118939549703)
+
+`LOAD DATA INFILE` 是一个专门为 MySQL 高度优化的语句，它直接将数据从 CSV / TSV 文件插入到表中

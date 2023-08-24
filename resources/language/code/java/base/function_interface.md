@@ -1,5 +1,9 @@
 # 函数式接口
 
+
+
+[[译]解密 Java Lambda 表达式 - 掘金 (juejin.cn)](https://juejin.cn/post/6976973764277846023)
+
 BiFunction
 https://blog.csdn.net/u012934325/article/details/86716231
 

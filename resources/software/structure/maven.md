@@ -18,3 +18,7 @@ install:install deploy
 deploy:deploy
 
 pom项目里没有java代码，也不执行任何代码，只是为了聚合工程或传递依赖用的。
+
+
+### IDEA使用maven自定义archetype生成项目骨架
+https://blog.csdn.net/qq_37345604/article/details/100581940

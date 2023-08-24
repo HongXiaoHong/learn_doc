@@ -14,6 +14,22 @@
 
 [IntelliJ IDEA Community Edition 社区版插件汇总 - CodeAntenna](https://codeantenna.com/a/KK4BCbaTcE)
 
+但是社区版有一个限制那就是没办法 直接创建 springboot  项目
+曲线救国的情况下, 只能这样
+https://blog.51cto.com/u_15064627/4317906
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230724153749.png)
+
+我现在的做法是 现在 
+https://start.spring.io/
+新建一个项目
+
+解压之后
+
+拷贝到 idea 中
+
+标记 pom.xml 文件为 maven 项目
+
+
 ## idea中properties配置文件显示中文
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/db/chrome_XH1gqRYQK3.png)

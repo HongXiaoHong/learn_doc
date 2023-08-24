@@ -574,3 +574,10 @@ FALLBACK:
 #### 参考
 
 [聊一聊H5应用缓存-Manifest | louis blog (louiszhai.github.io)](https://louiszhai.github.io/2016/11/25/manifest/)
+
+
+## WAI-ARIA | 无障碍
+
+WAI-ARIA 基础: 
+  https://developer.mozilla.org/zh-CN/docs/Learn/Accessibility/WAI-ARIA_basics
+

@@ -1,0 +1,80 @@
+# 前端学习路线
+
+- 前端学习路
+  - 中枢课
+    - 工程化
+      - 构建工具 webpack
+      - 模块化
+      - 包管理器
+      - 兼容性管理
+      - 代码风格管理
+      - 预编译器less
+      - 性能分析与优化
+    - 框架
+      - vue2.0
+      - vue3.0
+      - vue生态
+      - vue项目实战
+      - React v16
+      - React v18
+      - React生态
+      - React项目实战
+    - 移动端
+      - WebApp
+      - 小程序
+      - mpvue
+      - uniapp
+      - ReactNative
+      - Taro
+  - 语言基础
+    - 语言核心能力
+      - HTML5
+      - CSS3
+      - EcmaScript核心原理
+      - ES6~ES14
+      - 程序设计与分析
+    - 语言高级能力
+      - 手写Promise
+      - 代理与反射
+      - 迭代器与生成器
+    - 宿主环境
+      - Web API
+      - 设备能力
+      - 浏览器工作原理
+      - http协议与AJAX
+      - AI聊天机器人项目
+    - 效率和工具
+      - git
+      - bootstrap
+      - jQuery
+      - axios
+      - MockJS
+      - Moment
+  - 强化课
+    - 思想
+      - element 源码
+      - 手写MVVM框架
+      - 设计模式
+      - 前端算法
+    - 语言增强
+      - TypeScript语言核心
+      - 泛型
+      - 抽象类和接口
+      - 装饰器
+      - 类型验算
+    - 可视化
+      - webGL
+      - Three.js
+      - Echarts
+    - 服务端
+      - node
+      - 主流数据库
+      - 数据驱动和ORM
+      - Koa/Express
+      - egg.js
+      - oauth2
+      - 全栈项目
+      - 服务器部署
+      - Vue SSR/Nuxt.js
+      - React SSR/Next.js
+  - 笔面试甄选

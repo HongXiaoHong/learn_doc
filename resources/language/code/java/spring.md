@@ -572,8 +572,6 @@ ApplicationContext接口比BeanFactory接口多了一些扩展点的支持，例
 
 入门:  [Spring 事务 -- @Transactional的使用 - 简书 (jianshu.com)](https://www.jianshu.com/p/befc2d73e487)
 
-
-
 ## spring 高级
 
 源码可参另一个文件 spring-source-code.md

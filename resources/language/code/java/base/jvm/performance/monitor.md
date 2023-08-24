@@ -22,17 +22,7 @@ Prometheus
 
 Skywalking
 
-
-
 [监控三套件EFK + Prometheus + SkyWalking, 经不经典我不管, 我就喜欢这一款_洪宏鸿的博客-CSDN博客](https://blog.csdn.net/HongZeng_CSDN/article/details/129968303)
-
-
-
-
-
-
-
-
 
 [Java 性能诊断工具你好_洪宏鸿的博客-CSDN博客](https://blog.csdn.net/HongZeng_CSDN/article/details/129961396)
 
@@ -190,8 +180,12 @@ Java自带了许多诊断工具，例如JConsole、JVisualVM、jmap、jstack、j
 
 综上所述，Java性能诊断工具的选择取决于应用程序的类型和性能问题的类型。对于小型应用程序，Java自带的工具已经足够；对于大型应用程序和分布式系统，第三方工具和分布式诊断工具则更为适合。
 
-
-
 ### EFK/ELK
 
 再说吧
+
+
+
+
+
+[[译] 可靠地运维一个大型分布式系统：我的学习实践 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903917562626055)
