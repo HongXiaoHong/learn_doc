@@ -129,3 +129,60 @@ github上有个很方便的功能叫fork，将别人的工程一键复制到自�
 6、将合并后的代码push到github上去
 
    [master]> git push origin master
+
+## git 客户端
+
+https://zhuanlan.zhihu.com/p/144961175
+
+1. GitHub Desktop
+2. Fork
+3. Tower
+4. Sourcetree
+5. SmartGit
+6. Sublime Merge
+7. GitKraken
+8. GitUp
+9. Ungit
+10. Aurees Git customers
+11. GitaHead
+12. GitBlade
+
+
+从知乎页面中提取对应的标题, 也就是 12 个 git 客户端
+```JavaScript
+document.querySelectorAll("h2")
+NodeList(13) [h2, h2, h2, h2, h2, h2, h2, h2, h2, h2, h2, h2, h2.ContentItem-title]
+init.js:1 
+        
+        
+        POST https://zhihu-web-analytics.zhihu.com/api/v3inv2/za/logs/batch net::ERR_BLOCKED_BY_CLIENT
+(匿名) @ init.js:1
+n.send @ zap.js:1
+d @ zap.js:1
+(匿名) @ zap.js:1
+(匿名) @ zap.js:1
+o.onmessage @ zap.js:1
+document.querySelectorAll("article h2")
+NodeList(12) 
+document.querySelectorAll("article h2")[0].textContent
+'1. GitHub Desktop'
+const gitClient = new Set();
+undefined
+document.querySelectorAll("article h2").forEach(item=>gitClient.add(item.textContent))
+undefined
+git
+VM946:1 Uncaught ReferenceError: git is not defined
+    at <anonymous>:1:1
+(匿名) @ VM946:1
+gitClient
+Set(12) {'1. GitHub Desktop', '2.Fork', '3. Tower', '4. Sourcetree', '5. SmartGit', …}
+[...gitClient]
+(12) ['1. GitHub Desktop', '2.Fork', '3. Tower', '4. Sourcetree', '5. SmartGit', '6. Sublime Merge', '7. GitKraken', '8. GitUp', '9. Ungit', '10. Aurees Git customers', '11. GitaHead', '12. GitBlade']
+[...gitClient].join("\n")
+'1. GitHub Desktop\n2.Fork\n3. Tower\n4. Sourcetree\n5. SmartGit\n6. Sublime Merge\n7. GitKraken\n8. GitUp\n9. Ungit\n10. Aurees Git customers\n11. GitaHead\n12. GitBlade'
+```
+
+我已经尝试过的是 
+GitHub Desktop
+感觉还挺好用
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230824134317.png)
