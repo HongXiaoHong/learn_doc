@@ -108,7 +108,29 @@ public class Test {
 
 #### JavaScript
 
+https://www.ruanyifeng.com/blog/2014/12/unicode.html
+JavaScript 中的字符串的编码也是使用的 Unicode 编码
 
+只不过早起的 JavaScript 用的是UCS-2！
+
+只支持 2 个字节, 也就是一个编码单元的识别
+如果需要两个编码单元, 也就是 4 个字节, ucs-2 就无法识别了
+
+
+后面 es6 也支持 4 个字节的识别
+按道理应该也是 UTF-16 这种编码了
+也就跟 java 差不多了
+不过 java 中没有直接转换码点的方法
+JavaScript 倒是提供了, very good 
+
+```JavaScript
+String.fromCodePoint(Number.parseInt("1F600", 16)) // 😀
+
+String.fromCodePoint(Number.parseInt("1F680", 16))
+'🚀'
+'🚀'.codePointAt(0)
+128640
+```
 
 
 ## Unicode
