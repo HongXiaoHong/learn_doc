@@ -1,7 +1,9 @@
 # JavaScript 进阶
 
 ## 标签页 通信
+
 ### 直接使用 window 对象的 postMessage 进行通信
+
 使用 window 的 postMessage 方法进行通信, 使用 window 的 message 进行监听
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage
@@ -38,6 +40,7 @@ window.addEventListener("message", receiveMessage, false);
 ### BroadcastChannel
 
 发送
+
 ```JavaScript
 const channel = new BroadcastChannel("example-channel");
 const messageControl = document.querySelector("#message");
@@ -61,6 +64,7 @@ channel.addEventListener("message", (event) => {
 ```
 
 ## 多线程
+
 ### worker
 
 同源的情况下, 开启多线程进行计算
@@ -112,6 +116,7 @@ if (window.Worker) {
 ```
 
 worker.js:
+
 ```JavaScript
 onmessage = function(e) {
   console.log('Worker: Message received from main script');
@@ -144,9 +149,10 @@ https://www.jianshu.com/p/5c23bdcf2a11
 同步任务/异步任务
 事件循环就是为了解决异步任务的问题
 
-
 ## API
+
 ### MutationObserver
+
 注册一个监听器
 监听元素 属性或者子元素或者其他变化
 
@@ -194,8 +200,8 @@ observer.disconnect();
 
 https://juejin.cn/post/6844903618999500808
 
-
 ## 原型链
+
 ### __proto__ prototype constructor
 
 http://dennisgo.cn/Articles/JavaScript/myPrototype.html
@@ -212,12 +218,14 @@ ES6的class其实是函数类的一种语法糖，书写起来更清晰，但原
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230821164126.png)
 
 ## this
+
 this 介绍 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this
 
 JavaScript 的 this 确实让人困惑
 
 要弄懂 this 还必须弄懂 执行上下文
 执行上下文又分为
+
 - 全局上下文 浏览器 => window  node => global
 - 函数上下文
 - eval 上下文
@@ -248,3 +256,7 @@ undefined
 而箭头函数, 或者说叫做 lambda 表达式
 是没有 this 一说的, 具体的 this 指向取决于当前所处的位置
 也就是<mark>语法作用域</mark>内没有 this, 就会指向全局的了
+
+参考
+
+[[译] 理解 JavaScript 中的执行上下文和执行栈 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903682283143181#heading-3)
