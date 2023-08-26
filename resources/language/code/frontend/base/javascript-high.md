@@ -159,7 +159,6 @@ JavaScript 的本质上是单线程的，因此在任何时刻，只有一个任
 
 > 在 JavaScript 中，并行执行只能通过 worker 线程实现。
 
-
 ### 为什么 JavaScript 是单线程
 
 https://www.jianshu.com/p/5c23bdcf2a11
@@ -182,7 +181,7 @@ Promise.all 就是为了解决 多个 promise 互相不依赖,
 
 第一次在 js 中看到了 并发跟并行
 
-```JavaScript
+```javascript
 function resolveAfter2Seconds() {
   console.log("starting slow promise");
   return new Promise((resolve) => {
@@ -259,6 +258,30 @@ setTimeout(parallel, 10000); // truly parallel: after 1 second, logs "fast", the
 
 ```
 
+#### async
+
+##### 原理分析
+
+使用 生成器跟自动执行器 
+
+类似 co 模块 自动帮我们执行 生成器
+
+简单实现代码如下
+
+就是通过递归调用我们的 promise 最后通过solve来返回我们最后调用的值
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230826164812.png)
+
+#### await
+
+await 总会同步地对表达式求值并处理，处理的行为与 Promise.resolve() 一致，不属于原生 Promise 的值全都会被隐式地转换为 Promise 实例后等待。处理的规则为，若表达式：
+
+是一个原生 Promise（原生Promise 的实例或其派生类的实例，且满足 expression.constructor === Promise），会被直接用于等待，等待由原生代码实现，该对象的 then() 不会被调用。
+是 thenable 对象（包括非原生的 Promise 实例、polyfill、Proxy、派生类等），会构造一个新 Promise 用于等待，构造时会调用该对象的 then() 方法。
+不是 thenable 对象，会被包装进一个已兑现的 Promise 用于等待，其结果就是表达式的值。
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/8170006cf5a5c37d311dc3059155e4b.jpg)
+
 ## API
 
 ### MutationObserver
@@ -268,7 +291,7 @@ setTimeout(parallel, 10000); // truly parallel: after 1 second, logs "fast", the
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver
 
-```JavaScript
+```javascript
 // 选择需要观察变动的节点
 const targetNode = document.getElementById("some-id");
 
