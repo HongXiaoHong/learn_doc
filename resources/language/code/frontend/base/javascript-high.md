@@ -135,6 +135,31 @@ onmessage = function(e) {
 onmessage 是固定的
 用来交互数据的方法
 
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#promise_%E5%B9%B6%E5%8F%91
+
+Promise 类提供了四个静态方法来促进异步任务的并发：
+
+Promise.all()
+在所有传入的 Promise 都被兑现时兑现；在任意一个 Promise 被拒绝时拒绝。
+
+Promise.allSettled()
+在所有的 Promise 都被敲定时兑现。
+
+Promise.any()
+在任意一个 Promise 被兑现时兑现；仅在所有的 Promise 都被拒绝时才会拒绝。
+
+Promise.race()
+在任意一个 Promise 被敲定时敲定。换句话说，在任意一个 Promise 被兑现时兑现；在任意一个的 Promise 被拒绝时拒绝。
+
+所有这些方法都接受一个 Promise（确切地说是 thenable）的可迭代对象，并返回一个新的 Promise。它们都支持子类化，这意味着它们可以在 Promise 的子类上调用，结果将是一个属于子类类型的 Promise。为此，子类的构造函数必须实现与 Promise() 构造函数相同的签名——接受一个以 resolve 和 reject 回调函数作为参数的单个 executor 函数。子类还必须有一个 resolve 静态方法，可以像 Promise.resolve() 一样调用，以将值解析为 Promise。
+
+Promise.all  就是基于 worker 进行并发的
+
+JavaScript 的本质上是单线程的，因此在任何时刻，只有一个任务会被执行，尽管控制权可以在不同的 Promise 之间切换，从而使 Promise 的执行看起来是并发的。
+
+> 在 JavaScript 中，并行执行只能通过 worker 线程实现。
+
+
 ### 为什么 JavaScript 是单线程
 
 https://www.jianshu.com/p/5c23bdcf2a11
@@ -148,6 +173,91 @@ https://www.jianshu.com/p/5c23bdcf2a11
 
 同步任务/异步任务
 事件循环就是为了解决异步任务的问题
+
+### 异步
+
+Promise.all 就是为了解决 多个 promise 互相不依赖,
+也就是 promise 的调用参数不需要依赖其他 promise 的执行
+于是我们可以直接使用 all 或者 allSettled 进行调用
+
+第一次在 js 中看到了 并发跟并行
+
+```JavaScript
+function resolveAfter2Seconds() {
+  console.log("starting slow promise");
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("slow");
+      console.log("slow promise is done");
+    }, 2000);
+  });
+}
+
+function resolveAfter1Second() {
+  console.log("starting fast promise");
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("fast");
+      console.log("fast promise is done");
+    }, 1000);
+  });
+}
+
+async function sequentialStart() {
+  console.log("==SEQUENTIAL START==");
+
+  // 1. Execution gets here almost instantly
+  const slow = await resolveAfter2Seconds();
+  console.log(slow); // 2. this runs 2 seconds after 1.
+
+  const fast = await resolveAfter1Second();
+  console.log(fast); // 3. this runs 3 seconds after 1.
+}
+
+async function concurrentStart() {
+  console.log("==CONCURRENT START with await==");
+  const slow = resolveAfter2Seconds(); // starts timer immediately
+  const fast = resolveAfter1Second(); // starts timer immediately
+
+  // 1. Execution gets here almost instantly
+  console.log(await slow); // 2. this runs 2 seconds after 1.
+  console.log(await fast); // 3. this runs 2 seconds after 1., immediately after 2., since fast is already resolved
+}
+
+// 并发
+function concurrentPromise() {
+  console.log("==CONCURRENT START with Promise.all==");
+  return Promise.all([resolveAfter2Seconds(), resolveAfter1Second()]).then(
+    (messages) => {
+      console.log(messages[0]); // slow
+      console.log(messages[1]); // fast
+    },
+  );
+}
+
+// 并行
+async function parallel() {
+  console.log("==PARALLEL with await Promise.all==");
+
+  // Start 2 "jobs" in parallel and wait for both of them to complete
+  await Promise.all([
+    (async () => console.log(await resolveAfter2Seconds()))(),
+    (async () => console.log(await resolveAfter1Second()))(),
+  ]);
+}
+
+sequentialStart(); // after 2 seconds, logs "slow", then after 1 more second, "fast"
+
+// wait above to finish
+setTimeout(concurrentStart, 4000); // after 2 seconds, logs "slow" and then "fast"
+
+// wait again
+setTimeout(concurrentPromise, 7000); // same as concurrentStart
+
+// wait again
+setTimeout(parallel, 10000); // truly parallel: after 1 second, logs "fast", then after 1 more second, "slow"
+
+```
 
 ## API
 
