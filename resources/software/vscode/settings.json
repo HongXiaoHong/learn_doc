@@ -1,0 +1,51 @@
+{
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Ayu Mirage",
+    "leetcode.endpoint": "leetcode-cn",
+    "leetcode.workspaceFolder": "e:\\LeetCode",
+    "python.autoComplete.extraPaths": [],
+    "python.analysis.extraPaths": [],
+    "java.configuration.maven.globalSettings": "D:\\app\\code\\maven\\maven3\\conf\\settings.xml",
+    "maven.executable.path": "D:\\app\\code\\maven\\maven3\\bin\\mvn",
+    "redhat.telemetry.enabled": true,
+    "boot-java.rewrite.reconcile": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "files.eol": "\n",
+    "[nginx]": {
+        "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
+    },
+    "java.jdt.ls.java.home": "D:\\app\\code\\java\\jdk-17.0.6",
+    "maven.terminal.useJavaHome": true,
+    "maven.executable.preferMavenWrapper": true,
+    "java.maven.downloadSources": true,
+    "java.maven.updateSnapshots": true,
+    "maven.excludedFolders": [
+        "**/.*",
+        "**/node_modules",
+        "**/target",
+        "**/bin",
+        "**/archetype-resources"
+    ],
+    "maven.settingsFile": "D:/app/code/maven/maven3/conf/settings.xml",
+    "maven.terminal.favorites": [],
+    "maven.view": "hierarchical",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "D:\\app\\code\\java\\jdk-17.0.6",
+            "default": true
+        },
+    ],
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontFamily": "'Cascadia Mono', monospace, Consolas",
+    "editor.fontSize": 15,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontSize": 16,
+    "window.zoomLevel": 0.5,
+    "backgroundCover.randomImageFolder": "d:\\documents\\photo\\secondary\\20211204\\wlop",
+    "backgroundCover.imagePath": "c:\\Users\\hong\\Pictures\\warrior.jpg",
+    "backgroundCover.opacity": 0.6,
+}

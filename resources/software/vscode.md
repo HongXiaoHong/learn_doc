@@ -1,9 +1,5 @@
 # vscode
 
-## 
-
-
-
 ### 使用 vscode 开发java
 
 #### 设置快捷键为 idea 常用快捷键
@@ -18,13 +14,9 @@ maven 分析插件
 Fabric8-analytics-vscode-extension | 依赖关系分析
 https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/blob/master/README.md
 
-
-
 #### 第一个 java 应用
 
 安装 vscode 自不必说
-
-
 
 ##### 安装 java
 
@@ -82,11 +74,7 @@ OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 
 ##### 安装 java 支持合集插件
 
-
-
 > Extension Pack for Java
-
-
 
 包括
 
@@ -101,8 +89,6 @@ OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 5. Project Manager for Java
 
 6. IntelliCode
-
-
 
 ##### vscode java 配置
 
@@ -139,19 +125,13 @@ OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830121948.png)
 
-
-
 点击这里
 
 然后edge浏览器已经安装上了 沉浸式翻译
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830122123.png)
 
-
-
 这里就中英文一起看啦
-
-
 
 设置项目中的 运行的 jdk
 
@@ -167,8 +147,6 @@ OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 ]
 ```
 
-
-
 这样运行的时候就会使用我们配置的 jdk 进行运行
 
 ```bash
@@ -178,19 +156,13 @@ Hello, World!
 
 这里使用就是我们配置的本地安装的 jdk17
 
-
-
 ##### hello java
 
 Ctrl P => create java project
 
-
-
 我们创建一个项目
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830145437.png)
-
-
 
 ###### 新增文件快捷键修改
 
@@ -206,8 +178,6 @@ Ctrl P => create java project
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830165543.png)
 
-
-
 接下来 编写一个 java 文件
 
 这里我直接使用 F5 运行 APP.java
@@ -221,8 +191,6 @@ public class App {
 
 ```
 
-
-
 得到结果:
 
 ```bash
@@ -232,7 +200,60 @@ Hello, World!
 
 ### 第一个 maven 应用
 
+#### 配置 maven
 
+配置一下 maven 的仓库或者镜像
+
+还有就是配置 在不同条件下 激活的默认配置
+
+```xml
+<profile> 
+      <id>jdk-17</id>  
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <jdk>17</jdk>  
+      </activation>  
+
+      <properties>  
+        <maven.compiler.source>17</maven.compiler.source>  
+        <maven.compiler.target>17</maven.compiler.target>  
+        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>  
+      </properties>   
+    </profile>
+```
+
+可参考官网
+
+[Maven – Settings Reference --- Maven – 设置参考 (apache.org)](https://maven.apache.org/settings.html#activation)
+
+#### 配置 vscode 跟 maven 相关的配置
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830173008.png)
+
+这个才是全局配置 globalSettings 上面的截图有点错误了...
+
+executable 这个是 maven 的路径
+
+```json
+"java.configuration.maven.globalSettings": "D:\\app\\code\\maven\\maven3\\conf\\settings.xml",
+    "maven.executable.path": "D:\\app\\code\\maven\\maven3\\bin\\mvn",
+```
+
+整体配置:
+
+可参 [vscode 整体配置](./vscode/settings.json)
+
+#### 新建 maven 项目
+
+CTRL SHIFT P
+
+create java project
+
+选择 maven 项目
+
+使用  quickstart
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230830173642.png)
 
 ### 第一个 springboot 项目
 

@@ -20,6 +20,7 @@
   * [marktext](resources/software/marktext.md)
   * [typora](resources/software/typora.md)
   * [vscode](resources/software/vscode.md)
+  * [vscode-setting](resources/software/vscode/settings.json)
   * [xmind](resources/software/xmind.md)
   * [notion](resources/software/notion.md)
   * [node](resources/software/node.md)
