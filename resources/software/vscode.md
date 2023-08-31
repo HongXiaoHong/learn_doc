@@ -286,3 +286,51 @@ https://blog.csdn.net/joyvonlee/article/details/98179913
     }
 }
 ```
+
+
+
+## 美化
+
+
+
+[Vscode配置之编辑器与界面美化 - 哔哩哔哩 (bilibili.com)](https://www.bilibili.com/read/cv7719837/)
+
+
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181352.png)
+
+
+
+### **vscode修改左侧资源管理器字体大小**
+
+左侧资源管理区域指的是左侧文件目录区域，我们修改字体之后左侧的区域并不会变化字体非常小，不容易看清。  
+下面我们来调整资源管理器的字体大小。  
+（1）找到vscode的安装目录Microsoft VS Code(在桌面图标右键打开文件所在位置，可以找到这个安装目录)。  
+（2）Microsoft VS Code\resources\app\out\vs\workbench\ 目录下的workbench.main.css文件。  
+（3）打开文件搜索 .monaco-workbench .part>.content（注意.part前面有空格），修改字体大小。保存关闭文件和编辑器，从新打开，左侧资源管理器字体大小的视觉效果比之前舒服多了。
+
+[vscode修改左侧资源管理器字体大小 | 露露的笔记 (luyanhua.github.io)](https://luyanhua.github.io/2019/06/19/vscode/)
+
+其实这里我们可以打开 vscode 的调试功能
+
+然后在 css 中修改样式就可以了
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181718.png)
+
+
+
+调试找到对应的元素, 使用选择器
+
+改写对应的 css 样式就可以了
+
+
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181750.png)
+
+### 桌面缩放
+
+"window.zoomLevel": 0.5,
+
+可以把整体页面放大
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181602.png)
