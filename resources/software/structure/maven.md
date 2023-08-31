@@ -295,6 +295,16 @@ properties优先级高低如下:
 
 ### 配置编译的 jdk 版本
 
+甚至你可以在 pom.xml 中引入 编译插件的时候
+
+其实 maven 已经帮我们在最后生成的 pom.xml 文件中引入了 编译插件
+
+我们可以 使用 命令行覆盖文件中的 编译插件属性:
+
+```bash
+mvn -Dmaven.compiler.target=1.7 compile
+```
+
 #### source/target
 
 [关于 maven-compiler-plugin 插件的使用心得_cab5的博客-CSDN博客](https://blog.csdn.net/yangchao1125/article/details/100585116)
@@ -326,6 +336,8 @@ springboot 可以使用 java.version
 也就是 IDE 配置了对应的 project jdk
 
 idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.xml 文件中配置的
+
+idea 配置 参 [Javac选项source和target的作用_java target_明月几时有666的博客-CSDN博客](https://blog.csdn.net/gao_zhennan/article/details/124232142)
 
 我理解下
 
@@ -611,8 +623,6 @@ jacoco-maven-plugin：生成单元测试覆盖率报告。
 
 sonar-maven-plugin：使用该插件执行sonar扫描。
 
-
-
 [【Java】Maven常用的插件汇总（共8个） - 掘金 (juejin.cn)](https://juejin.cn/post/7142115195047903246)
 
 ### maven compiler plugin | 编译插件
@@ -629,7 +639,7 @@ sonar-maven-plugin：使用该插件执行sonar扫描。
 
 
 
-
+#### spring boot maven plugin | 打包运行 springboot 应用
 
 [Spring Boot Maven Plugin Documentation --- Spring Boot Maven 插件文档](https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/#introduction)
 
