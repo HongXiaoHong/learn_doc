@@ -277,6 +277,12 @@ properties优先级高低如下:
 
 #### source/target
 
+[关于 maven-compiler-plugin 插件的使用心得_cab5的博客-CSDN博客](https://blog.csdn.net/yangchao1125/article/details/100585116)
+
+springboot 可以使用 java.version 
+
+
+
 [Apache Maven Compiler Plugin – Setting the -source and -target of the Java Compiler --- Apache Maven 编译器插件 – 设置 Java 编译器的 -source 和 -target](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html)
 
 也就是上面配置的例子
