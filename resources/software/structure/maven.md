@@ -20,6 +20,26 @@
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831000545.png)
 
+版本 不匹配 可能会碰到问题:
+
+[聊聊maven与jdk版本对应关系_java_脚本之家 (jb51.net)](https://www.jb51.net/article/233325.htm)
+
+## 专有名词
+
+### 交叉编译
+
+从 Java 9 开始支持交叉编译
+
+我们可以启用交叉编译，允许应用程序在较旧的 Java 版本上运行，方法是使用 maven.compiler.release 属性
+
+```xml
+<properties>
+    <maven.compiler.release>8</maven.compiler.release>
+</properties>
+```
+
+[Setting Java Version used by Maven Compiler --- 设置 Maven 编译器使用的 Java 版本 (howtodoinjava.com)](https://howtodoinjava.com/maven/set-java-version-in-maven/)
+
 ## 常见问题
 
 #### maven 中的 packageing pom 是作何用
@@ -281,8 +301,6 @@ properties优先级高低如下:
 
 springboot 可以使用 java.version 
 
-
-
 [Apache Maven Compiler Plugin – Setting the -source and -target of the Java Compiler --- Apache Maven 编译器插件 – 设置 Java 编译器的 -source 和 -target](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html)
 
 也就是上面配置的例子
@@ -294,8 +312,6 @@ springboot 可以使用 java.version
 [javac --- 爪哇 (oracle.com)](https://docs.oracle.com/en/java/javase/11/tools/javac.html#GUID-AEEC9F07-CB49-4E96-8BC7-BCC2C7F725C9)
 
 里面说到 当前版本为 11 source 最大配到 11, 默认是 11
-
-
 
 官方文档里面有这么一句话 
 
@@ -311,11 +327,7 @@ springboot 可以使用 java.version
 
 idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.xml 文件中配置的
 
-
-
 我理解下
-
-
 
 咱们配置在 编译器的 source/target 不一定生效
 
@@ -323,7 +335,7 @@ idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.x
 
 有可能是因为 settings.xml 中同样配置了 properties 也有 source/target 根据上面 没有使用 exexecutable 的 配置, 用户 settings.xml > 全局 settings.xml > pom.xml profile > pom.xml 默认 properties 中配置的source
 
--  跟 当前编译 的 jdk 也就是 JAVA_HOME 配置下的 jdk 版本有关
+- 跟 当前编译 的 jdk 也就是 JAVA_HOME 配置下的 jdk 版本有关
 
 根据 官网中 [javac --- 爪哇 (oracle.com)](https://docs.oracle.com/en/java/javase/11/tools/javac.html#GUID-AEEC9F07-CB49-4E96-8BC7-BCC2C7F725C9)
 
@@ -380,8 +392,6 @@ idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.x
 > The default value. The compiler accepts code with features introduced in Java SE 11.  
 > 默认值。编译器接受具有 Java SE 11 中引入的功能的代码。
 
-
-
 这里是 jdk11 的文档
 
 默认使用 source 11 不过分吧
@@ -393,8 +403,6 @@ idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.x
 还有就是 设置了 exexecutable 的情况下, 因为会用 指定的 java 编译器 也就是对应路径下的 javac 进行编译, 会用对应的 默认的 source 进行编译, 所以说最后咱们还是使用 相同版本的 jdk 进行开发
 
 还有就是使用 toolchains 进行开发,可以让有 maven 相关的组件, 使用指定版本的 jdk
-
-
 
 #### release
 
@@ -473,8 +481,6 @@ pom.xml 中配置 exexecutable compilerVersion fork
 
 为了增加 可移植性
 
-
-
 使用
 
 ```xml
@@ -504,8 +510,6 @@ settings.xml 文件中配置 本地 各个版本的 jdk 位置
 </settings>
 
 ```
-
-
 
 #### Toolchains | 配置 java 工具使用的路径 所有插件适用
 
@@ -586,3 +590,47 @@ toolchains.xml （见下文）是设置工具链安装路径的配置文件。�
   </toolchain>
 </toolchains>
 ```
+
+## 插件
+
+常用插件:
+
+maven-compiler-plugin：编绎阶段指定jdk版本。
+
+maven-surefire-plugin：用于测试阶段的插件
+
+maven-failsafe-plugin：用作集成测试的配置。
+
+maven-checkstyle-plugin：可以帮助开发检测代码中不合规范的地方。
+
+build-helper-maven-plugin：支持多个source/test/resource。
+
+spring-boot-maven-plugin：可以帮助项目打包成一个fat jar。
+
+jacoco-maven-plugin：生成单元测试覆盖率报告。
+
+sonar-maven-plugin：使用该插件执行sonar扫描。
+
+
+
+[【Java】Maven常用的插件汇总（共8个） - 掘金 (juejin.cn)](https://juejin.cn/post/7142115195047903246)
+
+### maven compiler plugin | 编译插件
+
+[Apache Maven Compiler Plugin – compiler:compile --- Apache Maven 编译器插件 – 编译器：编译](https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html)
+
+推荐阅读:
+
+[java - 在 Maven 中指定 Java 版本 - 属性和编译器插件之间的差异 - SegmentFault 思否](https://segmentfault.com/q/1010000042493731)
+
+[Maven 编译与JDK版本 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/34492714)
+
+[聊聊maven与jdk版本对应关系_java_脚本之家 (jb51.net)](https://www.jb51.net/article/233325.htm)
+
+
+
+
+
+[Spring Boot Maven Plugin Documentation --- Spring Boot Maven 插件文档](https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/#introduction)
+
+Spring Boot Maven 插件在 Apache Maven 中提供 Spring Boot 支持。它允许您打包可执行的jar或war存档，运行Spring Boot应用程序，生成构建信息并在运行集成测试之前启动Spring Boot应用程序。 
