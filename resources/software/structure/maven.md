@@ -1,6 +1,24 @@
-https://blog.csdn.net/seasonsbin/article/details/79093647?spm=1001.2101.3001.6650.12&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=13
+### 官方文档
+
+[Maven – Settings Reference --- Maven – 设置参考 (apache.org)](https://maven.apache.org/settings.html#introduction)
+
+[Maven 依赖范围_maven class 依赖_seasonsbin的博客-CSDN博客](https://blog.csdn.net/seasonsbin/article/details/79093647?spm=1001.2101.3001.6650.12&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=13)
 
 [高效使用Java构建工具｜Maven篇](https://mp.weixin.qq.com/s/Wvq7t2FC58jaCh4UFJ6GGQ)
+
+### 学习视频
+
+[157-POM深入-profile 详解-概述_ev_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV12q4y147e4?p=157&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+相关的笔记:
+
+[Maven 3.1 (wolai.com)](https://www.wolai.com/arAiYJYCr6Kkfi2kZ8HxE8)
+
+### 与 java 版本
+
+[Maven – Maven Releases History --- Maven – Maven 发布历史 (apache.org)](https://maven.apache.org/docs/history.html)
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831000545.png)
 
 ## 常见问题
 
@@ -38,6 +56,8 @@ https://blog.csdn.net/qq_37345604/article/details/100581940
 ## 配置文件
 
 ### properties | maven 内置属性以及自定义属性
+
+>  问题: maven setting中定义properties 和 pomxml定义了 properties 定义, 哪个生效
 
 pom.xml 中
 
@@ -252,3 +272,299 @@ pom.xml 中
 properties优先级高低如下: 
 
 .m2/settings.xml > maven_home/conf/settings.xml > pom.xml profile 中的 properties > pom.xml 文件中 默认的 properties
+
+### 配置编译的 jdk 版本
+
+#### source/target
+
+[Apache Maven Compiler Plugin – Setting the -source and -target of the Java Compiler --- Apache Maven 编译器插件 – 设置 Java 编译器的 -source 和 -target](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html)
+
+也就是上面配置的例子
+
+其实配置这个 source target 也是跟 javac 挂钩的
+
+可以参考这个 java 11 的官方文档
+
+[javac --- 爪哇 (oracle.com)](https://docs.oracle.com/en/java/javase/11/tools/javac.html#GUID-AEEC9F07-CB49-4E96-8BC7-BCC2C7F725C9)
+
+里面说到 当前版本为 11 source 最大配到 11, 默认是 11
+
+
+
+官方文档里面有这么一句话 
+
+> 注意：仅设置该 `target` 选项并不能保证您的代码实际在具有指定版本的 JRE 上运行。陷阱是意外使用仅存在于更高版本的 JRE 中的 API，这将使您的代码在运行时失败并出现链接错误。为了避免此问题，您可以配置编译器的引导类路径以匹配目标 JRE，或者使用 Animal Sniffer Maven 插件来验证您的代码是否未使用意外的 API，或者更好地使用 JDK 9 以来支持 `release` 的选项。同样，设置该 `source` 选项并不能保证您的代码实际在具有指定版本的 JDK 上编译。要使用与用于启动 Maven 的版本不同的特定 JDK 版本编译代码，请参阅使用不同的 JDK 编译示例。
+
+我理解下
+
+
+
+咱们配置在 编译器的 source/target 不一定生效
+
+- pom.xml 中的 properties source/target 不一定生效
+
+有可能是因为 settings.xml 中同样配置了 properties 也有 source/target 根据上面 没有使用 exexecutable 的 配置, 用户 settings.xml > 全局 settings.xml > pom.xml profile > pom.xml 默认 properties 中配置的source
+
+-  跟 当前编译 的 jdk 也就是 JAVA_HOME 配置下的 jdk 版本有关
+
+根据 官网中 [javac --- 爪哇 (oracle.com)](https://docs.oracle.com/en/java/javase/11/tools/javac.html#GUID-AEEC9F07-CB49-4E96-8BC7-BCC2C7F725C9)
+
+> `-source release`
+> 
+> Specifies the version of source code accepted. The following values for `release` are allowed:  
+> 指定接受的源代码版本。允许使用以下值 `release` ：
+> 
+> Note:
+> 
+> Beginning with JDK 9, `javac` no longer supports `-source` release settings less than or equal to `5`. If settings less than or equal to `5` are used, then the `javac` command behaves as if `-source 6` were specified.
+> 
+> 注： 从 JDK 9 开始， `javac` 不再支持 `-source` 小于或等于 `5` 的版本设置。如果使用小于或等于的 `5` 设置，则该 `javac` 命令的行为就像指定了一样 `-source 6` 。
+> 
+> `1.6`
+> 
+> No language changes were introduced in Java SE 6. However, encoding errors in source files are now reported as errors instead of warnings as was done in earlier releases of Java Platform, Standard Edition.  
+> Java SE 6 中没有引入任何语言更改。但是，源文件中的编码错误现在报告为错误，而不是像早期版本的 Java 平台标准版那样报告为警告。
+> 
+> `6`
+> 
+> Synonym for 1.6. 1.6 的同义词。
+> 
+> `1.7`
+> 
+> The compiler accepts code with features introduced in Java SE 7.  
+> 编译器接受具有 Java SE 7 中引入的功能的代码。
+> 
+> `7`
+> 
+> Synonym for 1.7. 1.7 的同义词。
+> 
+> `1.8`
+> 
+> The compiler accepts code with features introduced in Java SE 8.  
+> 编译器接受具有 Java SE 8 中引入的功能的代码。
+> 
+> `8`
+> 
+> Synonym for 1.8. 1.8 的同义词。
+> 
+> `9`
+> 
+> The compiler accepts code with features introduced in Java SE 9.  
+> 编译器接受具有 Java SE 9 中引入的功能的代码。
+> 
+> `10`
+> 
+> The compiler accepts code with features introduced in Java SE 10.  
+> 编译器接受具有 Java SE 10 中引入的功能的代码。
+> 
+> `11`
+> 
+> The default value. The compiler accepts code with features introduced in Java SE 11.  
+> 默认值。编译器接受具有 Java SE 11 中引入的功能的代码。
+
+
+
+这里是 jdk11 的文档
+
+默认使用 source 11 不过分吧
+
+如果咱们把 source 设置比当前 jdk 版本还要高, 那肯定是不允许的呀
+
+所以只能设置比当前 jdk 版本低的
+
+还有就是 设置了 exexecutable 的情况下, 因为会用 指定的 java 编译器 也就是对应路径下的 javac 进行编译, 会用对应的 默认的 source 进行编译, 所以说最后咱们还是使用 相同版本的 jdk 进行开发
+
+还有就是使用 toolchains 进行开发,可以让有 maven 相关的组件, 使用指定版本的 jdk
+
+
+
+#### release
+
+编译器插件版本 3.6 开始
+
+[Apache Maven Compiler Plugin – Setting the --release of the Java Compiler --- Apache Maven 编译器插件 – 设置 Java 编译器的 --release](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-release.html)
+
+配置 properties
+
+```xml
+<project>
+  [...]
+  <properties>
+    <maven.compiler.release>8</maven.compiler.release>
+  </properties>
+  [...]
+</project>
+```
+
+或者配置 plugin
+
+```xml
+<project>
+  [...]
+  <build>
+    [...]
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>8</release>
+        </configuration>
+      </plugin>
+    </plugins>
+    [...]
+  </build>
+  [...]
+</project>
+```
+
+#### exexecutable | 本地 jdk 给某个插件配置
+
+> 这里使用的 jdk 版本就是 当前配置的 exexecutable 的版本
+
+<mark>因为 javac 默认使用的 source 就是当前发行版的 版本</mark>
+
+[Apache Maven Compiler Plugin – Compiling Sources Using A Different JDK --- Apache Maven编译器插件 - 使用不同的JDK编译源代码](https://maven.apache.org/plugins/maven-compiler-plugin/examples/compile-using-different-jdk.html)
+
+pom.xml 中配置 exexecutable compilerVersion fork
+
+```xml
+<project>
+  [...]
+  <build>
+    [...]
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <executable><!-- path-to-javac --></executable>
+          <compilerVersion>1.3</compilerVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+    [...]
+  </build>
+  [...]
+</project>
+```
+
+为了增加 可移植性
+
+
+
+使用
+
+```xml
+<executable>${JAVA_1_4_HOME}/bin/javac</executable>
+```
+
+settings.xml 文件中配置 本地 各个版本的 jdk 位置
+
+另外也要激活 对应的 profile 分支
+
+```xml
+<settings>
+  [...]
+  <profiles>
+    [...]
+    <profile>
+      <id>compiler</id>
+        <properties>
+          <JAVA_1_4_HOME>C:\Program Files\Java\j2sdk1.4.2_09</JAVA_1_4_HOME>
+        </properties>
+    </profile>
+  </profiles>
+  [...]
+  <activeProfiles>
+    <activeProfile>compiler</activeProfile>
+  </activeProfiles>
+</settings>
+
+```
+
+
+
+#### Toolchains | 配置 java 工具使用的路径 所有插件适用
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831102604.png)
+
+##### POM 配置 maven-toolchains-plugin
+
+```xml
+<plugins>
+ ...
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-toolchains-plugin</artifactId>
+    <version>1.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>toolchain</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <toolchains>
+        <jdk>
+          <version>1.5</version>
+          <vendor>sun</vendor>
+        </jdk>
+      </toolchains>
+    </configuration>
+  </plugin>
+  ...
+</plugins>
+```
+
+##### 配置 toolchains.xml
+
+toolchains.xml （见下文）是设置工具链安装路径的配置文件。此文件应放在您的 ${user.home}/.m2 目录中。执行 maven-toolchains-plugin 时，它会查找文件，读取 toolchains.xml 文件并查找与插件中配置的工具链要求匹配的工具链。在我们的例子中，这将是一个带有“1.5”和 <vendor> “sun”的 <version> JDK工具链。找到匹配项后，插件将存储要在MavenSession中使用的工具链。正如你在 toolchains.xml 下面看到的，确实有一个配置了“1.5”和 <vendor> “sun”的 <version> JDK工具链。因此，当我们在 pom.xml 上面的执行中配置时 maven-compiler-plugin ，它将看到在MavenSession中设置了一个JDK工具链，从而将使用该工具链（在我们的示例中安装 /path/to/jdk/1.5 JDK）来编译源代码。
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<toolchains>
+  <!-- JDK toolchains -->
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.5</version>
+      <vendor>sun</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/path/to/jdk/1.5</jdkHome>
+    </configuration>
+  </toolchain>
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.6</version>
+      <vendor>sun</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/path/to/jdk/1.6</jdkHome>
+    </configuration>
+  </toolchain>
+
+  <!-- other toolchains -->
+  <toolchain>
+    <type>netbeans</type>
+    <provides>
+      <version>5.5</version>
+    </provides>
+    <configuration>
+      <installDir>/path/to/netbeans/5.5</installDir>
+    </configuration>
+  </toolchain>
+</toolchains>
+```
