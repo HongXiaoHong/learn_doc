@@ -1,6 +1,14 @@
 ### 官方文档
 
+maven settings 说明文档:
+
 [Maven – Settings Reference --- Maven – 设置参考 (apache.org)](https://maven.apache.org/settings.html#introduction)
+
+mvnrepository:
+
+[Maven Repository: Search/Browse/Explore --- Maven 存储库：搜索/浏览/探索 (mvnrepository.com)](https://mvnrepository.com/)
+
+
 
 [Maven 依赖范围_maven class 依赖_seasonsbin的博客-CSDN博客](https://blog.csdn.net/seasonsbin/article/details/79093647?spm=1001.2101.3001.6650.12&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=13)
 
@@ -637,7 +645,7 @@ sonar-maven-plugin：使用该插件执行sonar扫描。
 
 [聊聊maven与jdk版本对应关系_java_脚本之家 (jb51.net)](https://www.jb51.net/article/233325.htm)
 
-
+[Maven中配置maven-compiler-plugin 插件和jdk 17版本 - 楼兰胡杨 - 博客园 (cnblogs.com)](https://www.cnblogs.com/east7/p/13363069.html)
 
 #### spring boot maven plugin | 打包运行 springboot 应用
 

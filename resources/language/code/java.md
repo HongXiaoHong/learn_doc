@@ -9,6 +9,8 @@ todo
 
 jdk 17 https://docs.oracle.com/en/java/javase/17/
 
+java 17 api search https://docs.oracle.com/en/java/javase/17/docs/api/index.html
+
 javac 17 https://docs.oracle.com/en/java/javase/17/docs/specs/man/javac.html#option-source
 
 
