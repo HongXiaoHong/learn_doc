@@ -301,6 +301,18 @@ springboot 可以使用 java.version
 
 > 注意：仅设置该 `target` 选项并不能保证您的代码实际在具有指定版本的 JRE 上运行。陷阱是意外使用仅存在于更高版本的 JRE 中的 API，这将使您的代码在运行时失败并出现链接错误。为了避免此问题，您可以配置编译器的引导类路径以匹配目标 JRE，或者使用 Animal Sniffer Maven 插件来验证您的代码是否未使用意外的 API，或者更好地使用 JDK 9 以来支持 `release` 的选项。同样，设置该 `source` 选项并不能保证您的代码实际在具有指定版本的 JDK 上编译。要使用与用于启动 Maven 的版本不同的特定 JDK 版本编译代码，请参阅使用不同的 JDK 编译示例。
 
+因为上面这个问题
+
+网友也遇到了 配置的一个坑
+
+[maven maven.compiler.source和maven.compiler.target的坑_51CTO博客_maven-compiler-plugin](https://blog.51cto.com/zhjh256/3142351)
+
+也就是 IDE 配置了对应的 project jdk
+
+idea 貌似是配置 java compiler 就会使用 我们配置的, 而不是 pom.xml 文件中配置的
+
+
+
 我理解下
 
 
