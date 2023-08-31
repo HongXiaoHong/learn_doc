@@ -2,6 +2,10 @@
 
 ### 使用 vscode 开发java
 
+可参 [如何利用VScode打造一个媲美Idea的编辑器 | Gloduck (mxecy.cn)](https://mxecy.cn/post/vscode-java-setting/#%E5%AE%89%E8%A3%85JDK)
+
+
+
 #### 设置快捷键为 idea 常用快捷键
 
 [(242条消息) vs code快捷键修改为idea快捷键_讓丄帝愛伱的博客-CSDN博客](https://blog.csdn.net/ximaiyao1984/article/details/108950191)
@@ -257,6 +261,32 @@ create java project
 
 ### 第一个 springboot 项目
 
+
+
+CTRL SHIFT P
+
+创建 java 项目
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831220722.png)
+
+
+
+选择创建 springboot 项目
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831220752.png)
+
+然后选择 maven 输入 maven 坐标, 选择 springboot 版本, 选择需要的 jar 包
+
+
+
+F5 运行或者点击 run 运行
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831221040.png)
+
+
+
+
+
 ### html
 
 vscode设置html模板
@@ -287,19 +317,11 @@ https://blog.csdn.net/joyvonlee/article/details/98179913
 }
 ```
 
-
-
 ## 美化
-
-
 
 [Vscode配置之编辑器与界面美化 - 哔哩哔哩 (bilibili.com)](https://www.bilibili.com/read/cv7719837/)
 
-
-
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181352.png)
-
-
 
 ### **vscode修改左侧资源管理器字体大小**
 
@@ -317,13 +339,9 @@ https://blog.csdn.net/joyvonlee/article/details/98179913
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181718.png)
 
-
-
 调试找到对应的元素, 使用选择器
 
 改写对应的 css 样式就可以了
-
-
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181750.png)
 
