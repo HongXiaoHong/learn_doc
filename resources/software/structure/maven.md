@@ -8,8 +8,6 @@ mvnrepository:
 
 [Maven Repository: Search/Browse/Explore --- Maven 存储库：搜索/浏览/探索 (mvnrepository.com)](https://mvnrepository.com/)
 
-
-
 [Maven 依赖范围_maven class 依赖_seasonsbin的博客-CSDN博客](https://blog.csdn.net/seasonsbin/article/details/79093647?spm=1001.2101.3001.6650.12&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-12-79093647-blog-57428763.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=13)
 
 [高效使用Java构建工具｜Maven篇](https://mp.weixin.qq.com/s/Wvq7t2FC58jaCh4UFJ6GGQ)
@@ -19,6 +17,8 @@ mvnrepository:
 [157-POM深入-profile 详解-概述_ev_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV12q4y147e4?p=157&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 
 相关的笔记:
+
+[代码重工-maven](http://heavy_code_industry.gitee.io/code_heavy_industry/pro002-maven/)
 
 [Maven 3.1 (wolai.com)](https://www.wolai.com/arAiYJYCr6Kkfi2kZ8HxE8)
 
@@ -33,6 +33,10 @@ mvnrepository:
 [聊聊maven与jdk版本对应关系_java_脚本之家 (jb51.net)](https://www.jb51.net/article/233325.htm)
 
 ## 专有名词
+
+[maven pom.xml解析、命令说明、依赖传递、继承、聚合、properties、build、依赖范围、版本仲裁、profile_pom 依赖传递_わたしわ的博客-CSDN博客](https://blog.csdn.net/doubiy/article/details/124286491)
+
+
 
 ### 交叉编译
 
