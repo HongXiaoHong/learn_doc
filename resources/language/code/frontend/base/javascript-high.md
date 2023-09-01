@@ -321,6 +321,88 @@ observer.disconnect();
 
 ```
 
+### 拷贝
+
+- 浅拷贝
+
+- 深拷贝
+
+#### 浅拷贝
+
+使用解构再重新组合上就可以了
+
+...
+
+
+
+#### 深拷贝
+
+##### structuredClone | 深拷贝/转移
+
+[structuredClone() - Web API 接口参考 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/API/structuredClone#%E8%AF%AD%E6%B3%95)
+
+> 全局的 structuredClone() 方法使用结构化克隆算法将给定的值进行深拷贝。
+> 
+> 该方法还支持把原始值中的可转移对象转移到新对象，而不是把属性引用拷贝过去。 可转移对象与原始对象分离并附加到新对象;它们不可以在原始对象中访问被访问到。
+
+
+
+###### 拷贝
+
+[可转移对象](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Transferable_objects)
+
+```javascript
+const o = {
+    a: new Set([2, 3,3 ]),
+};
+undefined
+const oc = structuredClone(o);
+undefined
+oc
+{a: Set(2)}
+o.a == oc.a
+false
+oc.a.add
+ƒ add() { [native code] }
+oc.a.add(1)
+Set(3) {2, 3, 1}
+o.a
+Set(2) {2, 3}
+```
+
+
+
+###### 转移可转移对象
+
+笑容不会消失, 只是转移到我脸上了
+
+可转移对象? 黑人问号??? 啥来的
+
+我认为是 [可转移对象](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Transferable_objects) 是 一块内存空间 像管道一样只能被消费一次
+
+例如 Buffer/Stream 都是可转移对象
+
+
+
+对于可转移对象来说, 经过 structuredClone 之后
+
+原先对象不可用, 转到到克隆后的对象中了
+
+
+
+```javascript
+var uInt8Array = new Uint8Array(1024 * 1024 * 16); // 16MB
+for (var i = 0; i < uInt8Array.length; ++i) {
+  uInt8Array[i] = i;
+}
+
+const transferred = structuredClone(uInt8Array, {
+  transfer: [uInt8Array.buffer],
+});
+console.log(uInt8Array.byteLength); // 0
+transferred // Uint8Array(1024 * 1024 * 16)
+```
+
 ## 内存机制
 
 栈和堆:
