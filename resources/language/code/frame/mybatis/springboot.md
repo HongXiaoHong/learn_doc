@@ -20,3 +20,24 @@ spring 6 这个老六直接删除了 相关的类
     <version>3.0.2</version>
 </dependency>
 ```
+
+### mybatis 整合 sqlite
+#### 创建 sqlite
+- 创建 sqlite
+- 使用 idea/vscode 或者其他 SQL 客户端 连接到 sqlite
+- 插入数据
+- 使用 select * ... 进行验证
+
+#### 创建 springboot 工程
+spring 网站或者 idea 甚至 vscode 创建
+随你
+#### idea 准备
+安装 mybatis x
+
+#### 导包
+
+导入 sqlite 驱动
+导入 mybatis starter 记得要与 springboot 3 兼容, 如果你用的是 springboot 3 的话 记得使用 mybatis starter 3 +
+
+如何整合可参考:
+https://blog.csdn.net/chinoukin/article/details/106538925
