@@ -4,8 +4,6 @@
 
 可参 [如何利用VScode打造一个媲美Idea的编辑器 | Gloduck (mxecy.cn)](https://mxecy.cn/post/vscode-java-setting/#%E5%AE%89%E8%A3%85JDK)
 
-
-
 #### 设置快捷键为 idea 常用快捷键
 
 [(242条消息) vs code快捷键修改为idea快捷键_讓丄帝愛伱的博客-CSDN博客](https://blog.csdn.net/ximaiyao1984/article/details/108950191)
@@ -261,15 +259,11 @@ create java project
 
 ### 第一个 springboot 项目
 
-
-
 CTRL SHIFT P
 
 创建 java 项目
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831220722.png)
-
-
 
 选择创建 springboot 项目
 
@@ -277,15 +271,9 @@ CTRL SHIFT P
 
 然后选择 maven 输入 maven 坐标, 选择 springboot 版本, 选择需要的 jar 包
 
-
-
 F5 运行或者点击 run 运行
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831221040.png)
-
-
-
-
 
 ### html
 
@@ -352,3 +340,73 @@ https://blog.csdn.net/joyvonlee/article/details/98179913
 可以把整体页面放大
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230831181602.png)
+
+## 插件
+
+### sqltools | SQL 连接
+
+如果要连接 sqlite 需要安装 SQLtools sqlite 驱动
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230901174925.png)
+
+第一次使用 会要求你下载 sqlite 驱动 5.1.1 
+出现了 没有权限的情况
+我直接用管理员打开 cmd
+
+```bash
+C:\Windows\System32>cd C:\Users\hong\AppData\Local\vscode-sqltools\Data
+
+C:\Users\hong\AppData\Local\vscode-sqltools\Data>npm install sqlite3@5.1.1
+npm WARN deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+
+added 104 packages in 8s
+
+C:\Users\hong\AppData\Local\vscode-sqltools\Data>
+```
+
+网上还有一个方法 切换 shell 成cmd
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230901180125.png)
+https://vscode-sqltools.mteixeira.dev/en/drivers/sq-lite
+官网说了:
+为了在 Windows 上成功自动检测，我们建议将 VS Code 配置为用作 PowerShell 其默认终端外壳。如果设置为 Command Prompt 或 Windows PowerShell ，自动检测可能会失败。
+我想就是因为这个权限问题了
+
+连接使用
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230901180355.png)
+
+设置对应的 sqlite 文件
+
+```sql
+CREATE TABLE company(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (1, 'Paul', 32, 'California', 20000.00 );
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (2, 'Allen', 25, 'Texas', 15000.00 );
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (3, 'Teddy', 23, 'Norway', 20000.00 );
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (5, 'David', 27, 'Texas', 85000.00 );
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (6, 'Kim', 22, 'South-Hall', 45000.00 );
+
+
+SELECT * FROM  company;
+```
+
+选中 SELECT * FROM  company;
+快捷键使用 CTRL E CTRL E 就可以执行选中的内容了
