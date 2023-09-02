@@ -11,6 +11,7 @@
   * [pycharm](resources/software/pycharm.md)
   * [idea](resources/software/idea.md)
     * [idea插件](resources/software/idea-plug-in.md)
+    * [idea 调试](resources/software/idea/debug.md)
   * [nginx](resources/software/nginx.md)
   * [nginx案例](resources/software/nginx_examples.md)
   * [picgo](resources/software/picgo.md)
