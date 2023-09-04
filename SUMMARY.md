@@ -114,6 +114,7 @@
               * [druid](resources/language/code/frame/druid.md)
               * [mybatis](resources/language/code/frame/mybatis.md)
                 * [mybatis-springboot-整合](resources/language/code/frame/mybatis/springboot.md)
+                * [mybatis-springboot-整合-原理](resources/language/code/frame/mybatis/springboot/principle.md)
                 * [pagehelper](resources/language/code/frame/mybatis/pagehelper.md)
                 * [流式查询](resources/language/code/frame/mybatis/stream.md)
               * [mybatis-plus](resources/language/code/frame/mybatis-plus.md)
