@@ -44,18 +44,17 @@ postman 我习惯在本地用了
 
 当然 使用 smart-doc 结合 apifox 也不是不行 [Springboot项目使用smart-doc+Apifox 便捷生成管理接口文档_springboot apifox_Gangbb的博客-CSDN博客](https://blog.csdn.net/qq_37132495/article/details/122569906)
 
-
-
 smart-doc 与 swagger 对比使用:
 
 [真的别再用Swagger了，你知道为什么吗？-51CTO.COM](https://www.51cto.com/article/758581.html)
 
 文档涉及工具对比:
 
-
 [这些年我用过的API文档工具，个个是精品！-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1919600)
 
+## swagger 使用
 
+[ApiModel和ApiModelProperty_Swagger 入门教程-慕课网 (imooc.com)](https://m.imooc.com/wiki/swaggerlesson-apimodelproperty)
 
 参考:
 
