@@ -29,3 +29,35 @@ class ChangeToChildConstructorMethodAdapter extends MethodAdapter {
 }
 
 ```
+
+## 注解
+### @Inherit | 子类继承父类的注解
+限制: 子类的方法无法直接拿到 父类的 注解
+但是可以使用 spring 的工具类拿到 
+JAVA中的注解可以继承吗？
+https://developer.aliyun.com/article/1115828
+
+### 组合注解
+https://segmentfault.com/a/1190000021223108
+
+例如 spring 中的 Controller 注解 就跟 Component 一样
+只是换了个名字而已
+或者我可以理解为 java 中的注解可以进行 多继承
+
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Controller {
+
+	/**
+	 * The value may indicate a suggestion for a logical component name,
+	 * to be turned into a Spring bean in case of an autodetected component.
+	 * @return the suggested component name, if any (or empty String otherwise)
+	 */
+	@AliasFor(annotation = Component.class)
+	String value() default "";
+
+}
+```
