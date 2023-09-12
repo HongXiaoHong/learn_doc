@@ -3,6 +3,9 @@
 软件学习
 
 ## 软件推荐
+- 软件管理
+  - windows
+    - winget
 
 - 测试
   
@@ -79,6 +82,10 @@
 - 下载
   
   - 🤔迅雷
+  - you-get YouTube/哔哩哔哩
+    - 抖音暂时下载不了 之后不知道会不会更新
+  - yt-dlp YouTube/哔哩哔哩
+  - Spider_DouYin_Videos 抖音主页视频
 
 - emoji
   
