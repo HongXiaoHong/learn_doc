@@ -1,4 +1,6 @@
 # python
+官方网站:
+[Python 3.11.5 文档](https://docs.python.org/zh-cn/3/index.html)
 
 ## 变量
 
@@ -360,3 +362,40 @@ for path,dir_list,file_list in g:
         print(os.path.join(path, file_name) )
 ```
 ###### listdir | 遍历子目录
+
+### re | 正则
+#### sub | 替换
+[如何用python去除文件名中的特殊字符](https://baijiahao.baidu.com/s?id=1706038059743193009#:~:text=%23%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%20def%20fixname%20%28filename%29%3A%20intab%20%3D%20r%27%20%5B%3F%2A%2F%7C.%3A%3E%3C%5D%27,filename%20%3D%20re.sub%20%28intab%2C%20%22%22%2C%20filename%29%20%23%20%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8E%BB%E9%99%A4windows%E4%B8%8B%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%EF%BC%8C%E8%BF%99%E4%BA%9B%E5%AD%97%E7%AC%A6%E4%B8%8D%E8%83%BD%E7%94%A8%E5%9C%A8%E6%96%87%E4%BB%B6%E5%90%8D)
+
+Windows操作系统中，有些字符是不能用在文件名的，主要所有如下这几个：[?*/\|.:><]。
+
+因为这些字符系统有特殊的用途，有的用于重定向，有的用于管道符，有的用于路径，如果夹杂在文件名中，系统就没法正常处理，所以在程序中保存文件的时候，文件名不能包含上述字符。
+具体的去除思路：是在文件名中查找是否存在这些字符，如果存在就将该字符删除。最直接的方法是按特殊字符一个一个查找删除，而今天我们要介绍使用正则表达式的方法进行去除，可以减少很多代码量。
+
+代码如下：
+
+```python
+import re
+
+#去除文件名中的特殊字符
+def fixname(filename):
+intab = r'[?*/\|.:><]'
+filename = re.sub(intab, "", filename) # 用正则表达式去除windows下的特殊字符，这些字符不能用在文件名
+return filename
+
+title = r'?测*试>文件<名'
+title = fixname(headtitle)
+print(title)
+
+# 输出结果：测试文件名
+```
+
+代码说明：
+1、import re是导入正则表达式需要的库
+2、intab = r'[?*/\|.:><]'定义了待删除的字符列表，要用r''包含起来，这样就不用进行转义
+3、 re.sub(intab, "", filename) 第一个参数intab是待删除的字符列表，第二个参数""是个空字符串，
+用来替换第一个参数，第三个参数filename是待处理的文件名。
+
+应用场景：
+1、网页上获取的标题往往有特殊字符，因此需要进行过滤，否则会保存失败。
+2、从网页上获取的内容如果有特殊字符，也可以用这种方法去除。
