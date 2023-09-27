@@ -173,6 +173,11 @@ https://www.jianshu.com/p/5c23bdcf2a11
 同步任务/异步任务
 事件循环就是为了解决异步任务的问题
 
+### 事件循环
+#### 微任务
+[深入：微任务与 Javascript 运行时环境](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth)
+
+
 ### 异步
 
 Promise.all 就是为了解决 多个 promise 互相不依赖,
@@ -475,3 +480,150 @@ undefined
 参考
 
 [[译] 理解 JavaScript 中的执行上下文和执行栈 - 掘金 (juejin.cn)](https://juejin.cn/post/6844903682283143181#heading-3)
+
+## 渲染
+
+### clientWidth... 强制浏览器渲染
+
+[【前端面试】为什么获取 clientWidth 这类属性，浏览器会重排重绘](https://zhuanlan.zhihu.com/p/354962066)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 200px;
+            background:orange
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+
+    </div>
+    <script>
+        box.style.height='100px'
+        box.style.width=(box.clientHeight+100)+'px'
+    </script>
+</body>
+</html>
+```
+
+当遇到 clientWidth, clientHeight, OffsetWidth, OffsetHeight 这些属性的时候，浏览器的缓存渲染队列机制将不再生效，这是因为，clientWidth 是一个元素的实时宽度，必须重排重绘以后才能得到，如果不提前进行重排重绘，clientWidth 有可能拿到的是浏览器缓存队列没执行完的时候的值。
+
+## 客户端存储
+
+[客户端存储](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage#%E5%AD%98%E5%82%A8%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE_%E2%80%94_web_storage)
+
+### cookie
+
+### localstorage | 本地存储
+
+为了存储对象, 不过只能存储对象的属性, 不能存储对应的方法
+
+```javascript
+var arr = [{"name1":"a"},{"name2":"b"},{"name3":"c"}];//定义
+
+localStorage.setItem("search",JSON.stringify(arr));
+
+
+var arr1 = JSON.parse(localStorage.getItem("search"));
+
+localStorage.removeItem(“key”); //删除单一数据
+localStorage.clear(); //全部清除
+```
+
+### sessionstorage | session 会话存储
+
+### indexeddb | 存储复杂数据 甚至音频视频
+
+### Service Worker | 离线存储
+[使用 Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+
+## 页面通信
+
+[js 同源页面间通信 storage 和跨域页面间通信 postMessage](https://blog.csdn.net/document_dom/article/details/108475371)
+[面试官：你是如何实现浏览器多标签页之间通信的](https://juejin.cn/post/7087933110678978573#heading-3)
+根据跨域可以分为:
+- 同源页面间通信: 
+  - cookie + setInterval
+  - [storage 事件](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/storage_event)监听
+  - [BroadcastChannel](https://developer.mozilla.org/zh-CN/docs/Web/API/BroadcastChannel)
+- 跨域页面间通信:  
+  - postMessage
+
+甚至可以使用 服务器作为中介
+使用websocket
+
+SharedWorker
+### 同源
+#### BroadcastChannel | 广播渠道/事件发布订阅
+##### BroadcastChannel 基本使用
+[前端中的广播通信——BroadcastChannel](https://blog.csdn.net/weixin_44691513/article/details/114434589)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">点击</button>
+    <script>
+        let button=document.getElementById('button')
+        button.onclick=function(){
+            let cast = new BroadcastChannel('mychannel'); //创建一个名字是mychannel的对象。记住这个名字，下面会用到
+            myObj = { from: "children1", content: "add" };
+            cast.postMessage(myObj);
+        }
+       
+    </script>
+</body>
+</html>
+
+```
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cast1 = new BroadcastChannel('mychannel');//创建一个和刚才的名字一样的对象
+        cast1.onmessage = function (e) {
+            //e.data就是刚才的信息; 
+            console.log(e.data);
+        };
+    </script>
+</body>
+</html>
+
+```
+
+### 跨域
+跨域 且 我方持有页面 open 时或者拥有 iframe 对应的 window 对象
+我们可以直接使用 window 的 postMessage 进行通信
+
+如果我们没有持有 打开页面的 window, 我们可以借助中间页面的 localStorage 进行存储, 
+根据同源策略, 我们可以通过中间页面获取到对方发送的数据, 从而进行通信
+
+如果不是我们的页面, 我们也只能通过中间页面存放数据, 然后让对方页面点击重新获取数据, 
+或者轮询获取, 通过标志位进行标注是否已经获取, 也不是不行
+
+具体的操作可参:
+[实现本地跨域存储](https://segmentfault.com/a/1190000021539851)
