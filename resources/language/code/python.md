@@ -399,3 +399,34 @@ print(title)
 应用场景：
 1、网页上获取的标题往往有特殊字符，因此需要进行过滤，否则会保存失败。
 2、从网页上获取的内容如果有特殊字符，也可以用这种方法去除。
+
+## 数据类型
+### 字符串
+
+#### 替换
+replace方法（常用）
+translate方法
+re.sub方法
+字符串切片（根据Python字符串切片方法替换字符）
+
+https://zhuanlan.zhihu.com/p/622049429
+
+#### 查找
+
+find
+index
+rfind
+rindex
+
+
+https://blog.csdn.net/tan197/article/details/82708553
+
+#### 字符串模板
+https://blog.csdn.net/liyuanjinglyj/article/details/115482764
+
+```python
+print("My name is {}".format("liyuanjing"))#大括号匹配，按顺序依次填充
+print("My {1} is {0}".format("liyuanjing","name"))#数字匹配，按位置依次填充
+print("My {name} is {tom}".format(tom="liyuanjing",name="name"))#关键字匹配，按关键字填充
+
+```
