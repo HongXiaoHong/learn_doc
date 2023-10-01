@@ -157,3 +157,24 @@ public static String getNonBlankStr(String str) {
 
 "abc def aaa bbb".replaceAll("(\\w+)\\s+(\\w+)", "$2 $1");  // 结果是 def abc bbb aaa
 ```
+
+## 时间计算
+### 时间格式化
+可参: 
+
+[【Java 8 新特性】Java DateTimeFormatter 日期时间格式化器](https://blog.csdn.net/qq_31635851/article/details/120132776)
+DateTimeFormatter 中有一些内置的日期格式化器,
+
+| 方法 | 作用 |
+|format(TemporalAccessor temporal)|格式化|
+|parse(CharSequence text)|解析字符串获取日期对象|
+| ofPattern | 设置解析日期格式 |
+```java
+@Test
+    void contextLoads() {
+        System.out.println(DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.now()));
+        System.out.println(DateTimeFormatter.ofPattern("yyyy|MM|dd").parse("2023|09|30"));
+    }
+```
+
+日期格式可用字符串 可参见 DateTimeFormatter 注释
