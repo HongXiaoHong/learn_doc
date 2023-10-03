@@ -410,3 +410,47 @@ SELECT * FROM  company;
 
 选中 SELECT * FROM  company;
 快捷键使用 CTRL E CTRL E 就可以执行选中的内容了
+
+## windows 设置管理员权限执行命令
+
+### 错误
+```bash
+PS E:\github\demo\typescript> tsc -w
+tsc : 无法加载文件 D:\app\code\nodejs\tsc.ps1，因为在此系统上禁止运行脚本。有关详细信息， 请参阅 https:/go.microsoft.com/fw
+link/?LinkID=135170 中的 about_Execution_Policies。
+所在位置 行:1 字符: 1
++ tsc -w
++ ~~~
+    + CategoryInfo          : SecurityError: (:) []，PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+PS E:\github\demo\typescript> tsc -w
+tsc : 无法加载文件 D:\app\code\nodejs\tsc.ps1，因为在此系统上禁止运行脚本。有关详细信息，
+请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
+所在位置 行:1 字符: 1
++ tsc -w
++ ~~~
+    + CategoryInfo          : SecurityError: (:) []，PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+```
+
+初步看来是终端没有管理员权限
+
+设置管理员权限启动 vscode
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20231003101954.png)
+
+依旧么有效果
+
+参照
+[解决VSCODE"因为在此系统上禁止运行脚本"报错](https://blog.csdn.net/larpland/article/details/101349586#:~:text=%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8Cvscode%3B%202.%20%E6%89%A7%E8%A1%8C%EF%BC%9Aget-ExecutionPolicy%EF%BC%8C%E6%98%BE%E7%A4%BARestricted%EF%BC%8C%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%80%81%E6%98%AF%E7%A6%81%E6%AD%A2%E7%9A%84%3B%203.,%E6%89%A7%E8%A1%8C%EF%BC%9Aset-ExecutionPolicy%20RemoteSigned%3B%204.%20%E8%BF%99%E6%97%B6%E5%86%8D%E6%89%A7%E8%A1%8Cget-ExecutionPolicy%EF%BC%8C%E5%B0%B1%E6%98%BE%E7%A4%BARemoteSigned%3B%20%E4%B9%8B%E5%90%8E%E5%B0%B1%E4%B8%8D%E5%86%8D%E6%9C%89%E9%97%AE%E9%A2%98%E3%80%82)
+
+设置 set-ExecutionPolicy RemoteSigned; 完事
+
+
+```bash
+PS E:\github\demo\typescript> get-ExecutionPolicy
+Restricted
+PS E:\github\demo\typescript> set-ExecutionPolicy RemoteSigned;
+PS E:\github\demo\typescript> get-ExecutionPolicy
+RemoteSigned
+```
