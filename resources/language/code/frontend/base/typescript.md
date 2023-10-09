@@ -225,3 +225,24 @@ const testFn: string = fn(123)
 log("类型检查 testFn 没问题" + testFn)
 
 ```
+
+## 奇怪的用法
+
+T[number]
+[typescript T[number]的出处](https://blog.csdn.net/qq_34629352/article/details/130034202)
+type Colors = ["white", "red", "black", "purple"]
+首先，由于Colors是一个元组类型，interface因此认为与下相同
+
+interface Colors {
+  length: 4;
+  0: "white";
+  1: "red";
+  2: "black";
+  3: "purple";
+}
+Colors包含一个数字索引签名，所以他可以被索引成1/2/3、number
+type ColorsUnion = Colors[number] //　"white" | "red" | "black" | "purple"
+我么使用Colors[number]可以得到每一个返回值
+同样
+我们使用length也可以取出元素的数量
+type ColorsLength = Colors["length"] // 4
