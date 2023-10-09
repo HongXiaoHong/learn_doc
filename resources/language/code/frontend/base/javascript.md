@@ -54,3 +54,22 @@ https://www.bilibili.com/video/BV1m7411L7YW/?spm_id_from=333.337.search-card.all
 ##### 事件捕获
 ##### 事件冒泡
 
+## 操作 dom
+
+### 案例
+#### JS添加iframe标签
+
+```javascript
+const div = document.createElement("div");
+        div.innerHTML = '<iframe id="idFrame" name="idFrame" src="https://www.baidu.com" height = "100" width = "100"  style = "visibility:hidden" ></iframe>';
+        document.body.appendChild(div)
+```
+#### 获取 iframe 的 window 跟 document 对象
+
+```javascript
+
+document.getElementById('kaimoIframe').contentWindow
+
+
+document.getElementById('kaimoIframe').contentDocument
+```

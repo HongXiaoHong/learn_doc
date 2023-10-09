@@ -255,3 +255,15 @@ try {
 ```
 
 这就是在 ES6 中处理异常的一些基本示例。请注意，`catch` 语句块只会捕获 `try` 语句块中抛出的异常。
+
+## 箭头/lambda 函数
+[JavaScript 箭头函数（Lambda表达式）](https://blog.csdn.net/cuit/article/details/53200335)
+```javascript
+// Arrow function:
+[5, 8, 9].map(item => item + 1); // -> [6, 9, 10]
+
+// Classic function equivalent:
+[5, 8, 9].map(function(item) {
+  return item + 1;
+}); // -> [6, 9, 10]
+```

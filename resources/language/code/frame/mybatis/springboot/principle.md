@@ -101,7 +101,75 @@ Set<Resource> result = new LinkedHashSet<>();
 
 PS: Files.walk 深度优先遍历 或者说递归遍历返回一个流对象
 
+注册 BeanDefinitionRegistry 处理器
+调用 BeanDefinitionRegistry 处理器
+注册 Beandefinition
 
+### 注册 BeanDefinitionRegistry 处理器
+
+BeanDefinitionRegistryPostProcessor
+
+### 调用 BeanDefinitionRegistry 处理器
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230905001741.png)
+
+是 BeanDefinitionRegistryPostProcessor
+
+调用 postProcessBeanDefinitionRegistry
+
+```java
+scanner.scan(
+        StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
+
+
+```
+扫描注册 Beandefinition
+
+
+
+#### 注册 Beandefinition
+```java
+
+lambda$registerFilters$0:214, ClassPathMapperScanner (org.mybatis.spring.mapper)
+match:-1, ClassPathMapperScanner$$Lambda$441/0x0000000800e63d50 (org.mybatis.spring.mapper)
+isCandidateComponent:500, ClassPathScanningCandidateComponentProvider (org.springframework.context.annotation)
+scanCandidateComponents:436, ClassPathScanningCandidateComponentProvider (org.springframework.context.annotation)
+findCandidateComponents:317, ClassPathScanningCandidateComponentProvider (org.springframework.context.annotation)
+doScan:276, ClassPathBeanDefinitionScanner (org.springframework.context.annotation)
+doScan:230, ClassPathMapperScanner (org.mybatis.spring.mapper)
+scan:254, ClassPathBeanDefinitionScanner (org.springframework.context.annotation)
+postProcessBeanDefinitionRegistry:381, MapperScannerConfigurer (org.mybatis.spring.mapper)
+invokeBeanDefinitionRegistryPostProcessors:344, PostProcessorRegistrationDelegate (org.springframework.context.support)
+invokeBeanFactoryPostProcessors:145, PostProcessorRegistrationDelegate (org.springframework.context.support)
+invokeBeanFactoryPostProcessors:771, AbstractApplicationContext (org.springframework.context.support)
+refresh:589, AbstractApplicationContext (org.springframework.context.support)
+refresh:734, SpringApplication (org.springframework.boot)
+refreshContext:436, SpringApplication (org.springframework.boot)
+run:312, SpringApplication (org.springframework.boot)
+run:1306, SpringApplication (org.springframework.boot)
+run:1295, SpringApplication (org.springframework.boot)
+main:13, MybatisApplication (me.yi.hong.mybatis)
+invoke0:-1, NativeMethodAccessorImpl (jdk.internal.reflect)
+invoke:77, NativeMethodAccessorImpl (jdk.internal.reflect)
+invoke:43, DelegatingMethodAccessorImpl (jdk.internal.reflect)
+invoke:568, Method (java.lang.reflect)
+run:50, RestartLauncher (org.springframework.boot.devtools.restart)
+
+```
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/20230904235842.png)
+
+通过 
+```java
+    if (acceptAllInterfaces) {
+      // default include filter that accepts all classes
+      addIncludeFilter((metadataReader, metadataReaderFactory) -> true);
+    }
+
+    // exclude package-info.java
+    addExcludeFilter((metadataReader, metadataReaderFactory) -> {
+      String className = metadataReader.getClassMetadata().getClassName();
+      return className.endsWith("package-info");
+    });
+```
 
 
 

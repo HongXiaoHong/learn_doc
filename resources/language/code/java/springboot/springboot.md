@@ -11,6 +11,59 @@ springboot 3 以及 jdk17 等待学习
 
 [这可能是最全的SpringBoot3新版本变化了！ - 艾小仙 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ilovejaney/p/16931780.html#springboottest%E4%BC%98%E5%8C%96%E5%8D%87%E7%BA%A7)
 
+## 新建一个 springboot 项目
+
+通常我们都是直接在 [spring.io](https://start.spring.io/) 那个官网进行创建
+会帮我们依赖一个 
+
+```xml
+<parent>springboot...</parent>
+```
+
+但是这个时候我们项目已经有一个 parent 的父项目了
+
+
+
+那么我们可以通过
+[Spring Boot 不使用默认的 parent，改用自己的项目的 parent](https://blog.csdn.net/rainbow702/article/details/55046298)
+使用
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>1.5.1.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+### 打包运行
+
+[创建一个可运行 jar](https://jack80342.gitbook.io/spring-boot/ii.-getting-started/11.-developing-your-first-spring-boot-application/11.5.-creating-an-executable-jar)
+
+引入 插件
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+
+运行 
+> mvn package
+
+进行打包
+
+
 ## yml
 
 使用 ${} 可以引用 环境变量 或者定义在 yaml 中的数据

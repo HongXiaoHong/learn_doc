@@ -631,3 +631,79 @@ java 中无法在静态方法中使用 this
         return this.staticValue;
                ^
 1 error
+
+
+## 正则替换
+
+### python
+
+```python
+
+import re
+
+#去除文件名中的特殊字符
+def fixname(filename):
+intab = r'[?*/\|.:><]'
+filename = re.sub(intab, "", filename) # 用正则表达式去除windows下的特殊字符，这些字符不能用在文件名
+return filename
+
+title = r'?测*试>文件<名'
+title = fixname(headtitle)
+print(title)
+
+# 输出结果：测试文件名
+```
+
+### javascript
+javascript - 正则表达式从 Windows 的文件名中删除特殊字符
+```javascript
+string.replace( /[<>:"\/\\|?*]+/g, '' );
+```
+[js正则替换replace中$1的用法以及常用正则](https://blog.csdn.net/u014357799/article/details/107515934)
+```javascript
+把字符串中所有单词的首字母都转换为大写：
+
+var str = 'aaa bbb ccc';
+
+uw=str.replace(/\b\w+\b/g, function(word){
+
+  return word.substring(0,1).toUpperCase()+word.substring(1);}
+
+  );
+
+说明：匹配一次就执行一次函数，匹配的内容作为参数
+
+ 
+
+//把数字转成对应的汉子
+
+var ary=["一","二","三","四","五","六"]
+
+"123456".replace(/\d/g,function(val){
+
+  return ary[val-1]
+
+})
+```
+
+甚至可以实现 模板字符串
+
+```javascript
+var obj = {
+
+    name:'leaf',
+
+    age:20
+
+}
+
+var str = "我是{{name}}，name是我的名字，我今年{{age}}岁";
+
+//最终替换成"我是leaf，name是我的名字，我今年20岁"
+
+function render(template, context) {
+
+  return template.replace(/\{\{(.*?)\}\}/g, (match, key) => context[key.trim()]);
+
+}
+```

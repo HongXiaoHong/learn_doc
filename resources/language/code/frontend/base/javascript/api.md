@@ -177,3 +177,49 @@ String.fromCodePoint(Number.parseInt("1F600", 16)) // 😀
 (1000).toString(36)//"rs" 转36进制
 
 ```
+
+## 监听器
+### MutationObserver | 监听 dom 树修改
+
+> MutationObserver 接口提供了监视对 DOM 树所做更改的能力。它被设计为旧的 Mutation Events 功能的替代品，该功能是 DOM3 Events 规范的一部分。
+
+可以用来追踪 页面中 dom 节点属性/子节点修改(增加节点/删除节点)
+
+```javascript
+// 选择需要观察变动的节点
+const targetNode = document.getElementById("some-id");
+
+// 观察器的配置（需要观察什么变动）
+const config = { attributes: true, childList: true, subtree: true };
+
+// 当观察到变动时执行的回调函数
+const callback = function (mutationsList, observer) {
+  // Use traditional 'for loops' for IE 11
+  for (let mutation of mutationsList) {
+    if (mutation.type === "childList") {
+      console.log("A child node has been added or removed.");
+    } else if (mutation.type === "attributes") {
+      console.log("The " + mutation.attributeName + " attribute was modified.");
+    }
+  }
+};
+
+// 创建一个观察器实例并传入回调函数
+const observer = new MutationObserver(callback);
+
+// 以上述配置开始观察目标节点
+observer.observe(targetNode, config);
+
+// 之后，可停止观察
+observer.disconnect();
+
+```
+
+参:
+[javascript 监听DOM内容改变事件](https://blog.csdn.net/u013350495/article/details/90755115)
+[MutationObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver#%E7%A4%BA%E4%BE%8B)
+
+## worker
+- [Web Workers](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers#%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B%E7%9A%84_worker)
+- ServiceWorkers 基本上是作为代理服务器，位于 web 应用程序、浏览器和网络（如果可用）之间。它们的目的是（除开其他方面）创建有效的离线体验，拦截网络请求，以及根据网络是否可用采取合适的行动并更新驻留在服务器上的资源。它们还将允许访问推送通知和后台同步 API。
+- Audio Worklet 提供了在 worklet（轻量级的 web worker）上下文中直接完成脚本化音频处理的可能性。
