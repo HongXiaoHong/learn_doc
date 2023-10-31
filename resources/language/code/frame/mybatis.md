@@ -2,6 +2,10 @@
 
 [(18条消息) 狂神说Java Mybatis笔记_每天进步一點點的博客-CSDN博客](https://blog.csdn.net/DDDDeng_/article/details/106927021)
 
+
+[Mybatis教程目录](http://heavy_code_industry.gitee.io/code_heavy_industry/pro003-Mybatis/lecture/)
+
+
 [SpringBoot整合Mybatis完整详细版_springboot mybatis_海岛拾贝的博客-CSDN博客](https://blog.csdn.net/iku5200/article/details/82856621?spm=1001.2101.3001.6650.11&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-11-82856621-blog-79088577.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-11-82856621-blog-79088577.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=12)
 
 mybatis 运行原理  核心类?

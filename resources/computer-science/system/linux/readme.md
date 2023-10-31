@@ -5,6 +5,19 @@ todo
 - [ ] [理解Linux的进程，线程，PID，LWP，TID，TGID - wipan - 博客园](https://www.cnblogs.com/wipan/p/9488318.html)
 - [ ] [strace 简明教程 - voidint - 个人博客](https://voidint.github.io/post/tool/strace/) 
   - [ ] strace 是 Linux 系统下的一个用于诊断、调试和指导用户空间的实用程序。它用于监视和篡改进程与 Linux 内核之间的交互，包括系统调用、信号传递和进程状态的更改
+- [ ] [程序员Linux学习指南-方法、路径图、资料都备齐了_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1n54y157Dz/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+## 学习
+
+[看完这篇Linux基本的操作就会了 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/36801617#:~:text=%E4%BA%8C%E3%80%81Linux%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%201%20linux%E5%86%85%E6%A0%B8%20%EF%BC%88linus%20%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%EF%BC%89%202%20shell%20%EF%BC%9A%E7%94%A8%E6%88%B7%E4%B8%8E%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%9A%84%E6%8E%A5%E5%8F%A3,%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%20%EF%BC%9Aext3%E3%80%81ext4%E7%AD%89%E3%80%82%20windows%20%E6%9C%89%20fat32%20%E3%80%81ntfs%204%20%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6)
+
+具体操作还得看
+
+[3天搞定Linux，1天搞定Shell，清华学神带你通关](https://www.bilibili.com/video/BV1WY4y1H7d3/?p=1)
+
+## shell
+
+[Scripts(脚本语言)、Shell、Sh、Bash之间的关系 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/268407319)
 
 ## 挂载硬盘
 
@@ -14,7 +27,9 @@ todo
 
 [如何给Linux挂载数据盘_有数据的硬盘挂载到linux_ShuSheng007的博客-CSDN博客](https://blog.csdn.net/ShuSheng0007/article/details/116904428)
 
-## 容器相关
+## 内核
+
+### cgroup 和 namespace | 命名空间/隔离各种资源/分配各种资源/容器相关
 
 目前我们所提到的容器技术、虚拟化技术（不论何种抽象层次下的虚拟化技术）都能做到资源层面上的隔离和限制。
 
@@ -23,6 +38,8 @@ todo
 - cgroup 的主要作用：管理资源的分配、限制；
 - namespace 的主要作用：封装抽象，限制，隔离，使命名空间内的进程看起来拥有他们自己的全局资源；
 
+[Linux 环境隔离机制 -- Linux Namespace - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/47571649)
+
 [linux - 彻底搞懂容器技术的基石： namespace （下） - K8S生态 - SegmentFault 思否](https://segmentfault.com/a/1190000041114149)
 
 [Linux Namespace : 简介 - sparkdev - 博客园](https://www.cnblogs.com/sparkdev/p/9365405.html)
@@ -30,6 +47,12 @@ todo
 [Linux Namespace机制简介 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2129136)
 
 [Linux资源管理之cgroups简介 - 美团技术团队](https://tech.meituan.com/2015/03/31/cgroups.html)
+
+
+
+[kubernetes里的linux技术第1讲：linux namespace原理_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1qF411e77r/?spm_id_from=333.788&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+介绍了 namespace 如何跟 docker 联系到一起
 
 ## sudo | 短暂提升用户权限为超级用户
 
@@ -266,6 +289,16 @@ b) 未打开大写键盘的情况下，Shift+M键
 
 ### 文件
 
+#### 链接
+
+[『面试问答』：硬链接和软链接有什么区别？_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1gp4y1w7b7/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+[浅谈linux中的硬链接和软链接文件以及ln的使用方法_ubuntu 硬链接 文件共享 文件分类-CSDN博客](https://blog.csdn.net/LEON1741/article/details/100136449)
+
+硬链接 指向 同一个 索引节点
+
+软连接拥有自己的 索引节点, 而且-rf 会删除对应的文件
+
 #### touch | 创建一个没有任何内容的文件
 
 [Linux 中的 touch 命令示例 - GeeksforGeeks](https://www.geeksforgeeks.org/touch-command-in-linux-with-examples/)
@@ -400,3 +433,23 @@ none             1544044     156     1543888    1%     /run/shm
 第一列指定文件系统的名称，第二列指定一个特定的文件系统1K-块1K是1024字节为单位的总内存。用和可用列正在使用中，分别指定的内存量。
 
 使用列指定使用的内存的百分比，而最后一栏"安装在"指定的文件系统的挂载点
+
+### 软件安装
+
+[包管理apt和yum_apt install_Generalzy的博客-CSDN博客](https://blog.csdn.net/General_zy/article/details/124506399?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-124506399-blog-79634351.235^v38^pc_relevant_anti_vip&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
+
+yum和apt-get用法及区别
+一般来说著名的linux系统基本上分两大类：
+RedHat系列：Redhat、Centos、Fedora等
+
+Debian系列：Debian、Ubuntu等
+
+RedHat系列
+1 常见的安装包格式 rpm包,安装rpm包的命令是“rpm -参数”
+2 包管理工具 yum
+3 支持tar包
+
+Debian系列
+1 常见的安装包格式 deb包,安装deb包的命令是“dpkg -参数”
+2 包管理工具 apt-get
+3 支持tar包

@@ -1,10 +1,44 @@
 # redis 的分布式锁
 
+## setnx 超时实现简单的 分布式锁
+
+[【精选】redis分布式锁(一）set NX实现_心心念念的小鼠标的博客-CSDN博客](https://blog.csdn.net/huo065000/article/details/119970629)
+
+或者直接使用 setnx 加上 ex 也行
+
+```bash
+#给lock设置了过期时间为60000毫秒(也可以用ex 6000,单位就变成了秒)，当用NX再次赋值，则返回nil,不能重入操作
+127.0.0.1:6379> set lock true NX px 60000
+OK
+127.0.0.1:6379> set lock true NX px 6000
+(nil)
+127.0.0.1:6379> get lock
+"true"
+127.0.0.1:6379> ttl lock
+(integer) 43
+#时间过期后再次get,返回nil,表明key 为 lock的锁已经释放
+127.0.0.1:6379> get lock
+(nil)
+
+```
+
+但是仅仅加上超时还是有点问题
+
+
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/msedge_nn6V8Q3FvR.png)
+
+可能会因为业务时间过长, 导致自己的锁被释放了, 
+
+这个时间应该在代码中判断是否是最初设置到 redis 中的值, 则不进行删除
+
+这里存在的问题是, 不能很好的根据业务的时间对锁进行延时,
+
+当然我们可以通过 lua 脚本编写一个监听的任务, 看是否需要进行延时
+
 ## redssion 单节点 分布式可重入锁实现
 
 [分布式锁之Redis实现 - 简书 (jianshu.com)](https://www.jianshu.com/p/47fd7f86c848)
-
-
 
 ## redssion 多节点 分布式可重入锁实现
 

@@ -1,5 +1,9 @@
 # elasticsearch
 
+开源的全文检索搜索引擎
+基于 Lucene 开发的一套搜索引擎
+另外一款基于 Lucene 开发的叫做 solr
+
 ## todo
 
 
@@ -9,6 +13,10 @@
 - [x] [[译] Elasticsearch 新手指南 - 掘金 (juejin.cn)](https://juejin.cn/post/6913725535717851144)
 
 - [ ] [【尚硅谷】ElasticSearch教程入门到精通（基于ELK技术栈elasticsearch 7.x+8.x新特性）](https://www.bilibili.com/video/BV1hh411D7sb?p=1&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+  - [x] 7.X 的基本都看了, 大概的引入作用倒是了解了, 就是执行的流程还是不甚了解
+
+## 官方文档
+[elasticsearch](https://github.com/elastic/elasticsearch)
 
 
 
@@ -192,3 +200,12 @@ Nested&Join父子文选型必须考虑性能问题。 nested 类型检索使得�
 [(21条消息) Elasticsearch使用Logstash同步Mysql数据库数据_logstash 达梦数据库_懂的越多不懂的也越多的博客-CSDN博客](https://blog.csdn.net/weixin_44167913/article/details/101194648)
 
 [(21条消息) Elasticsearch使用Logstash导入Mysql多数据源数据_懂的越多不懂的也越多的博客-CSDN博客](https://blog.csdn.net/weixin_44167913/article/details/101200831?spm=1001.2101.3001.6650.11&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-101200831-blog-103702846.235%5Ev36%5Epc_relevant_default_base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-101200831-blog-103702846.235%5Ev36%5Epc_relevant_default_base&utm_relevant_index=12)
+
+[mysql数据同步到ES](https://www.bilibili.com/video/BV1w24y1G72j/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+原理就是监听 binlog 日志
+cancal/mq/轮询数据库
+
+## 参考
+
+[Elasticsearch的数据备份与恢复](https://blog.csdn.net/chj_1224365967/article/details/121037763#:~:text=Elasticsearch,%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%98%AF%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%98%AFES%E4%BC%9A%E5%AE%9A%E6%97%B6%E5%9C%B0%E6%8A%8A%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E5%88%B7%E6%96%B0%E5%88%B0%E7%A1%AC%E7%9B%98%EF%BC%8C%E4%BB%8E%E8%80%8C%E8%BE%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E5%9C%B0%E6%95%88%E6%9E%9C%E3%80%82)
+[【IT老齐268】ElasticSearch与MySQL如何搭配，很多人都弄错了](https://www.bilibili.com/video/BV1H84y1e7AF/?spm_id_from=333.788.recommend_more_video.4&vd_source=eabc2c22ae7849c2c4f31815da49f209)

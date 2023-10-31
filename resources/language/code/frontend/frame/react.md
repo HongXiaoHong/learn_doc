@@ -50,3 +50,59 @@ JSX 元素使用该 `style` 属性，但由于 JSX 的转译方式，您无法
 ```jsx
 
 ```
+
+
+## hook | React 钩子
+[轻松学会 React 钩子：以 useEffect() 为例](https://www.ruanyifeng.com/blog/2020/09/react-hooks-useeffect-tutorial.html)
+
+钩子到底是什么？
+
+一句话，钩子（hook）就是 React 函数组件的副效应解决方案，用来为函数组件引入副效应。 函数组件的主体只应该用来返回组件的 HTML 代码，所有的其他操作（副效应）都必须通过钩子引入。
+
+由于副效应非常多，所以钩子有许多种。React 为许多常见的操作（副效应），都提供了专用的钩子。
+
+useState()：保存状态
+useContext()：保存上下文
+useRef()：保存引用
+......
+上面这些钩子，都是引入某种特定的副效应，而 useEffect()是通用的副效应钩子 。找不到对应的钩子时，就可以用它。其实，从名字也可以看出来，它跟副效应（side effect）直接相关。
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [data, setData] = useState({ hits: [] });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://hn.algolia.com/api/v1/search?query=redux',
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <ul>
+      {data.hits.map(item => (
+        <li key={item.objectID}>
+          <a href={item.url}>{item.title}</a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default App;
+```
+
+### 四个最常用的钩子
+useState()
+useContext()
+useReducer()
+useEffect()
+[React Hooks 入门教程](https://www.ruanyifeng.com/blog/2019/09/react-hooks.html)

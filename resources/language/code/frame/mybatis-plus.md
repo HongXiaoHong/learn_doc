@@ -125,3 +125,10 @@ java.lang.NoSuchMethodError: com.baomidou.mybatisplus.core.toolkit.StringUtils.i
 #### 没有引入 模板引擎
 
 java.lang.NoClassDefFoundError: freemarker/template/Configuration
+
+## 通过version字段实现乐观锁
+
+[MyBatisPlus实战教程39-MyBatis-Plus乐观锁-实现](https://www.bilibili.com/video/BV1dB4y1D7Ec/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+通过 @version 加到 对应 bean 的字段
+然后加上一个拦截器

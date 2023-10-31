@@ -92,6 +92,20 @@ select _column,_column from _table [where Clause] [limit N][offset M]
 
 select * from _table limit (page_number-1)*lines_perpage, lines_perpage
 
+#### group | 分组
+
+##### 聚合函数
+
+###### group_concat | 分组连接字符串
+
+group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator '分隔符'])
+
+[group_concat函数详解-CSDN博客](https://blog.csdn.net/ys410900345/article/details/44828571)
+
+```sql
+select id,group_concat(distinct name) from aa group by id;
+```
+
 ## 底层原理
 
 <img title="" src="https://raw.githubusercontent.com/HongXiaoHong/images/main/db/msedge_NnNEV3xlLM.png" alt="" width="642" data-align="right">
@@ -116,11 +130,32 @@ MySQL缓存是默认关闭的，也就是说不推荐使用缓存，并且在MyS
 
 **5）执行器：**根据一系列的执行计划去调用存储引擎提供的API接口去调用操作数据，完成SQL的执行
 
-https://www.bilibili.com/list/watchlater?bvid=BV1iv4y1S7nj&oid=562551647  号称 B 站最完整的查询过程
+[史上最完整的MySql运行原理_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1iv4y1S7nj/?spm_id_from=333.788&vd_source=eabc2c22ae7849c2c4f31815da49f209)  号称 B 站最完整的查询过程
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/db/msedge_Ow6vbAm9dw.png)
 
+## SQL编程思想
+[SQL编程思想](https://space.bilibili.com/473901592/channel/collectiondetail?sid=58693)
+
+
+
 ## sql 优化
+
+Explain 教程
+[【入站必刷】2023全网最详细的MySQL Explain使用教程！！](https://www.bilibili.com/video/BV1Xs4y1w7vB?p=9&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+执行 explain 查看执行计划了 之后
+主要还是注意 type/extra/possible key/key
+这几个字段
+type: 使用的索引类型
+extra: 执行索引的额外信息
+possible key: 可能使用的索引
+key: 实际使用的索引
+
+extra 常见
+using index: 覆盖索引
+using where: 索引但需要<mark>回表</mark>查询字段
+using index condition: 回表且条件中带有范围查找
 
 [搞懂这些SQL优化技巧，面试横着走-51CTO.COM](https://www.51cto.com/article/623584.html)
 
@@ -175,7 +210,7 @@ SELECT * FROM t WHERE LOC_ID = 10 OR LOC_ID = 20 OR LOC_ID = 30;
 
 SELECT * FROM t WHERE LOC_IN IN (10,20,30);
 
-##### 4.LIKE双百分号无法使用到索引
+4.LIKE双百分号无法使用到索引
 
 SELECT * FROM t WHERE name LIKE '%de%';
 应优化为右模糊
@@ -196,6 +231,13 @@ SELECT * FROM t WHERE name LIKE 'de%';
   
   - [模糊查询下（like）如何使用覆盖索引优化_模糊查询覆盖索引的方法_布道的博客-CSDN博客](https://blog.csdn.net/alex_xfboy/article/details/82789942)
 
+或者是使用 [使用全文索引时，您可以使用MySQL中的LIKE操作符执行文本搜索](https://juejin.cn/s/mysql%20%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95%20like)
+
+建立全文索引
+CREATE FULLTEXT INDEX index_name ON table_name(column_name);
+全文索引需要特定的语法
+SELECT * FROM table_name WHERE MATCH(column_name) AGAINST('search_string');
+
 5.增加LIMIT M,N 限制读取的条数
 6.避免数据类型不一致
 SELECT * FROM t WHERE id = '19';
@@ -208,6 +250,20 @@ SELECT goods_id,count(*) FROM t GROUP BY goods_id;
 
 SELECT goods_id,count(*) FROM t GROUP BY goods_id ORDER BY NULL;
 8.去除不必要的ORDER BY语句
+
+##### 索引失效原因分析
+[记住七个字搞定索引失效问题](https://www.bilibili.com/video/BV11U4y1M7J8/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+索引失效情况
+模：模糊查询LIKE以%开头
+型：数据类型错误
+数：对索引字段使用内部函数
+空：索引列是NULL
+运：索引列进行四则运算
+最：复合索引不按索引列最左开始查找
+快：全表查找预计比索引更快
+
+like后面%开头、使用<>号，判断is not null这三种会使索引失效，是因为优化器觉得用了索引，完了还要回表，回表又是随机IO，划不来所以没用索引。但它们是有特例的，当覆盖索引的情况下这三种索引并不会失效的，要查的结果直接在索引树上就可以找到，就会使用索引。其实用不用索引，用哪个索引都是优化器说了算了，我们只是提供查询方案而已。
 
 ### 查找MySQL中查询慢的SQL语句
 
@@ -272,6 +328,22 @@ order by country,year,product,profit;
 每一行都会有一个记录
 
 ![](https://raw.githubusercontent.com/HongXiaoHong/images/main/db/msedge_OnIy3Ahs2s.png)
+
+#### 分组连接字符串暂时不支持 分析函数
+
+```mysql
+select version();
+select name, GROUP_CONCAT(id) over(PARTITION by name ) as ids  from user
+```
+
+```log
+8.0.16
+
+select name, GROUP_CONCAT(id) over(PARTITION by name ) as ids  from user
+> 1235 - This version of MySQL doesn't yet support 'group_concat as window function'
+> 时间: 0s
+
+```
 
 #### 语法
 
@@ -359,8 +431,6 @@ select a from t where id = 1 for update;
 ```ini
 update t set a = a + 1;
 ```
-
-
 
 ## 高效插入数据
 

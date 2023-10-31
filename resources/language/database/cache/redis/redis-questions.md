@@ -799,6 +799,8 @@ Redis缓存可能会出现以下问题：
 
 - 缓存击穿：指请求的数据在数据库中存在但是缓存中过期了，导致请求落到数据库上，增加数据库的负担。可以采用加锁或者设置短期过期时间的方式解决。
 
+[Redis中什么是热点Key问题？如何解决热点Key问题？](https://www.bilibili.com/video/BV1ya411s7ej/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
 - 缓存雪崩：指缓存中的数据大面积过期或者缓存服务挂掉，导致请求落到数据库上，增加数据库的负担。可以采用加锁、设置随机过期时间、使用多级缓存等方式解决。
 
 - 缓存不一致：指缓存中的数据和数据库中的数据不一致，导致业务逻辑出错。可以采用缓存更新的方式解决。
@@ -873,3 +875,29 @@ Redis 6.0版本中引入了多线程支持，可以显著提高Redis的性能。
 - Redis 6.0中的多线程架构还支持在多个Redis实例之间共享数据，从而实现水平扩展和高可用性。
 
 总之，Redis 6.0的多线程支持使得Redis可以更好地利用多核CPU，并提高了Redis的性能和扩展
+
+### 问题
+#### [报错总结：(error) WRONGTYPE Operation against a key holding the wrong kind of value](https://blog.csdn.net/weixin_42458708/article/details/101155569)
+
+因为类型不一致的关系, 会出现这个错误
+不同数据类型有不同的数据结构
+
+
+### redis几种java客户端比较
+https://cloud.tencent.com/developer/article/1500854
+https://www.bilibili.com/video/BV1iM4y197Da/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209
+Jedis是Redis的Java实现的客户端，其API提供了比较全面的Redis命令的支持；
+Jedis中的方法调用是比较底层的暴露的Redis的API，也即Jedis中的Java方法基本和Redis的API保持着一致，了解Redis的API，也就能熟练的使用Jedis。
+Redisson实现了分布式和可扩展的Java数据结构，提供很多分布式相关操作服务，例如，分布式锁，分布式集合，可通过Redis支持延迟队列。和Jedis相比，功能较为简单，不支持字符串操作，不支持排序、事务、管道、分区等Redis特性。Redisson的宗旨是促进使用者对Redis的关注分离，从而让使用者能够将精力更集中地放在处理业务逻辑上。
+Redisson中的方法则是进行比较高的抽象，每个方法调用可能进行了一个或多个Redis方法调用。
+Lettuce:高级Redis客户端，用于线程安全同步，异步和响应使用，支持集群，Sentinel，管道和编码器。目前springboot默认使用的客户端。
+伸缩性：
+Jedis：使用阻塞的I/O，且其方法调用都是同步的，程序流需要等到sockets处理完I/O才能执行，不支持异步。Jedis客户端实例不是线程安全的，所以需要通过连接池来使用Jedis。
+Jedis仅支持基本的数据类型如：String、Hash、List、Set、Sorted Set。
+Redisson：基于Netty框架的事件驱动的通信层，其方法调用是异步的。Redisson的API是线程安全的，所以可以操作单个Redisson连接来完成各种操作。
+Redisson不仅提供了一系列的分布式Java常用对象，基本可以与Java的基本数据结构通用，还提供了许多分布式服务，其中包括（BitSet, Set, Multimap, SortedSet, Map, List, Queue, BlockingQueue, Deque, BlockingDeque, Semaphore, Lock, AtomicLong, CountDownLatch, Publish / Subscribe, Bloom filter, Remote service, Spring cache, Executor service, Live Object service, Scheduler service）。
+Lettuce：基于Netty框架的事件驱动的通信层，其方法调用是异步的。Lettuce的API是线程安全的，所以可以操作单个Lettuce连接来完成各种操作。
+
+怎么说呢
+luttuce 要自己 通过 lua 脚本实现分布式锁
+而 reddsion 就可以通过 红锁实现 分布式锁, 我选 redssion 好了

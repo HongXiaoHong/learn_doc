@@ -1036,6 +1036,19 @@ if (log.isInfoEnabled()) {
 }
 ```
 
+### 最佳实践
+
+#### 使用 回调函数 不马上进行字符串的拼接
+```java
+LOGGER.debug(() -> "Transaction synchronization committing SqlSession [" + this.holder.getSqlSession() + "]");
+
+public void debug(Supplier<String> s) {
+    if (log.isDebugEnabled()) {
+      log.debug(s.get());
+    }
+  }
+```
+
 ### log4j2 动态修改日志级别
 
 1. 使用接口更改日志级别

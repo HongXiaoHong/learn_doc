@@ -73,3 +73,22 @@ document.getElementById('kaimoIframe').contentWindow
 
 document.getElementById('kaimoIframe').contentDocument
 ```
+
+## json
+JavaScript:将key名不带双引号的JSON字符串转换成JSON对象的方法
+
+json 字符串中的 key 有时候没有带上单引号或者双引号
+我们可以使用正则表达式, 匹配 key, 然后匹配到的 key 加上双引号
+
+```javascript
+			var json_string = "{   keyName : 34, 'keyCode' : '5554'}";
+			console.log(json_string);//{   keyName : 34, 'keyCode' : '5554'}
+			console.log(/(?:\s*['"]*)?([a-zA-Z0-9]+)(?:['"]*\s*)?:/g.test(json_string))//true
+			console.log(json_string.match(/(?:\s*['"]*)?([a-zA-Z0-9]+)(?:['"]*\s*)?:/g));//["   keyName :", " 'keyCode' :"]
+			json_string = json_string.replace(/(?:\s*['"]*)?([a-zA-Z0-9]+)(?:['"]*\s*)?:/g, "'$1':");
+			console.log(json_string);//{'keyName': 34,'keyCode': '5554'}
+			var json = eval('('+ json_string + ')');
+			console.log(json);//Object {keyName: 34, keyCode: "5554"}
+```
+
+然后我们就可以用 JSON 或者 eval 愉快的转换成 json 对象了

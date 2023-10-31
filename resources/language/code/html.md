@@ -63,7 +63,23 @@ web标准
 高度
 
 vh vh单位代表视口高度，相对于视口高度的1%。
+#### BFC | 块级格式化上下文
+[到底什么是 BFC ？【CSS面试题】](https://www.bilibili.com/video/BV1bT4y1P732/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+BFC
+Block formatting context
+块级格式化上下文
+形成独立的渲染区域
+内部元素的渲染不会影响外界
 
+##### 形成 BFC 常见的条件
+浮动元素: float 不是 none
+绝对定位元素: position 是 absolute 或 fixed
+块级元素 overflow 不是 visible
+flex 元素
+inline-block 元素
+
+##### 应用场景
+清除浮动 等
 
 
 ## 格式

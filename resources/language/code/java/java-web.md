@@ -494,3 +494,28 @@ session 和 token 都是边界很模糊的概念，就像前面说的，refresh 
 - 单点登录要求不同域下的系统「一次登录，全线通用」，通常由独立的 SSO 系统记录登录状态、下发 ticket，各业务系统配合存储和认证 ticket
 
 - 
+
+
+## 重定向
+
+302重定向又称之为暂时性转移(Temporarily Moved )，英文名称：302 redirect。 也被认为是暂时重定向（temporary redirect），一条对网站浏览器的指令来显示浏览器被要求显示的不同的URL，当一个网页经历过短期的URL的变化时使用。
+
+还有一个 301 永久重定向
+
+[springboot跳转到指定页面和（重定向，请求转发的写法）](https://blog.csdn.net/u011066470/article/details/115379182)
+
+2.1 springboot重定向
+方式一：使用 "redirect" 关键字（不是指java关键字），注意：类的注解不能使用@RestController，要用@Controller；因为@RestController内含@ResponseBody，解析返回的是json串。不是跳转页面
+
+方式一：使用 "redirect" 关键字（不是指java关键字），注意：类的注解不能使用@RestController，要用@Controller
+@RequestMapping(value="/test/test01/{name}" , method = RequestMethod.GET)
+public String test(@PathVariable String name) {
+  return "redirect:/ceng/hello.html";
+}
+方式二：使用servlet 提供的API，注意：类的注解可以使用@RestController，也可以使用@Controller 
+
+方式二：使用servlet 提供的API，注意：类的注解可以使用@RestController，也可以使用@Controller
+@RequestMapping(value="/test/test01/{name}" , method = RequestMethod.GET)
+public void test(@PathVariable String name, HttpServletResponse response) throws IOException {
+  response.sendRedirect("/ceng/hello.html");
+}
