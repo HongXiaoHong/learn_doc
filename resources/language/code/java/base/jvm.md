@@ -79,3 +79,15 @@ JDK 提供了很多的工具，比如 jmap ，jcmd 等，oracle 官方推荐使�
 在线教程 [Arthas Tutorials (aliyun.com)](https://arthas.aliyun.com/doc/arthas-tutorials.html?language=cn&id=arthas-basics)
 
 [arthas/README_CN.md at master · alibaba/arthas (github.com)](https://github.com/alibaba/arthas/blob/master/README_CN.md)
+
+## OOM
+### 线程池相关的
+
+https://blog.csdn.net/liuchangjie0112/article/details/90698401
+https://blog.csdn.net/weixin_37968613/article/details/104490441
+https://blog.csdn.net/qing040513/article/details/111667627
+https://www.cnblogs.com/jxxblogs/p/11882381.html
+[常用线程池及使用场景](https://blog.csdn.net/qq_39992056/article/details/86499176#:~:text=%E5%90%84%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A%201%20%E5%9C%BA%E6%99%AF%EF%BC%9A%E6%89%A7%E8%A1%8C%E5%BE%88%E5%A4%9A%E7%9F%AD%E6%9C%9F%E5%BC%82%E6%AD%A5%E7%9A%84%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%88%96%E8%80%85%E8%B4%9F%E8%BD%BD%E8%BE%83%E8%BD%BB%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%20newFixedThreadPool%EF%BC%9A%20%E5%BB%BA%E5%8F%AF%E5%AE%B9%E7%BA%B3%E5%9B%BA%E5%AE%9A%E6%95%B0%E9%87%8F%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B1%A0%E5%AD%90%EF%BC%8C%E6%AF%8F%E9%9A%94%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AD%98%E6%B4%BB%E6%97%B6%E9%97%B4%E6%98%AF%E6%97%A0%E9%99%90%E7%9A%84%EF%BC%8C%E5%BD%93%E6%B1%A0%E5%AD%90%E6%BB%A1%E4%BA%86%E5%B0%B1%E4%B8%8D%E5%9C%A8%E6%B7%BB%E5%8A%A0%E7%BA%BF%E7%A8%8B%E4%BA%86%EF%BC%9B%E5%A6%82%E6%9E%9C%E6%B1%A0%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%BA%BF%E7%A8%8B%E5%9D%87%E5%9C%A8%E7%B9%81%E5%BF%99%E7%8A%B6%E6%80%81%EF%BC%8C%E5%AF%B9%E4%BA%8E%E6%96%B0%E4%BB%BB%E5%8A%A1%E4%BC%9A%E8%BF%9B%E5%85%A5%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E4%B8%AD%202%20%E5%9C%BA%E6%99%AF%EF%BC%9A%E6%89%A7%E8%A1%8C%E9%95%BF%E6%9C%9F%E7%9A%84%E4%BB%BB%E5%8A%A1%EF%BC%8C%E6%80%A7%E8%83%BD%E5%A5%BD%E5%BE%88%E5%A4%9A%20newSingleThreadExecutor%3A,3%20%E5%9C%BA%E6%99%AF%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E7%9A%84%E5%9C%BA%E6%99%AF%20NewScheduledThreadPool%3A%20...%204%20%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%91%A8%E6%9C%9F%E6%80%A7%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%9C%BA%E6%99%AF%20%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A%20)
+
+
+[十分钟带你了解 Oracle 最新的 JVM 技術——GraalVM](https://zhuanlan.zhihu.com/p/106555993)

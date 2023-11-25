@@ -2,6 +2,7 @@
 
 [138-第卅九讲-boot执行流程-小结](https://www.bilibili.com/video/BV1P44y1N7QG/?p=139&spm_id_from=pageDriver&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 
+[【尚硅谷】SpringBoot2零基础入门教程（spring boot2干货满满）](https://www.bilibili.com/video/BV19K4y1L7MT?p=1)
 
 ## 自动加载原理
 [EnableAutoConfiguration注解的工作原理](https://www.jianshu.com/p/464d04c36fb1)

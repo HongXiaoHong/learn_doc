@@ -73,6 +73,17 @@ public @interface Controller {
 
 
 ##### SPI 
+[Java常用机制 - SPI机制详解](https://pdai.tech/md/java/advanced/java-advanced-spi.html)
+其实我觉得 SPI 的本质可以是
+
+调用方 定义了一套接口或者说定义一套标准,
+反过来让服务方进行实现
+实现一套专门的类加载机制, 用以实现加载对应的实现
+> 例如 spi 就是在 
+> resources 接下来可以在resources下新建META-INF/services/目录，然后新建接口全限定名的文件：com.cainiao.ys.spi.learn.Search，里面加上我们需要用到的实现类
+
+> spring 则是 meta-inf/spring.factories
+
 视频讲解:
 [一看就懂，详解Java中的类加载器机制，附热加载示例代码演示](https://www.bilibili.com/video/BV1ZY4y1n7tg/?spm_id_from=333.337.search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 [java-classloader-sample](https://gitee.com/cnmemset/java-classloader-sample/blob/master/app-service/src/main/java/cn/memset/app/CompanyService.java)
@@ -192,3 +203,13 @@ springboot 的自动装载 依靠的原理也跟上面 spi jdbc 类似
 只不过存放的地方变了, springboot 2.0 是 spring.factories
 springboot 3.0 则是另一个配置文件了
 
+
+## 线程池
+[java-线程池+CompletableFuture](https://www.cnblogs.com/dongye95/p/16352895.html)
+
+## java agent 探针 | 外挂 增强
+[Java官方“外挂”-Java Agent探针技术](https://www.bilibili.com/video/BV1xX4y167Eb/?spm_id_from=333.788.recommend_more_video.6&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+日志追踪组件 skywalking 就是根据 java agent 进行日志追踪功能的
+具体原理还是通过 动态修改字节码 进行增强
+动态修改字节码 当然是 大名鼎鼎的 <mark>asm</mark> 库啦

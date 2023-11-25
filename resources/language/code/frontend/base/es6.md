@@ -1,6 +1,6 @@
 # es6
 
-
+[新特性](https://blog.csdn.net/asd577007722/article/details/115190895#:~:text=es6%E6%96%B0%E5%A2%9E%E7%89%B9%E6%80%A7%201.let%E5%92%8Cconst%E5%85%B3%E9%94%AE%E5%AD%97,2.%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC%203.%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%204.%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%BC%95%E5%8F%B7%60%60%E4%BB%A3%E6%9B%BF%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2)
 
 ## 导入导出
 在 ES6 中，有一种新的导入导出模块的语法。这让你能更方便地将代码分割成可复用的模块。下面是如何在 ES6 中导入导出模块的一些基本方法：

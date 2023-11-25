@@ -15,6 +15,10 @@ todo
 
 [3天搞定Linux，1天搞定Shell，清华学神带你通关](https://www.bilibili.com/video/BV1WY4y1H7d3/?p=1)
 
+思维导图:
+https://www.jianshu.com/p/59f759207862
+
+
 ## shell
 
 [Scripts(脚本语言)、Shell、Sh、Bash之间的关系 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/268407319)
@@ -435,7 +439,7 @@ none             1544044     156     1543888    1%     /run/shm
 使用列指定使用的内存的百分比，而最后一栏"安装在"指定的文件系统的挂载点
 
 ### 软件安装
-
+[高效安装Linux软件，命令评测对比](https://www.linuxdown.com/1170.html#:~:text=%E9%AB%98%E6%95%88%E5%AE%89%E8%A3%85Linux%E8%BD%AF%E4%BB%B6%EF%BC%8C%E5%91%BD%E4%BB%A4%E8%AF%84%E6%B5%8B%E5%AF%B9%E6%AF%94%201%201.%20apt-get%E5%91%BD%E4%BB%A4%202%202.%20yum%E5%91%BD%E4%BB%A4%203,5.%20flatpak%E5%91%BD%E4%BB%A4%206%206.%E8%87%AA%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%207%207.%E8%99%9A%E6%8B%9F%E5%8C%96%E5%AE%B9%E5%99%A8%208%209.%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85)
 [包管理apt和yum_apt install_Generalzy的博客-CSDN博客](https://blog.csdn.net/General_zy/article/details/124506399?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-124506399-blog-79634351.235^v38^pc_relevant_anti_vip&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
 
 yum和apt-get用法及区别
@@ -453,3 +457,10 @@ Debian系列
 1 常见的安装包格式 deb包,安装deb包的命令是“dpkg -参数”
 2 包管理工具 apt-get
 3 支持tar包
+
+可以使用的方式
+1. 使用wget下载之后 解压或者自己下载完传到服务器解压 然后安装
+2. 下载源码 ./configuration make make install 进行编译安装
+3. 使用现成的工具进行安装
+   1. red-hat 系列 -> yum
+   2. Debian 系列 -> apt
