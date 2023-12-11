@@ -7,6 +7,10 @@ springboot 3 以及 jdk17 等待学习
 - [springboot 3 下连接 mysql 数据库以及整合 mybatis-plus - 掘金](https://juejin.cn/post/7197434894849572923)
 - [springboot 启动原理](https://www.bilibili.com/video/BV1e14y1A7pT/?spm_id_from=333.337.search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 
+## 学习链接
+[Spring Boot 常见开发代码示例](https://blog.csdn.net/qq_27706119/category_9294217.html)
+
+
 ## 版本
 
 [这可能是最全的SpringBoot3新版本变化了！ - 艾小仙 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ilovejaney/p/16931780.html#springboottest%E4%BC%98%E5%8C%96%E5%8D%87%E7%BA%A7)

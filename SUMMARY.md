@@ -36,6 +36,7 @@
     * [gradle](resources/software/structure/gradle.md)
 * [专题](resources/special_topic/special_topic.md)
   * [学习路线](resources/special_topic/computer/science/code/learning/path.md)
+  * [SQL_优化](resources/special_topic/computer/science/sql/better.md)
   * [源码阅读](resources/special_topic/computer/science/code/source.md)
   * [源码阅读](resources/special_topic/computer/science/code/source.md)
   * [ast抽象语法树](resources/special_topic/computer/science/code/ast.md)
