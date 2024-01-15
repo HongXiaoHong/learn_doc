@@ -15,6 +15,15 @@ todo
 [spring-cloud - 纯洁的微笑博客 (ityouknow.com)](http://www.ityouknow.com/spring-cloud.html)
 https://github.com/ityouknow/spring-cloud-examples
 
+### 项目搭建
+使用 maven 搭建 springcloud 项目
+使用IDEA搭建SpringCloud项目方法_简单入门
+https://blog.csdn.net/weixin_42547014/article/details/120156385
+
+springcloud 与 springboot 版本依赖
+https://docs.spring.io/spring-cloud-release/reference/index.html
+https://spring.io/projects/spring-cloud/#learn
+
 ### 与dubbo 区别
 
 https://www.bmabk.com/index.php/post/50604.html

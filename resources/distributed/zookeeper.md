@@ -28,6 +28,27 @@ todo:
 
 windows 搭建集群也可以参照上面那个
 
+下载 zookeeper 压缩包
+解压后
+使用命令
+zkServer.cmd
+不用像官网说的那样加上 start
+
+配置一个 conf/zoo.cfg
+
+```cfg
+tickTime=2000
+dataDir=D:/app/code/zookeeper/data
+clientPort=11181
+```
+
+本来是要在 data 目录配置一个 myid
+但好像也没啥用
+> 在 zoo.cfg 文件中，转到 dataDir=/usr/zookeeper/data
+> 在 data 文件夹中，创建一个名为 myid 的文件，并写入 1。保存文件并启动 zkServer
+参照此文: 
+[Zookeeper 未启动](https://stackoverflow.com/questions/11765015/zookeeper-not-starting)
+
 ## 使用 docker 部署zookeeper
 
 ```bash

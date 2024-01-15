@@ -8,6 +8,30 @@
 
 [Nginx学习 | 何叨叨的个人博客 (heyingjiee.github.io)](https://heyingjiee.github.io/otherLanguage/Nginx%E5%AD%A6%E4%B9%A0.html#%E5%89%8D%E6%8F%90%E5%87%86%E5%A4%87)
 
+
+[Nginx location匹配规则](https://www.cnblogs.com/woshimrf/p/nginx-config-location.html)
+
+## 端口规划
+> 左不包括, 右包括
+> ( ]
+后端 开发
+测试 8001-9000
+
+发布 9001 - 10000
+show_time: 9001
+   
+软件安装 11001 - 12000
+Jenkins: 11080
+zookeeper: 11181
+gitea: 12000
+nacos: 11848
+前端 开发
+测试:
+12001 - 13000
+发布:
+13001 - 14000
+
+
 ## 正向代理 反向代理 本质区别？
 
 https://www.zhihu.com/question/36412304
