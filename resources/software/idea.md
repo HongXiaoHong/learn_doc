@@ -84,3 +84,8 @@ SEND
 ## debug 调试
 
 [IDEA中的debug断点调试技巧，学会真的香！ - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1887019)
+
+
+## google 代码规范设置
+[IDEA使用谷歌代码规范格式化代码](https://blog.csdn.net/whgyxy/article/details/88747178)
+

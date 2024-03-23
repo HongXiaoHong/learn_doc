@@ -1,10 +1,12 @@
 ## 算法快速入门
-
-⭐[GitHub - youngyangyang04/leetcode-master: 《代码随想录》LeetCode 刷题攻略：200道经典题目刷题顺序，共60w字的详细图解，视频难点剖析，50余张思维导图，支持C++，Java，Python，Go，JavaScript等多语言版本，从此算法学习不再迷茫！🔥🔥 来看看，你会发现相见恨晚！🚀](https://github.com/youngyangyang04/leetcode-master)
-
 🍚[看动画，拿 Offer-剑指offer](https://blog.algomooc.com/)
 
 🥜[Introduction - algorithm-pattern](https://greyireland.gitbook.io/algorithm-pattern/)
+
+### 代码随想录 | 推荐⭐
+[GitHub - youngyangyang04/leetcode-master: 《代码随想录》LeetCode 刷题攻略：200道经典题目刷题顺序，共60w字的详细图解，视频难点剖析，50余张思维导图，支持C++，Java，Python，Go，JavaScript等多语言版本，从此算法学习不再迷茫！🔥🔥 来看看，你会发现相见恨晚！🚀](https://github.com/youngyangyang04/leetcode-master)
+[代码随想录](https://www.bilibili.com/video/BV1fA4y1o715/?spm_id_from=333.788&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
 
 ## 数组
 

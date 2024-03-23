@@ -2,6 +2,12 @@
 官方网站:
 [Python 3.11.5 文档](https://docs.python.org/zh-cn/3/index.html)
 
+## 版本
+3.7.9 是 3.7 最后一个 exe 安装版本
+https://www.python.org/downloads/release/python-379/
+
+
+
 ## 变量
 
 ### 局部变量

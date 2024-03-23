@@ -1036,6 +1036,19 @@ if (log.isInfoEnabled()) {
 }
 ```
 
+### 最佳实践
+[打印日志准则-求你了，别乱打印日志了！](https://zhuanlan.zhihu.com/p/420662958)
+#### 使用 回调函数 不马上进行字符串的拼接
+```java
+LOGGER.debug(() -> "Transaction synchronization committing SqlSession [" + this.holder.getSqlSession() + "]");
+
+public void debug(Supplier<String> s) {
+    if (log.isDebugEnabled()) {
+      log.debug(s.get());
+    }
+  }
+```
+
 ### log4j2 动态修改日志级别
 
 1. 使用接口更改日志级别
@@ -1047,3 +1060,83 @@ if (log.isInfoEnabled()) {
 [(25条消息) 使用Zookeeper动态更改日志级别_zookeeper.out日志级别_Tuzki的学习笔记的博客-CSDN博客](https://blog.csdn.net/qq_34018603/article/details/100150510)
 
 [动态日志级别：小功能，大用处 - 掘金 (juejin.cn)](https://juejin.cn/post/6994966780745613342)
+
+### log4j logger appender 日志优先级 都配置上优先级, 最后优先级谁来决定
+[log4j| log4j-日志输出级别生效规则(rootLogger , Threshold ,指定包级别 和 指定类级别)](https://blog.csdn.net/u011479200/article/details/102481495)
+#### 1.在没有 指定包级别 也么有 指定类级别 的情况:
+配置情况一:
+
+省略其他设置
+
+log4j.rootLogger = DEBUG, STDOUT
+log4j.appender.STDOUT.Threshold=warn
+由于debug <warn,所以Threshold阈值设置会生效.
+
+配置情况一:
+
+省略其他设置
+
+log4j.rootLogger = OFF, STDOUT
+log4j.appender.STDOUT.Threshold=warn
+由于warn < OFF,所以Threshold阈值设置会无效
+总结起来就是: 当只有 rootLogger 和 Threshold 设置了日志级别时,会将级别高设置生效.
+
+#### 2.在有 指定包级别 或 指定类级别 的情况:
+```properties
+# Define the root logger with appender file
+log4j.rootLogger = OFF, STDOUT
+
+# Define the stdout appender
+log4j.appender.STDOUT=org.apache.log4j.ConsoleAppender
+log4j.appender.STDOUT.layout=org.apache.log4j.PatternLayout
+log4j.appender.STDOUT.layout.conversionPattern=%d %-5p [%t] - %c -%m%n
+
+# 指定Appender的日志等级阈值
+log4j.appender.STDOUT.Threshold=warn
+
+# 限制指定包的日志级别 (比如: com.info.*)
+log4j.logger.com.yveshe=error
+
+```
+总结:
+当存在指定包级别或指定类级别时,在指定受影响范围的日志中rootLogger 的设置将失效,最终以指定级别设置的日志级别和Threshold的设置级组合生效选取等级最高的设置生效.
+
+当同时存在在指定包级别或指定类级别时,指定类级别的设置会最终生效.
+
+### Java日志框架中需要判断log.isDebugEnabled()吗？
+[Java日志框架中需要判断log.isDebugEnabled()吗？](https://www.cnblogs.com/leiwei/p/14674143.html)
+
+isDebugEnabled最佳实践
+原则一：如果打印字符串常量，不需要isDebugEnabled
+原则二：如果有参数，且参数只是字符串常量或计算简单，使用占位符
+原则三：如果有参数，且参数计算复杂，添加isDebugEnabled
+    有复杂运算的时候, 可以通过 函数表达式的方式, 
+```java
+LOGGER.debug(() -> "Transaction synchronization committing SqlSession [" + this.holder.getSqlSession() + "]");
+
+public void debug(Supplier<String> s) {
+    if (log.isDebugEnabled()) {
+      log.debug(s.get());
+    }
+  }
+```
+
+### Log4j 配置某个类中某个方法的输出日志到指定文件 也就是 新增 appender/logger
+[Log4j 配置某个类中某个方法的输出日志到指定文件](https://blog.csdn.net/zbx931197485/article/details/89291753)
+也就是 新增 appender/logger
+Logger singleLoginInfo = Logger.getLogger("singleLoginInfo");
+
+## 应该使用哪种日志级别打印好呢?
+
+
+一共分为五个级别：DEBUG、INFO、WARN、ERROR和FATAL。这五个级别是有顺序的，DEBUG < INFO < WARN < ERROR < FATAL，明白这一点很重要，这里Log4j有一个规则：假设设置了级别为P，如果发生了一个级别Q比P高，则可以启动，否则屏蔽掉。
+DEBUG: 这个级别最低的东东，一般的来说，在系统实际运行过程中，一般都是不输出的。因此这个级别的信息，可以随意的使用，任何觉得有利于在调试时更详细的了解系统运行状态的东东，比如变量的值等等，都输出来看看也无妨。
+INFO：这个应该用来反馈系统的当前状态给最终用户的，所以，在这里输出的信息，应该对最终用户具有实际意义，也就是最终用户要能够看得明白是什么意思才行。从某种角度上说，Info 输出的信息可以看作是软件产品的一部分（就像那些交互界面上的文字一样），所以需要谨慎对待，不可随便。
+WARN、ERROR和FATAL：警告、错误、严重错误，这三者应该都在系统运行时检测到了一个不正常的状态，他们之间的区别，要区分还真不是那么简单的事情。我大致是这样区分的：
+        所谓警告，应该是这个时候进行一些修复性的工作，应该还可以把系统恢复到正常状态中来，系统应该可以继续运行下去。
+        所谓错误，就是说可以进行一些修复性的工作，但无法确定系统会正常的工作下去，系统在以后的某个阶段，很可能会因为当前的这个问题，导致一个无法修复的错误（例如宕机），但也可能一直工作到停止也不出现严重问题。
+        所谓Fatal，那就是相当严重的了，可以肯定这种错误已经无法修复，并且如果系统继续运行下去的话，可以肯定必然会越来越乱。这时候采取的最好的措施不是试图将系统状态恢复到正常，而是尽可能地保留系统有效数据并停止运行。
+        也就是说，选择 Warn、Error、Fatal 中的具体哪一个，是根据当前的这个问题对以后可能产生的影响而定的，如果对以后基本没什么影响，则警告之，如果肯定是以后要出严重问题的了，则Fatal之，拿不准会怎么样，则 Error 之。
+————————————————
+版权声明：本文为CSDN博主「zhangfx5」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u010526028/article/details/109327246

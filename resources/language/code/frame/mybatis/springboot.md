@@ -41,3 +41,9 @@ spring 网站或者 idea 甚至 vscode 创建
 
 如何整合可参考:
 https://blog.csdn.net/chinoukin/article/details/106538925
+
+### 如何将 mapper 注入 spring
+[【SpringBoot + Mybatis系列】Mapper接口注册的几种方式](https://cloud.tencent.com/developer/article/1852524)
+2.1 @MapperScan注册方式
+2.2 @Mapper 注册方式
+2.3 MapperScannerConfigurer注册方式

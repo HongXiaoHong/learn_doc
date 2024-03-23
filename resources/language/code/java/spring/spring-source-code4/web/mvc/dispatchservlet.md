@@ -1,5 +1,5 @@
 # mvc 核心类 dispatchServlet 源码解析
-
+[mvc 执行流程总结](https://www.bilibili.com/video/BV1P44y1N7QG?p=119&spm_id_from=pageDriver&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 ## 结合 springboot
 springboot 中有一个 dispatchservlet...autoconfiguration
 可以配置 dispatchservlet 同时将 dispatchservlet 注册到 Tomcat 中

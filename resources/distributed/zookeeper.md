@@ -10,6 +10,14 @@ todo:
 
 - watch 机制
 
+### 思维导图
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/msedge_3ys0wydOkm.png)
+
+
+
+
+
 ## windows 安装
 
 下载: [Apache Downloads](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.7.1/apache-zookeeper-3.7.1-bin.tar.gz)
@@ -19,6 +27,27 @@ todo:
 [Zookeeper——Docker下安装部署 - 曹伟雄 - 博客园](https://www.cnblogs.com/caoweixiong/p/12325410.html)
 
 windows 搭建集群也可以参照上面那个
+
+下载 zookeeper 压缩包
+解压后
+使用命令
+zkServer.cmd
+不用像官网说的那样加上 start
+
+配置一个 conf/zoo.cfg
+
+```cfg
+tickTime=2000
+dataDir=D:/app/code/zookeeper/data
+clientPort=11181
+```
+
+本来是要在 data 目录配置一个 myid
+但好像也没啥用
+> 在 zoo.cfg 文件中，转到 dataDir=/usr/zookeeper/data
+> 在 data 文件夹中，创建一个名为 myid 的文件，并写入 1。保存文件并启动 zkServer
+参照此文: 
+[Zookeeper 未启动](https://stackoverflow.com/questions/11765015/zookeeper-not-starting)
 
 ## 使用 docker 部署zookeeper
 
@@ -640,6 +669,20 @@ zookeeper作为非常重要的分布式协调组件，需要进行集群部署�
 ### 4、崩溃恢复时的Leader选举
 
 Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命令，没有内容的socket）。当Leader崩溃后，Follower发现socket通道已关闭，于是Follower开始进入到Looking状态，重新回到上一节中的Leader选举状态，此时集群不能对外提供服务。
+
+#### 脑裂如何避免
+
+
+
+[ZooKeeper集群脑裂问题处理，值得收藏！-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1758883)
+
+脑裂现象: 可能会因为不同机房网络的关系, 部分机器只能跟自己相同网段的机器进行交互(ping 通), 这样就会产生多个 主节点, 这里是 leader
+
+但是
+
+zookeeper 默认采用了
+
+<mark>过半选举机制</mark> 避免了 脑裂
 
 ### 5、主从服务器之间的数据同步
 

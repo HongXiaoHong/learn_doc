@@ -7,6 +7,10 @@ springboot 3 以及 jdk17 等待学习
 - [springboot 3 下连接 mysql 数据库以及整合 mybatis-plus - 掘金](https://juejin.cn/post/7197434894849572923)
 - [springboot 启动原理](https://www.bilibili.com/video/BV1e14y1A7pT/?spm_id_from=333.337.search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
 
+## 学习链接
+[Spring Boot 常见开发代码示例](https://blog.csdn.net/qq_27706119/category_9294217.html)
+
+
 ## 版本
 
 [这可能是最全的SpringBoot3新版本变化了！ - 艾小仙 - 博客园 (cnblogs.com)](https://www.cnblogs.com/ilovejaney/p/16931780.html#springboottest%E4%BC%98%E5%8C%96%E5%8D%87%E7%BA%A7)
@@ -22,11 +26,10 @@ springboot 3 以及 jdk17 等待学习
 
 但是这个时候我们项目已经有一个 parent 的父项目了
 
-
-
 那么我们可以通过
 [Spring Boot 不使用默认的 parent，改用自己的项目的 parent](https://blog.csdn.net/rainbow702/article/details/55046298)
 使用
+
 ```xml
 <dependencyManagement>
     <dependencies>
@@ -59,10 +62,10 @@ springboot 3 以及 jdk17 等待学习
 ```
 
 运行 
+
 > mvn package
 
 进行打包
-
 
 ## yml
 
@@ -183,3 +186,60 @@ spring:
 ### 打印出参入参
 
 继承 RequestBodyAdvice ResponseBodyAdvice 加上注解@ControllerAdvice
+
+## 事务
+
+[分布式事务技巧之使用编程式事务](https://www.jianshu.com/p/169a091b449b)
+
+```xml
+<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+       <constructor-arg name="transactionManager" ref="transactionManager" />
+    </bean>
+```
+
+```java
+        final ObjectHolder<String> orderCodeHolder = new ObjectHolder<>(null);
+        try {
+            CreateOrderResponseDTO createOrderResponseDTO = transactionTemplate.execute(new TransactionCallback<CreateOrderResponseDTO>() {
+                @Override
+                public CreateOrderResponseDTO doInTransaction(TransactionStatus status) {
+                    // 一些校验 以及构造订单
+                    OrderWithWaresDTO orderWithWaresDTO = validateAndBuildOrder(request);
+
+                    // 调用订单中心创建订单
+                    String orderCode = orderCenterService.registerOrder(orderWithWaresDTO);
+                    orderCodeHolder.set(orderCode);
+                    orderWithWaresDTO.setOrderCode(orderCode);
+
+                    // 调用支付中心创建支付单
+                    CreatePaymentOrderResponse response = paymentCenterService.createPayment(orderWithWaresDTO);
+
+                    //...业务操作
+
+                    //落本地数据路
+                    createLocalOrder(orderWithWaresDTO);
+
+                    CreateOrderResponseDTO createOrderResponseDTO = new CreateOrderResponseDTO();
+                    //...业务操作
+
+                    return createOrderResponseDTO;
+                }
+            });
+            return Result.success(createOrderResponseDTO);
+        }catch (Exception ex){
+            log.error("下单失败，回滚订单中心",ex);
+            if(Objects.nonNull(orderCodeHolder.get())){
+                // TODO: 2019-06-05 这边也有可能是失败 考虑做成重试
+                orderCenterService.deleteOrder(orderCodeHolder.get());
+            }
+            return Result.fail("创建订单失败");
+        }
+```
+
+参考阅读
+
+[面试官：Spring事务失效的场景有哪些？如何解决？ (qq.com)](https://mp.weixin.qq.com/s/Vhr07lCfGMHDzQc8eYgYkQ)
+
+[【精选】springboot 编程式事务-CSDN博客](https://blog.csdn.net/fzy629442466/article/details/103458630)
+
+[spring事务控制你还在用transactional注解吗？今天给大家分享编程式事务实现方案_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1ie4y1379a/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)

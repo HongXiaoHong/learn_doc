@@ -354,3 +354,19 @@ amazon推出Aurora分布式数据库并不算是上面2种架构的一种，并�
 ## 数据库选型
 
 [[译] 如何选择合适的数据库 - 掘金 (juejin.cn)](https://juejin.cn/post/6844904057925009415)
+
+## SQL 执行顺序
+
+[SQL的执行顺序_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1Fu411x7jm/?spm_id_from=..search-card.all.click&vd_source=eabc2c22ae7849c2c4f31815da49f209)
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/msedge_8Rzi7O0Mms.png)
+
+![](https://raw.githubusercontent.com/HongXiaoHong/images/main/picture/msedge_yNn0oIiQo9.png)
+
+
+
+上面这个顺序是指的标准顺序
+
+具体执行顺序每个数据库可能不一样
+
+但是也是大差不差了
