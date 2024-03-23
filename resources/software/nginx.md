@@ -25,6 +25,7 @@ Jenkins: 11080
 zookeeper: 11181
 gitea: 12000
 nacos: 11848
+mongodb: 11017
 前端 开发
 测试:
 12001 - 13000

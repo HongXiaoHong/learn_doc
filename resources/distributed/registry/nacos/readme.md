@@ -117,6 +117,21 @@ springcloud-alibaba: 2022.0.0.0-RC2
 
 nacos:  2.1.1
 
+
+
+修改
+
+```
+server:
+  port: 8003
+white:
+  name: 1.1.1.8
+black:
+  name: 2.2.2.8
+```
+
+
+
 ###### 测试是否可以动态配置
 
 ```yaml

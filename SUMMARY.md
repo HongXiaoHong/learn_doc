@@ -170,6 +170,7 @@
                 * [oauth2](resources/language/code/java/springcloud/oauth2.md)
                 * [springboot](resources/language/code/java/springboot/springboot.md)
                   * [springboot_常用组件](resources/language/code/java/springboot/frequency/dependencies.md)
+                  * [springboot集成mongodb](resources/language/code/java/springboot/frequency/dependencies/mongodb.md)
                   * [springboot_源码分析](resources/language/code/java/springboot/source.md)
                     * [springboot_启动源码分析](resources/language/code/java/springboot/source/start.md)
                     * [springboot_web源码分析](resources/language/code/java/springboot/source/web.md)
